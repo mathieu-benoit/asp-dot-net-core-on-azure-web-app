@@ -1,9 +1,17 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using AspNetCoreApplication.Services;
+using Microsoft.AspNetCore.Mvc;
 
 namespace AspNetCoreApplication.Controllers
 {
     public class HomeController : Controller
     {
+        private readonly IHomeService _homeService;
+
+        public HomeController(IHomeService homeService)
+        {
+            _homeService = homeService;
+        }
+
         public IActionResult Index()
         {
             return View();
@@ -11,14 +19,14 @@ namespace AspNetCoreApplication.Controllers
 
         public IActionResult About()
         {
-            ViewData["Message"] = "Your application description page.";
+            ViewData["Message"] = _homeService.About;
 
             return View();
         }
 
         public IActionResult Contact()
         {
-            ViewData["Message"] = "Your contact page.";
+            ViewData["Message"] = _homeService.Contact;
 
             return View();
         }
