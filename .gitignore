@@ -10,3 +10,5 @@
 /src/AspNetCoreApplication/wwwroot/lib
 /test/AspNetCoreApplication.Tests/bin/Debug/netcoreapp1.0
 /test/AspNetCoreApplication.Tests/obj/Debug/netcoreapp1.0
+/test/AspNetCoreApplication.UnitTests/bin/Debug/netcoreapp1.0
+/test/AspNetCoreApplication.UnitTests/obj/Debug/netcoreapp1.0
