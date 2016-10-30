@@ -12,7 +12,7 @@ namespace AspNetCoreApplication.Tests.Services
         }
 
         [Fact]
-        public void TestAboutNotNullOrWhiteSpace() 
+        public void About_NotNullNorWhiteSpace() 
         {
             //Arrange
 
@@ -24,7 +24,7 @@ namespace AspNetCoreApplication.Tests.Services
         }
 
         [Fact]
-        public void TestContactNotNullOrWhiteSpace()
+        public void Contact_NotNullNorWhiteSpace()
         {
             //Arrange
 

@@ -5,7 +5,7 @@ namespace AspNetCoreApplication.Tests
     public class SampleTests
     {
         [Fact]
-        public void TwoPlusTwoEqualsFourTest()
+        public void TwoPlusTwoEqualsFour()
         {
             //Arrange
             var expectedResult = 4;
@@ -18,7 +18,7 @@ namespace AspNetCoreApplication.Tests
         }
 
         [Fact]
-        public void TwoPlusTwoNotEqualsFiveTest()
+        public void TwoPlusTwoNotEqualsFive()
         {
             //Arrange
             var unExpectedResult = 5;
