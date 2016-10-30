@@ -1,7 +1,7 @@
 ﻿using AspNetCoreApplication.Services;
 using Xunit;
 
-namespace AspNetCoreApplication.Tests.Services
+namespace AspNetCoreApplication.UnitTests.Services
 {
     public class HomeServiceTests
     {

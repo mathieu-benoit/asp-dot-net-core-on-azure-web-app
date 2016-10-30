@@ -1,6 +1,6 @@
 ﻿using Xunit;
 
-namespace AspNetCoreApplication.Tests
+namespace AspNetCoreApplication.UnitTests
 {
     public class SampleTests
     {
