@@ -12,6 +12,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "AspNetCoreApplication", "src\AspNetCoreApplication\AspNetCoreApplication.xproj", "{695403A6-C1ED-4647-B4BC-74133A41B70D}"
 EndProject
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "AspNetCoreApplication.Tests", "test\AspNetCoreApplication.Tests\AspNetCoreApplication.Tests.xproj", "{EF0BB060-ADAF-4274-8AA7-DAA634BDBC5E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{5599B0FC-37F4-4E10-9CFD-96611FDF9794}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -22,11 +26,16 @@ Global
 		{695403A6-C1ED-4647-B4BC-74133A41B70D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{695403A6-C1ED-4647-B4BC-74133A41B70D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{695403A6-C1ED-4647-B4BC-74133A41B70D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EF0BB060-ADAF-4274-8AA7-DAA634BDBC5E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EF0BB060-ADAF-4274-8AA7-DAA634BDBC5E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EF0BB060-ADAF-4274-8AA7-DAA634BDBC5E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EF0BB060-ADAF-4274-8AA7-DAA634BDBC5E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{695403A6-C1ED-4647-B4BC-74133A41B70D} = {D02777E3-31E1-40C9-B114-485E07E71B84}
+		{EF0BB060-ADAF-4274-8AA7-DAA634BDBC5E} = {5599B0FC-37F4-4E10-9CFD-96611FDF9794}
 	EndGlobalSection
 EndGlobal

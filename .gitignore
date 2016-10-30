@@ -8,3 +8,5 @@
 *.user
 /src/AspNetCoreApplication/bower_components
 /src/AspNetCoreApplication/wwwroot/lib
+/test/AspNetCoreApplication.Tests/bin/Debug/netcoreapp1.0
+/test/AspNetCoreApplication.Tests/obj/Debug/netcoreapp1.0
