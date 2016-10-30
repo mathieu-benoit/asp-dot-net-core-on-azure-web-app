@@ -6,3 +6,5 @@
 /src/AspNetCoreApplication/obj/Debug/netcoreapp1.0
 /.vs
 *.user
+/src/AspNetCoreApplication/bower_components
+/src/AspNetCoreApplication/wwwroot/lib
