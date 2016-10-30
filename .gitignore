@@ -4,3 +4,5 @@
 
 /src/AspNetCoreApplication/bin/Debug/netcoreapp1.0
 /src/AspNetCoreApplication/obj/Debug/netcoreapp1.0
+/.vs
+*.user
