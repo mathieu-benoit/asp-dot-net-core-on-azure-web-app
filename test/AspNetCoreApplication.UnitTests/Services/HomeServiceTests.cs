@@ -5,19 +5,14 @@ namespace AspNetCoreApplication.UnitTests.Services
 {
     public class HomeServiceTests
     {
-        private IHomeService _homeService;
-        public HomeServiceTests()
-        {
-            _homeService = new HomeService();
-        }
-
         [Fact]
         public void About_NotNullNorWhiteSpace() 
         {
             //Arrange
+            var homeService = new HomeService();//TODO: Use Moq framework instead.
 
             //Act
-            var aboutValue = _homeService.About;
+            var aboutValue = homeService.About;
 
             //Assert
             Assert.False(string.IsNullOrWhiteSpace(aboutValue));
@@ -27,9 +22,10 @@ namespace AspNetCoreApplication.UnitTests.Services
         public void Contact_NotNullNorWhiteSpace()
         {
             //Arrange
+            var homeService = new HomeService();//TODO: Use Moq framework instead.
 
             //Act
-            var contactValue = _homeService.Contact;
+            var contactValue = homeService.Contact;
 
             //Assert
             Assert.False(string.IsNullOrWhiteSpace(contactValue));
