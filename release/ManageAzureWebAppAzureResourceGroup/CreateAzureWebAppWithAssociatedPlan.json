@@ -1,0 +1,70 @@
+﻿{
+  "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "web-appName": {
+      "type": "string",
+      "minLength": 1
+    },
+    "app-service-planName": {
+      "type": "string",
+      "minLength": 1
+    },
+    "app-service-planSKU": {
+      "type": "string",
+      "allowedValues": [
+        "Free",
+        "Shared",
+        "Basic",
+        "Standard",
+        "Premium"
+      ],
+      "defaultValue": "Standard"
+    },
+    "app-service-planWorkerSize": {
+      "type": "string",
+      "allowedValues": [
+        "0",
+        "1",
+        "2"
+      ],
+      "defaultValue": "0"
+    }
+  },
+  "variables": {},
+  "resources": [
+    {
+      "name": "[parameters('app-service-planName')]",
+      "type": "Microsoft.Web/serverfarms",
+      "location": "[resourceGroup().location]",
+      "apiVersion": "2014-06-01",
+      "dependsOn": [],
+      "tags": {
+        "displayName": "app-service-plan"
+      },
+      "properties": {
+        "name": "[parameters('app-service-planName')]",
+        "sku": "[parameters('app-service-planSKU')]",
+        "workerSize": "[parameters('app-service-planWorkerSize')]",
+        "numberOfWorkers": 1
+      }
+    },
+    {
+      "name": "[parameters('web-appName')]",
+      "type": "Microsoft.Web/sites",
+      "location": "[resourceGroup().location]",
+      "apiVersion": "2015-08-01",
+      "dependsOn": [
+        "[resourceId('Microsoft.Web/serverfarms', parameters('app-service-planName'))]"
+      ],
+      "tags": {
+        "displayName": "web-app"
+      },
+      "properties": {
+        "name": "[parameters('web-appName')]",
+        "serverFarmId": "[resourceId('Microsoft.Web/serverfarms', parameters('app-service-planName'))]"
+      }
+    }
+  ],
+  "outputs": {}
+}
