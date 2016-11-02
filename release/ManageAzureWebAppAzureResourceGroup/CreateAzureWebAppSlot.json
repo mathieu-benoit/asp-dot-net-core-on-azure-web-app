@@ -1,0 +1,39 @@
+﻿{
+  "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "web-appName": {
+      "type": "string",
+      "minLength": 1
+    },
+    "slotName": {
+      "type": "string",
+      "minLength": 1
+    }
+  },
+  "variables": {},
+  "resources": [
+    {
+      "apiVersion": "2015-08-01",
+      "name": "[parameters('slotName')]",
+      "type": "slots",
+      "location": "[resourceGroup().location]",
+      "dependsOn": [
+        "[resourceId('Microsoft.Web/Sites', parameters('web-appName'))]"
+      ]
+    },
+    {
+      "apiVersion": "2015-08-01",
+      "name": "appsettings",
+      "type": "config",
+      "dependsOn": [
+        "[resourceId('Microsoft.Web/Sites/Slots', parameters('web-appName'), parameters('slotName'))]"
+      ],
+      "properties": {
+        "AppSettingKey1": "Some staging value",
+        "AppSettingKey2": "My second staging setting",
+        "AppSettingKey3": "My third staging setting"
+      }
+    }
+  ]
+}

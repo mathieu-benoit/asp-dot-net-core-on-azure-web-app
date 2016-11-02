@@ -25,10 +25,12 @@
   <Import Condition=" Exists('$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Deployment\1.1\DeploymentProject.targets') " Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Deployment\1.1\DeploymentProject.targets" />
   <!-- vertag<:>end -->
   <ItemGroup>
+    <None Include="CreateAzureWebAppSlot.json" />
     <None Include="CreateAzureWebAppWithAssociatedPlan.json" />
     <None Include="Deployment.targets">
       <Visible>False</Visible>
     </None>
+    <Content Include="CreateAzureWebAppSlot.ps1" />
     <Content Include="CreateAzureWebAppWithAssociatedPlan.ps1" />
   </ItemGroup>
   <Target Name="GetReferenceAssemblyPaths" />

@@ -38,10 +38,6 @@
       "type": "Microsoft.Web/serverfarms",
       "location": "[resourceGroup().location]",
       "apiVersion": "2014-06-01",
-      "dependsOn": [],
-      "tags": {
-        "displayName": "app-service-plan"
-      },
       "properties": {
         "name": "[parameters('app-service-planName')]",
         "sku": "[parameters('app-service-planSKU')]",
@@ -57,12 +53,33 @@
       "dependsOn": [
         "[resourceId('Microsoft.Web/serverfarms', parameters('app-service-planName'))]"
       ],
-      "tags": {
-        "displayName": "web-app"
-      },
       "properties": {
         "name": "[parameters('web-appName')]",
         "serverFarmId": "[resourceId('Microsoft.Web/serverfarms', parameters('app-service-planName'))]"
+      }
+    },
+    {
+      "apiVersion": "2015-08-01",
+      "name": "appsettings",
+      "type": "config",
+      "dependsOn": [
+        "[resourceId('Microsoft.Web/Sites', parameters('web-appName'))]"
+      ],
+      "properties": {
+        "AppSettingKey1": "Some value",
+        "AppSettingKey2": "My second setting",
+        "AppSettingKey3": "My third setting"
+      }
+    },
+    {
+      "apiVersion": "2015-08-01",
+      "name": "slotconfignames",
+      "type": "config",
+      "dependsOn": [
+        "[resourceId('Microsoft.Web/Sites', parameters('web-appName'))]"
+      ],
+      "properties": {
+        "appSettingNames": [ "AppSettingKey1", "AppSettingKey2" ]
       }
     }
   ],
