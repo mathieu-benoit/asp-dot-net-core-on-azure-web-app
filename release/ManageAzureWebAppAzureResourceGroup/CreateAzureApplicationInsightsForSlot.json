@@ -12,7 +12,7 @@
     }
   },
   "variables": {
-    "appInsightsName": "[parameters('webAppName')]"
+    "appInsightsName": "[concat(parameters('webAppName'), '-', parameters('slotName'))]"
   },
   "resources": [
     {
