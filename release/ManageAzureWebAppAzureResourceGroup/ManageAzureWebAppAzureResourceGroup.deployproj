@@ -25,6 +25,8 @@
   <Import Condition=" Exists('$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Deployment\1.1\DeploymentProject.targets') " Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Deployment\1.1\DeploymentProject.targets" />
   <!-- vertag<:>end -->
   <ItemGroup>
+    <None Include="CreateAzureApplicationInsights.json" />
+    <None Include="CreateAzureApplicationInsights.parameters.json" />
     <None Include="CreateAzureWebAppWithAssociatedPlan.parameters.json" />
     <None Include="CreateAzureWebAppSlot.parameters.json" />
     <None Include="CreateAzureWebAppSlot.json" />
@@ -32,6 +34,7 @@
     <None Include="Deployment.targets">
       <Visible>False</Visible>
     </None>
+    <Content Include="CreateAzureApplicationInsights.ps1" />
     <Content Include="CreateAzureWebAppSlot.ps1" />
     <Content Include="CreateAzureWebAppWithAssociatedPlan.ps1" />
   </ItemGroup>
