@@ -7,16 +7,32 @@
       "minLength": 1
     }
   },
-  "variables": {},
+  "variables": {
+    "appInsightsName": "[parameters('webAppName')]"
+  },
   "resources": [
     {
-      "apiVersion": "2015-05-01",
-      "name": "[parameters('webAppName')]",
+      "apiVersion": "2014-04-01",
+      "name": "[variables('appInsightsName')]",
       "type": "Microsoft.Insights/components",
       "location": "[resourceGroup().location]",
       "dependsOn": [],
+      "tags": {
+        "[concat('hidden-link:', resourceGroup().id, '/providers/Microsoft.Web/sites/', parameters('webAppName'))]": "Resource"
+      },
       "properties": {
-        "ApplicationId": "[parameters('webAppName')]"
+        "ApplicationId": "[variables('appInsightsName')]"
+      }
+    },
+    {
+      "apiVersion": "2015-08-01",
+      "name": "[concat(parameters('webAppName'), '/', 'appsettings')]",
+      "type": "Microsoft.Web/sites/config",
+      "dependsOn": [
+        "[variables('appInsightsName')]"
+      ],
+      "properties": {
+        "ApplicationInsightsInstrumentationKey": "[reference(concat('Microsoft.Insights/components/', variables('appInsightsName'))).InstrumentationKey]"
       }
     }
   ],
