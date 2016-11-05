@@ -12,7 +12,7 @@
   },
   "resources": [
     {
-      "apiVersion": "2014-04-01",
+      "apiVersion": "2015-05-01",
       "name": "[variables('appInsightsName')]",
       "type": "Microsoft.Insights/components",
       "location": "[resourceGroup().location]",
@@ -32,7 +32,18 @@
         "[variables('appInsightsName')]"
       ],
       "properties": {
-        "ApplicationInsightsInstrumentationKey": "[reference(concat('Microsoft.Insights/components/', variables('appInsightsName'))).InstrumentationKey]"
+        "ApplicationInsightsInstrumentationKey": "[reference(concat('Microsoft.Insights/components/', variables('appInsightsName')), '2015-05-01').InstrumentationKey]"
+      }
+    },
+    {
+      "apiVersion": "2015-08-01",
+      "name": "[concat(parameters('webAppName'), '/', 'slotconfignames')]",
+      "type": "Microsoft.Web/sites/config",
+      "dependsOn": [],
+      "properties": {
+        "appSettingNames": [
+          "ApplicationInsightsInstrumentationKey"
+        ]
       }
     }
   ],
