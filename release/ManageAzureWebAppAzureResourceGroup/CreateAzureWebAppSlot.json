@@ -18,7 +18,14 @@
       "name": "[concat(parameters('webAppName'), '/', parameters('slotName'))]",
       "type": "Microsoft.Web/sites/slots",
       "location": "[resourceGroup().location]",
-      "dependsOn": []
+      "dependsOn": [],
+      "properties": {
+        "name": "[concat(parameters('webAppName'), '(', parameters('slotName'), ')')]",
+        "serverFarmId": "[resourceId('Microsoft.Web/serverfarms', parameters('webAppName'))]"
+      },
+      "tags": {
+        "[concat('hidden-related:', resourceGroup().id, '/providers/Microsoft.Web/serverfarms/', parameters('webAppName'))]": "Resource"
+      }
     }
   ]
 }
