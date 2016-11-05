@@ -16,6 +16,14 @@ namespace AspNetCoreApplication
                 .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
                 .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true)
                 .AddEnvironmentVariables();
+
+            if (env.IsDevelopment())
+            {
+                //This allows to play locally with App Insight in an offline mode (without App Insight in Azure).
+                //http://www.hanselman.com/blog/ExploringApplicationInsightsForDisconnectedOrConnectedDeepTelemetryInASPNETApps.aspx
+                builder.AddApplicationInsightsSettings(developerMode: true);
+            }
+
             Configuration = builder.Build();
         }
 
@@ -26,6 +34,7 @@ namespace AspNetCoreApplication
         {
             // Add framework services.
             services.AddMvc();
+            services.AddApplicationInsightsTelemetry(Configuration);
 
             // Add internal services.
             services.AddTransient<IHomeService, HomeService>();
@@ -47,6 +56,8 @@ namespace AspNetCoreApplication
                 app.UseExceptionHandler("/Home/Error");
             }
 
+            app.UseApplicationInsightsRequestTelemetry();
+            app.UseApplicationInsightsExceptionTelemetry();
             app.UseStaticFiles();
 
             app.UseMvc(routes =>
