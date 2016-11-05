@@ -1,0 +1,44 @@
+﻿{
+  "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "webAppName": {
+      "type": "string",
+      "minLength": 1
+    },
+    "slotName": {
+      "type": "string",
+      "minLength": 1
+    }
+  },
+  "variables": {
+    "appInsightsName": "[parameters('webAppName')]"
+  },
+  "resources": [
+    {
+      "apiVersion": "2015-05-01",
+      "name": "[variables('appInsightsName')]",
+      "type": "Microsoft.Insights/components",
+      "location": "[resourceGroup().location]",
+      "dependsOn": [],
+      "tags": {
+        "[concat('hidden-link:', resourceGroup().id, '/providers/Microsoft.Web/sites/', parameters('webAppName'))]": "Resource"
+      },
+      "properties": {
+        "ApplicationId": "[variables('appInsightsName')]"
+      }
+    },
+    {
+      "apiVersion": "2015-08-01",
+      "name": "[concat(parameters('webAppName'), '/', parameters('slotName'), '/', 'appsettings')]",
+      "type": "Microsoft.Web/sites/slots/config",
+      "dependsOn": [
+        "[variables('appInsightsName')]"
+      ],
+      "properties": {
+        "ApplicationInsightsInstrumentationKey": "[reference(concat('Microsoft.Insights/components/', variables('appInsightsName')), '2015-05-01').InstrumentationKey]"
+      }
+    }
+  ],
+  "outputs": {}
+}
