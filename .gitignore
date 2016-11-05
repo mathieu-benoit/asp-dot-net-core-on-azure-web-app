@@ -13,3 +13,5 @@
 /test/AspNetCoreApplication.UnitTests/bin/Debug/netcoreapp1.0
 /test/AspNetCoreApplication.UnitTests/obj/Debug/netcoreapp1.0
 /release/ManageAzureWebAppAzureResourceGroup/bin/Debug/staging/ManageAzureWebAppAzureResourceGroup
+/src/AspNetCoreApplication/project.lock.json
+/test/AspNetCoreApplication.UnitTests/project.lock.json
