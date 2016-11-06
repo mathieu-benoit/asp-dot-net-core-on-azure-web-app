@@ -1,6 +1,8 @@
+using AspNetCoreApplication.Models;
 using AspNetCoreApplication.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
@@ -36,6 +38,8 @@ namespace AspNetCoreApplication
             services.AddMvc();
             services.AddApplicationInsightsTelemetry(Configuration);
 
+            services.AddDbContext<AspNetCoreApplicationDbContext>(options => options.UseSqlServer(Configuration["Data:DefaultConnection:ConnectionString"]));
+
             // Add internal services.
             services.AddTransient<IHomeService, HomeService>();
         }
@@ -54,6 +58,12 @@ namespace AspNetCoreApplication
             else
             {
                 app.UseExceptionHandler("/Home/Error");
+            }
+
+            //Always apply EF migrations at start.
+            using (var serviceScope = app.ApplicationServices.GetRequiredService<IServiceScopeFactory>().CreateScope())
+            {
+                serviceScope.ServiceProvider.GetService<AspNetCoreApplicationDbContext>().Database.Migrate();
             }
 
             app.UseApplicationInsightsRequestTelemetry();

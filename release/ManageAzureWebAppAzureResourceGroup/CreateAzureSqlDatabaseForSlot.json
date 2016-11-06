@@ -1,0 +1,111 @@
+﻿{
+  "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "webAppName": {
+      "type": "string",
+      "minLength": 1
+    },
+    "slotName": {
+      "type": "string",
+      "minLength": 1
+    },
+    "adminLogin": {
+      "type": "string",
+      "minLength": 1
+    },
+    "adminLoginPassword": {
+      "type": "securestring"
+    },
+    "databaseCollation": {
+      "type": "string",
+      "minLength": 1,
+      "defaultValue": "SQL_Latin1_General_CP1_CI_AS"
+    },
+    "databaseEdition": {
+      "type": "string",
+      "defaultValue": "Standard",
+      "allowedValues": [
+        "Basic",
+        "Standard",
+        "Premium"
+      ]
+    },
+    "databaseRequestedServiceObjectiveName": {
+      "type": "string",
+      "defaultValue": "S2",
+      "allowedValues": [
+        "Basic",
+        "S0",
+        "S1",
+        "S2",
+        "P1",
+        "P2",
+        "P3"
+      ],
+      "metadata": {
+        "description": "Describes the performance level for Edition"
+      }
+    }
+  },
+  "variables": {
+    "databaseName": "[concat(variables('serverName'), '/', variables('databasePrefixName'))]",
+    "serverName": "[resourceGroup().name]",
+    "databasePrefixName": "[concat(parameters('webAppName'), '-', parameters('slotName'))]"
+  },
+  "resources": [
+    {
+      "name": "[variables('serverName')]",
+      "type": "Microsoft.Sql/servers",
+      "kind": "v12.0",
+      "location": "[resourceGroup().location]",
+      "apiVersion": "2014-04-01-preview",
+      "properties": {
+        "administratorLogin": "[parameters('adminLogin')]",
+        "administratorLoginPassword": "[parameters('adminLoginPassword')]"
+      }
+    },
+    {
+      "type": "Microsoft.Sql/servers/databases",
+      "name": "[variables('databaseName')]",
+      "kind": "v12.0",
+      "location": "[resourceGroup().location]",
+      "apiVersion": "2014-04-01-preview",
+      "dependsOn": [
+        "[resourceId('Microsoft.Sql/servers', variables('serverName'))]"
+      ],
+      "properties": {
+        "collation": "[parameters('databaseCollation')]",
+        "edition": "[parameters('databaseEdition')]",
+        "maxSizeBytes": "1073741824",
+        "requestedServiceObjectiveName": "[parameters('databaseRequestedServiceObjectiveName')]"
+      }
+    },
+    {
+      "type": "Microsoft.Sql/servers/firewallRules",
+      "name": "[concat(variables('serverName'), '/', 'AllowAllWindowsAzureIps')]",
+      "location": "[resourceGroup().location]",
+      "apiVersion": "2014-04-01-preview",
+      "dependsOn": [
+        "[resourceId('Microsoft.Sql/servers', variables('serverName'))]"
+      ],
+      "properties": {
+        "startIpAddress": "0.0.0.0",
+        "endIpAddress": "0.0.0.0"
+      }
+    },
+    {
+      "apiVersion": "2015-08-01",
+      "name": "[concat(parameters('webAppName'), '/', parameters('slotName'), '/', 'connectionstrings')]",
+      "type": "Microsoft.Web/sites/slots/config",
+      "dependsOn": [],
+      "properties": {
+        "Data:DefaultConnection:ConnectionString": {
+          "value": "[concat('Server=tcp:', reference(concat('Microsoft.Sql/servers/', variables('serverName'))).fullyQualifiedDomainName, ',1433;Initial Catalog=', variables('databasePrefixName'), ';Persist Security Info=False;User Id=', parameters('adminLogin'), ';Password=', parameters('adminLoginPassword'), ';MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;')]",
+          "type": "SQLAzure"
+        }
+      }
+    }
+  ],
+  "outputs": {}
+}

@@ -18,3 +18,4 @@
 /packages
 /test/AspNetCoreApplication.UITests/bin/Debug
 /test/AspNetCoreApplication.UITests/obj/Debug
+/src/AspNetCoreApplication/obj
