@@ -32,7 +32,7 @@
         "[variables('appInsightsName')]"
       ],
       "properties": {
-        "ApplicationInsightsInstrumentationKey": "[reference(concat('Microsoft.Insights/components/', variables('appInsightsName')), '2015-05-01').InstrumentationKey]"
+        "ApplicationInsights:InstrumentationKey": "[reference(concat('Microsoft.Insights/components/', variables('appInsightsName')), '2015-05-01').InstrumentationKey]"
       }
     },
     {
@@ -42,7 +42,7 @@
       "dependsOn": [],
       "properties": {
         "appSettingNames": [
-          "ApplicationInsightsInstrumentationKey"
+          "ApplicationInsights:InstrumentationKey"
         ]
       }
     }
