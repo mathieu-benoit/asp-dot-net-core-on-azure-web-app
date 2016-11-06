@@ -61,10 +61,10 @@ namespace AspNetCoreApplication
             }
 
             //Always apply EF migrations at start.
-            using (var serviceScope = app.ApplicationServices.GetRequiredService<IServiceScopeFactory>().CreateScope())
-            {
-                serviceScope.ServiceProvider.GetService<AspNetCoreApplicationDbContext>().Database.Migrate();
-            }
+            //using (var serviceScope = app.ApplicationServices.GetRequiredService<IServiceScopeFactory>().CreateScope())
+            //{
+            //    serviceScope.ServiceProvider.GetService<AspNetCoreApplicationDbContext>().Database.Migrate();
+            //}
 
             app.UseApplicationInsightsRequestTelemetry();
             app.UseApplicationInsightsExceptionTelemetry();

@@ -19,3 +19,7 @@
 /test/AspNetCoreApplication.UITests/bin/Debug
 /test/AspNetCoreApplication.UITests/obj/Debug
 /src/AspNetCoreApplication/obj
+/src/AspNetCoreApplication/bin/release/netcoreapp1.0
+/test/AspNetCoreApplication.UnitTests/bin/release/netcoreapp1.0
+/test/AspNetCoreApplication.UnitTests/obj/release/netcoreapp1.0
+/test/AspNetCoreApplication.UnitTests/TEST-TestResults.xml
