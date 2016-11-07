@@ -19,7 +19,7 @@
         "Standard",
         "Premium"
       ],
-      "defaultValue": "Premium"
+      "defaultValue": "Standard"
     },
     "appServicePlanWorkerSize": {
       "type": "string",
