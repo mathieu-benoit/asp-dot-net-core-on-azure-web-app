@@ -44,6 +44,7 @@
     <Content Include="CreateAzureSqlDatabase.ps1" />
     <Content Include="CreateAzureApplicationInsightsForSlot.ps1" />
     <Content Include="CreateAzureApplicationInsights.ps1" />
+    <Content Include="SetUpTestInProduction.ps1" />
     <Content Include="CreateAzureWebAppSlot.ps1" />
     <Content Include="CreateAzureWebAppWithAssociatedPlan.ps1" />
   </ItemGroup>
