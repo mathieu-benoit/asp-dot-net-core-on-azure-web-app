@@ -1,4 +1,6 @@
- Sample ASP.NET Core app.
+FYI, DOCUMENTATION IN PROGRESS IN THIS PAGE...
+
+Sample ASP.NET Core app.
 
 After cloning/pulling locally this repository, you should/could run these commandlines:
 - From root folder: `dotnet restore`
