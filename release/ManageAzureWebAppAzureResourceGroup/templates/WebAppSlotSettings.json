@@ -16,6 +16,10 @@
     },
     "adminLoginPassword": {
       "type": "securestring"
+    },
+    "remoteDebuggingEnabled": {
+      "type": "bool",
+      "defaultValue": false
     }
   },
   "variables": {
@@ -32,7 +36,11 @@
       "dependsOn": [],
       "properties": {
         "phpVersion": "",
-        "use32BitWorkerProcess": false
+        "use32BitWorkerProcess": false,
+        "webSocketsEnabled": true,
+        "alwaysOn": true,
+        "remoteDebuggingEnabled": "[parameters('remoteDebuggingEnabled')]",
+        "remoteDebuggingVersion": "VS2015"
       }
     },
     {
