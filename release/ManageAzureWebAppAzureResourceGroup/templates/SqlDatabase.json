@@ -2,7 +2,7 @@
   "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
   "contentVersion": "1.0.0.0",
   "parameters": {
-    "webAppName": {
+    "databaseName": {
       "type": "string",
       "minLength": 1
     },
@@ -45,9 +45,8 @@
     }
   },
   "variables": {
-    "databaseName": "[concat(variables('serverName'), '/', variables('databasePrefixName'))]",
-    "serverName": "[resourceGroup().name]",
-    "databasePrefixName": "[parameters('webAppName')]"
+    "databaseFullName": "[concat(variables('serverName'), '/', parameters('databaseName'))]",
+    "serverName": "[resourceGroup().name]"
   },
   "resources": [
     {
@@ -63,7 +62,7 @@
     },
     {
       "type": "Microsoft.Sql/servers/databases",
-      "name": "[variables('databaseName')]",
+      "name": "[variables('databaseFullName')]",
       "kind": "v12.0",
       "location": "[resourceGroup().location]",
       "apiVersion": "2014-04-01-preview",
@@ -88,29 +87,6 @@
       "properties": {
         "startIpAddress": "0.0.0.0",
         "endIpAddress": "0.0.0.0"
-      }
-    },
-    {
-      "apiVersion": "2015-08-01",
-      "name": "[concat(parameters('webAppName'), '/', 'connectionstrings')]",
-      "type": "Microsoft.Web/sites/config",
-      "dependsOn": [],
-      "properties": {
-        "Data:DefaultConnection:ConnectionString": {
-          "value": "[concat('Server=tcp:', reference(concat('Microsoft.Sql/servers/', variables('serverName'))).fullyQualifiedDomainName, ',1433;Initial Catalog=', variables('databasePrefixName'), ';Persist Security Info=False;User Id=', parameters('adminLogin'), ';Password=', parameters('adminLoginPassword'), ';MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;')]",
-          "type": "SQLAzure"
-        }
-      }
-    },
-    {
-      "apiVersion": "2015-08-01",
-      "name": "[concat(parameters('webAppName'), '/', 'slotconfignames')]",
-      "type": "Microsoft.Web/sites/config",
-      "dependsOn": [],
-      "properties": {
-        "connectionStringNames": [
-          "Data:DefaultConnection:ConnectionString"
-        ]
       }
     }
   ],

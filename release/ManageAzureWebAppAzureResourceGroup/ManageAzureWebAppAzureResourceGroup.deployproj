@@ -30,13 +30,14 @@
     </None>
     <Content Include="scripts\DeployARMTemplate.ps1" />
     <Content Include="scripts\SetUpTestInProduction.ps1" />
+    <None Include="scripts\DeployARMTemplate.parameters.json" />
+    <None Include="templates\WebAppSettings.json" />
     <None Include="templates\ApplicationInsights.json" />
-    <None Include="templates\ApplicationInsightsForSlot.json" />
-    <None Include="templates\deploy.parameters.json" />
+    <None Include="templates\WebAppSlotSettings.json" />
     <None Include="templates\SqlDatabase.json" />
-    <None Include="templates\SqlDatabaseForSlot.json" />
     <None Include="templates\WebAppSlot.json" />
-    <None Include="templates\WebAppWithAssociatedPlan.json" />
+    <None Include="templates\WebApp.json" />
+    <None Include="templates\AppServicePlan.json" />
   </ItemGroup>
   <Target Name="GetReferenceAssemblyPaths" />
 </Project>
