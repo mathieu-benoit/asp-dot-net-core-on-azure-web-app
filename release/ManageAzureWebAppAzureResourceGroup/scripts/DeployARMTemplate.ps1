@@ -3,8 +3,8 @@
 Param(
     [string] $ResourceGroupLocation = 'East US',
     [string] [Parameter(Mandatory=$true)] $ResourceGroupName,
-    [string] $TemplateFile = 'CreateAzureSqlDatabaseForSlot.json',
-	[string] $TemplateParameterFile = 'CreateAzureSqlDatabaseForSlot.parameters.json'
+    [string] [Parameter(Mandatory=$true)] $TemplateFile,
+	[string] $TemplateParameterFile = 'deploy.parameters.json'
 )
 
 #Login-AzureRmAccount

@@ -25,28 +25,18 @@
   <Import Condition=" Exists('$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Deployment\1.1\DeploymentProject.targets') " Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Deployment\1.1\DeploymentProject.targets" />
   <!-- vertag<:>end -->
   <ItemGroup>
-    <None Include="CreateAzureSqlDatabaseForSlot.json" />
-    <None Include="CreateAzureSqlDatabaseForSlot.parameters.json" />
-    <None Include="CreateAzureSqlDatabase.json" />
-    <None Include="CreateAzureSqlDatabase.parameters.json" />
-    <None Include="CreateAzureApplicationInsightsForSlot.json" />
-    <None Include="CreateAzureApplicationInsightsForSlot.parameters.json" />
-    <None Include="CreateAzureApplicationInsights.json" />
-    <None Include="CreateAzureApplicationInsights.parameters.json" />
-    <None Include="CreateAzureWebAppWithAssociatedPlan.parameters.json" />
-    <None Include="CreateAzureWebAppSlot.parameters.json" />
-    <None Include="CreateAzureWebAppSlot.json" />
-    <None Include="CreateAzureWebAppWithAssociatedPlan.json" />
     <None Include="Deployment.targets">
       <Visible>False</Visible>
     </None>
-    <Content Include="CreateAzureSqlDatabaseForSlot.ps1" />
-    <Content Include="CreateAzureSqlDatabase.ps1" />
-    <Content Include="CreateAzureApplicationInsightsForSlot.ps1" />
-    <Content Include="CreateAzureApplicationInsights.ps1" />
-    <Content Include="SetUpTestInProduction.ps1" />
-    <Content Include="CreateAzureWebAppSlot.ps1" />
-    <Content Include="CreateAzureWebAppWithAssociatedPlan.ps1" />
+    <Content Include="scripts\DeployARMTemplate.ps1" />
+    <Content Include="scripts\SetUpTestInProduction.ps1" />
+    <None Include="templates\ApplicationInsights.json" />
+    <None Include="templates\ApplicationInsightsForSlot.json" />
+    <None Include="templates\deploy.parameters.json" />
+    <None Include="templates\SqlDatabase.json" />
+    <None Include="templates\SqlDatabaseForSlot.json" />
+    <None Include="templates\WebAppSlot.json" />
+    <None Include="templates\WebAppWithAssociatedPlan.json" />
   </ItemGroup>
   <Target Name="GetReferenceAssemblyPaths" />
 </Project>
