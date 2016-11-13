@@ -13,4 +13,5 @@ New-AzureRmResourceGroup -Name $ResourceGroupName -Location $ResourceGroupLocati
 New-AzureRmResourceGroupDeployment -Name $ResourceGroupName `
                                        -ResourceGroupName $ResourceGroupName `
                                        -TemplateFile $TemplateFile `
-									   -TemplateParameterFile $TemplateParameterFile
+									   -TemplateParameterFile $TemplateParameterFile `
+									   -Force -Verbose

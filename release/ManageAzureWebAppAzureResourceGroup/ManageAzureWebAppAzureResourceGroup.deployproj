@@ -30,6 +30,7 @@
     </None>
     <Content Include="scripts\DeployARMTemplate.ps1" />
     <Content Include="scripts\SetUpTestInProduction.ps1" />
+    <None Include="scripts\AddResourceGroupLock.ps1" />
     <None Include="scripts\DeployARMTemplate.parameters.json" />
     <None Include="templates\WebAppSettings.json" />
     <None Include="templates\ApplicationInsights.json" />
