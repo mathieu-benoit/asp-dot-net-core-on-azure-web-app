@@ -5,52 +5,13 @@ Sample ASP.NET Core app which was used during my demonstration for [my presentat
 #Overview
 ![Workflow Overview](/docs/Overview.PNG)
 
-#VSTS Build
-![Build Overview](/docs/Build.PNG)
+#Build with VSTS
 
-##Variables
-- TODO
+[Here is the associated documentation.](/docs/Build.md)
 
-##Steps 
-- TODO
+#Release with VSTS
 
-#VSTS Release
-
-##Staging Environment
-![Staging Release Overview](/docs/StagingRelease.PNG)
-
-###Variables
-- TODO
-
-###Steps 
-- TODO
-
-##Preview Environment
-![Preview Release Overview](/docs/PreviewRelease.PNG)
-
-###Variables
-- TODO
-
-###Steps 
-- TODO
-
-##Live Environment
-![Live Release Overview](/docs/LiveRelease.PNG)
-
-###Variables
-- TODO
-
-###Steps 
-- TODO
-
-##Delete QA Environment
-![Delete QA Release Overview](/docs/DeleteQARelease.PNG)
-
-###Variables
-- TODO
-
-###Steps 
-- TODO
+[Here is the associated documentation.](/docs/Release.md)
 
 #Further steps:
 - Use Azure Key Vault to store secrets
