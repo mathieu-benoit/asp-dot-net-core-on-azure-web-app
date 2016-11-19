@@ -22,4 +22,6 @@ The commit of these changes will trigger automatically the Build (CI) and then t
 [Here is the associated documentation.](/docs/Release.md)
 
 #Further steps:
+- Update to ASP.NET Core 1.1. Waiting for its [support in the default VSTS Build agent](https://www.visualstudio.com/en-us/docs/build/admin/agents/hosted-pool).
+- Deploy the application on Web App on Linux.
 - Use Azure Key Vault to store secrets
