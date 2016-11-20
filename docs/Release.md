@@ -117,7 +117,7 @@ Here is one example to Release this Web App via VSTS. You could adapt it with yo
 
 ##Steps 
 - Same than the "Staging Environment" but replace the last one: "Quick Web Performance Test Load" step by the one following:
-- Test In Production
+- Add Test In Production - disabled for now because the script doesn't work.
   - Type = Azure Powershell
   - Azure Connection Type = Azure Resource Manager
   - Azure RM Subscription = set appropriate
@@ -192,6 +192,12 @@ Here is one example to Release this Web App via VSTS. You could adapt it with yo
   - Template = $(System.DefaultWorkingDirectory)/Build AspNetCoreApplication/arm-templates/[WebAppSettings.json](../release/ManageAzureWebAppAzureResourceGroup/templates/WebAppSettings.json)
   - Override Template Parameters = -webAppName $(ResourceGroupName)  -adminLogin $(AdministratorLogin) -adminLoginPassword (ConvertTo-SecureString -String '$(AdministratorLoginPassword)' -AsPlainText -Force)
   - Deployment Mode = Incremental
+- Remove Test In Production - disabled for now because the script doesn't work.
+  - Type = Azure Powershell
+  - Azure Connection Type = Azure Resource Manager
+  - Azure RM Subscription = set appropriate
+  - Script Path = $(System.DefaultWorkingDirectory)/Build AspNetCoreApplication/scripts/[SetUpTestInProduction.ps1](../release/ManageAzureWebAppAzureResourceGroup/scripts/SetUpTestInProduction.ps1)
+  - Script Arguments = $(ResourceGroupName) $(SlotToSwap) 0
 - Swap Staging to Production
   - Type = Azure App Service Manage (PREVIEW)
   - AzureRM Subscription = set appropriate
