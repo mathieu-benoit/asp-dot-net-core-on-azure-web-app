@@ -3,7 +3,7 @@ Here is one example to Release this Web App via VSTS. You could adapt it with yo
 #Staging Environment
 ![Staging Release Overview](/docs/StagingRelease.PNG)
 
-##Deployment options
+##Deployment conditions
 - Trigger = After release creation
 
 ##Approvals
@@ -101,26 +101,45 @@ Here is one example to Release this Web App via VSTS. You could adapt it with yo
 #Preview Environment
 ![Preview Release Overview](/docs/PreviewRelease.PNG)
 
-##Variables
-- TODO
+##Deployment conditions
+- Trigger = After successful deployment to another environment ("Staging")
 
-##Steps 
-- TODO
-
-#Live Environment
-![Live Release Overview](/docs/LiveRelease.PNG)
+##Approvals
+- Pre-deployment approver = Specific Users (set appropriate users)
+- Post-deployment approver = Automatic
 
 ##Variables
-- TODO
+- AdministratorLogin = set appropriate
+- AdministratorLoginPassword = set appropriate
+- ResourceGroupName = set appropriate
+- SlotName = preview
+- Location = East US
 
 ##Steps 
-- TODO
+- Same than the "Staging Environment" but replace the last one: "Quick Web Performance Test Load" step by the one following:
+- Test In Production
+  - Type = Azure Powershell
+  - Azure Connection Type = Azure Resource Manager
+  - Azure RM Subscription = set appropriate
+  - Script Path = $(System.DefaultWorkingDirectory)/Build AspNetCoreApplication/scripts/[SetUpTestInProduction.ps1](../release/ManageAzureWebAppAzureResourceGroup/scripts/SetUpTestInProduction.ps1)
+  - Script Arguments = $(ResourceGroupName) $(SlotName) 70
 
-#Delete Environment
-![Delete Overview](/docs/DeleteRelease.PNG)
+#Production Environment
+![Production Release Overview](/docs/ProductionRelease.PNG)
+
+##Deployment conditions
+- Trigger = After successful deployment to another environment ("Staging")
+
+##Approvals
+- Pre-deployment approver = Specific Users (set appropriate users)
+- Post-deployment approver = Automatic
 
 ##Variables
-- TODO
+- AdministratorLogin = set appropriate
+- AdministratorLoginPassword = set appropriate
+- ResourceGroupName = set appropriate
+- SlotToSwap = staging
+- Location = East US
 
-##Steps 
+##Steps
 - TODO
