@@ -78,6 +78,25 @@ Here is one example to Release this Web App via VSTS. You could adapt it with yo
   - Template = $(System.DefaultWorkingDirectory)/Build AspNetCoreApplication/arm-templates/[WebAppSlotSettings.json](../release/ManageAzureWebAppAzureResourceGroup/templates/WebAppSlotSettings.json)
   - Override Template Parameters = -webAppName $(ResourceGroupName) -slotName $(SlotName) -adminLogin $(AdministratorLogin) -adminLoginPassword (ConvertTo-SecureString -String '$(AdministratorLoginPassword)' -AsPlainText -Force)
   - Deployment Mode = Incremental
+- Deploy Web App
+  - Type = Azure App Service Deploy
+  - AzureRM Subscription = set appropriate
+  - App Service Name = $(ResourceGroupName)
+  - Deploy to Slot = true
+  - Resource Group = $(ResourceGroupName)
+  - Slot = $(SlotName)
+  - Package or Folder = $(System.DefaultWorkingDirectory)/Build AspNetCoreApplication/web-app/AspNetCoreApplication.zip
+  - Publish using Web Deploy = true
+  - Take App Offline = true
+- Quick Web Performance Test Load
+  - Type = Cloud-based Web Performance Test
+  - VS Team Services Connection = set appropriate
+  - Website Url = http://$(ResourceGroupName)-$(SlotName).azurewebsites.net/
+  - Test name = Load Tests on $(ResourceGroupName)-$(SlotName) Homepage
+  - User Load = 25
+  - Run Duration (sec) = 60
+  - Location = Default
+  - Run load test using = Automatically provisioned agents 
 
 #Preview Environment
 ![Preview Release Overview](/docs/PreviewRelease.PNG)
