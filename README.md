@@ -9,7 +9,8 @@ To manage them (create, update or delete) I use ARM Templates.
 #Process Overview
 The initial state of the demonstration is to have on one hand the source code of an ASP.NET application in GitHub and the associated Production environment.
 Then I do one changing on one cshtml file and one changing on one ARM Template to change an infrastructure setting.
-The commit of these changes will trigger automatically the Build (CI) and then the associated Release (CD) on QA. QA doesn't exist on the initial state of this demo, so here we are illustrating the creation of the QA environment "on-demand".
+The commit of these changes will trigger automatically the Build (Continuous Integration - CI) and then the associated Release (Continuous Delivery - CD) accross the different environments until Production. 
+Staging and Preview dont exist on the initial state of this demo, so here we are illustrating the creation of these environments "on-demand" before publishing our changes in Production to check and guarantee the quality of our application before being concretely used by our end-users.
 
 ![Process Overview](/docs/Process.PNG)
 
@@ -23,5 +24,6 @@ The commit of these changes will trigger automatically the Build (CI) and then t
 
 #Further steps:
 - Update to ASP.NET Core 1.1. Waiting for its [support in the default VSTS Build agent](https://www.visualstudio.com/en-us/docs/build/admin/agents/hosted-pool).
+- Integrate API App, Mobile App and Logic App in this "offer".
 - Deploy the application on Web App on Linux.
 - Use Azure Key Vault to store secrets

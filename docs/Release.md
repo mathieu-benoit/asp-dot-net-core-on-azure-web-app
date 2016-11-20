@@ -142,4 +142,66 @@ Here is one example to Release this Web App via VSTS. You could adapt it with yo
 - Location = East US
 
 ##Steps
-- TODO
+- (Ensure) App Service Plan
+  - Type = Azure Resource Group Deployment
+  - Azure Connection Type = Azure Resource Manager
+  - Azure RM Subscription = set appropriate
+  - Action = Create Or Update Resource Group
+  - Resource Group = $(ResourceGroupName)
+  - Location = $(Location)
+  - Template = $(System.DefaultWorkingDirectory)/Build AspNetCoreApplication/arm-templates/[AppServicePlan.json](../release/ManageAzureWebAppAzureResourceGroup/templates/AppServicePlan.json)
+  - Override Template Parameters = -appServicePlanName $(ResourceGroupName)
+  - Deployment Mode = Incremental
+- Web App
+  - Type = Azure Resource Group Deployment
+  - Azure Connection Type = Azure Resource Manager
+  - Azure RM Subscription = set appropriate
+  - Action = Create Or Update Resource Group
+  - Resource Group = $(ResourceGroupName)
+  - Location = $(Location)
+  - Template = $(System.DefaultWorkingDirectory)/Build AspNetCoreApplication/arm-templates/[WebApp.json](../release/ManageAzureWebAppAzureResourceGroup/templates/WebApp.json)
+  - Override Template Parameters = -webAppName $(ResourceGroupName) -appServicePlanName $(ResourceGroupName)
+  - Deployment Mode = Incremental
+- App Insights
+  - Type = Azure Resource Group Deployment
+  - Azure Connection Type = Azure Resource Manager
+  - Azure RM Subscription = set appropriate
+  - Action = Create Or Update Resource Group
+  - Resource Group = $(ResourceGroupName)
+  - Location = $(Location)
+  - Template = $(System.DefaultWorkingDirectory)/Build AspNetCoreApplication/arm-templates/[ApplicationInsights.json](../release/ManageAzureWebAppAzureResourceGroup/templates/ApplicationInsights.json)
+  - Override Template Parameters = -appInsightsName $(ResourceGroupName)
+  - Deployment Mode = Incremental
+- Sql Database
+  - Type = Azure Resource Group Deployment
+  - Azure Connection Type = Azure Resource Manager
+  - Azure RM Subscription = set appropriate
+  - Action = Create Or Update Resource Group
+  - Resource Group = $(ResourceGroupName)
+  - Location = $(Location)
+  - Template = $(System.DefaultWorkingDirectory)/Build AspNetCoreApplication/arm-templates/[SqlDatabase.json](../release/ManageAzureWebAppAzureResourceGroup/templates/SqlDatabase.json)
+  - Override Template Parameters = -databaseName $(ResourceGroupName) -adminLogin $(AdministratorLogin) -adminLoginPassword (ConvertTo-SecureString -String '$(AdministratorLoginPassword)' -AsPlainText -Force)
+  - Deployment Mode = Incremental
+- App Settings
+  - Type = Azure Resource Group Deployment
+  - Azure Connection Type = Azure Resource Manager
+  - Azure RM Subscription = set appropriate
+  - Action = Create Or Update Resource Group
+  - Resource Group = $(ResourceGroupName)
+  - Location = $(Location)
+  - Template = $(System.DefaultWorkingDirectory)/Build AspNetCoreApplication/arm-templates/[WebAppSettings.json](../release/ManageAzureWebAppAzureResourceGroup/templates/WebAppSettings.json)
+  - Override Template Parameters = -webAppName $(ResourceGroupName)  -adminLogin $(AdministratorLogin) -adminLoginPassword (ConvertTo-SecureString -String '$(AdministratorLoginPassword)' -AsPlainText -Force)
+  - Deployment Mode = Incremental
+- Swap Staging to Production
+  - Type = Azure App Service Manage (PREVIEW)
+  - AzureRM Subscription = set appropriate
+  - App Service Name = $(ResourceGroupName)
+  - Resource Group = $(ResourceGroupName)
+  - Source Slot = $(SlotToSwap)
+  - Swap with Production = true
+- Set Resource Group Lock
+  - Type = Azure PowerShell
+  - Azure Connection Type = set appropriate
+  - Azure RM Subscription = set appropriate
+  - Script Path = $(System.DefaultWorkingDirectory)/Build AspNetCoreApplication/scripts/[AddResourceGroupLock.ps1](../release/ManageAzureWebAppAzureResourceGroup/scripts/AddResourceGroupLock.ps1)
+  - Script Arguments = $(ResourceGroupName)
