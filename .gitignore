@@ -2,24 +2,20 @@
 # This .gitignore file was automatically created by Microsoft(R) Visual Studio.
 ################################################################################
 
-/src/AspNetCoreApplication/bin/Debug/netcoreapp1.0
-/src/AspNetCoreApplication/obj/Debug/netcoreapp1.0
+/src/AspNetCoreApplication/bin
+/src/AspNetCoreApplication/obj
 /.vs
 *.user
 /src/AspNetCoreApplication/bower_components
 /src/AspNetCoreApplication/wwwroot/lib
-/test/AspNetCoreApplication.Tests/bin/Debug/netcoreapp1.0
-/test/AspNetCoreApplication.Tests/obj/Debug/netcoreapp1.0
-/test/AspNetCoreApplication.UnitTests/bin/Debug/netcoreapp1.0
-/test/AspNetCoreApplication.UnitTests/obj/Debug/netcoreapp1.0
-/release/ManageAzureWebAppAzureResourceGroup/bin/Debug/staging/ManageAzureWebAppAzureResourceGroup
+/test/AspNetCoreApplication.Tests/bin
+/test/AspNetCoreApplication.Tests/obj
+/test/AspNetCoreApplication.UnitTests/bin
 /src/AspNetCoreApplication/project.lock.json
 /test/AspNetCoreApplication.UnitTests/project.lock.json
 /packages
-/test/AspNetCoreApplication.UITests/bin/Debug
-/test/AspNetCoreApplication.UITests/obj/Debug
-/src/AspNetCoreApplication/obj
-/src/AspNetCoreApplication/bin/release/netcoreapp1.0
-/test/AspNetCoreApplication.UnitTests/bin/release/netcoreapp1.0
-/test/AspNetCoreApplication.UnitTests/obj/release/netcoreapp1.0
+/test/AspNetCoreApplication.UITests/bin
+/test/AspNetCoreApplication.UITests/obj
+/test/AspNetCoreApplication.UnitTests/obj
 /test/AspNetCoreApplication.UnitTests/TEST-TestResults.xml
+/release/ManageAzureWebAppAzureResourceGroup/bin/
