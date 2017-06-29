@@ -23,3 +23,4 @@
 /test/AspNetCoreApplication.UnitTests/bin/release/netcoreapp1.0
 /test/AspNetCoreApplication.UnitTests/obj/release/netcoreapp1.0
 /test/AspNetCoreApplication.UnitTests/TEST-TestResults.xml
+/test/AspNetCoreApplication.UnitTests/obj

@@ -1,19 +1,22 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.26430.14
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{D02777E3-31E1-40C9-B114-485E07E71B84}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{55911E40-F079-4D98-8AED-785463AFBD40}"
+	ProjectSection(SolutionItems) = preProject
+		global.json = global.json
+	EndProjectSection
+EndProject
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "AspNetCoreApplication", "src\AspNetCoreApplication\AspNetCoreApplication.xproj", "{695403A6-C1ED-4647-B4BC-74133A41B70D}"
+EndProject
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "AspNetCoreApplication.UnitTests", "test\AspNetCoreApplication.UnitTests\AspNetCoreApplication.UnitTests.xproj", "{EF0BB060-ADAF-4274-8AA7-DAA634BDBC5E}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{5599B0FC-37F4-4E10-9CFD-96611FDF9794}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "release", "release", "{311822C6-CC4A-4A78-BE83-C5F462683B75}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AspNetCoreApplication", "src\AspNetCoreApplication\AspNetCoreApplication.csproj", "{695403A6-C1ED-4647-B4BC-74133A41B70D}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AspNetCoreApplication.UnitTests", "test\AspNetCoreApplication.UnitTests\AspNetCoreApplication.UnitTests.csproj", "{EF0BB060-ADAF-4274-8AA7-DAA634BDBC5E}"
 EndProject
 Project("{151D2E53-A2C4-4D7D-83FE-D05416EBD58E}") = "ManageAzureWebAppAzureResourceGroup", "release\ManageAzureWebAppAzureResourceGroup\ManageAzureWebAppAzureResourceGroup.deployproj", "{34351608-AFC9-4552-B627-C463566B3659}"
 EndProject

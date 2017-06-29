@@ -36,8 +36,7 @@ namespace AspNetCoreApplication
         {
             // Add framework services.
             services.AddMvc();
-            services.AddApplicationInsightsTelemetry(Configuration);
-
+            
             services.AddDbContext<AspNetCoreApplicationDbContext>(options => options.UseSqlServer(Configuration["Data:DefaultConnection:ConnectionString"]));
 
             // Add internal services.
@@ -65,9 +64,7 @@ namespace AspNetCoreApplication
             //{
             //    serviceScope.ServiceProvider.GetService<AspNetCoreApplicationDbContext>().Database.Migrate();
             //}
-
-            app.UseApplicationInsightsRequestTelemetry();
-            app.UseApplicationInsightsExceptionTelemetry();
+            
             app.UseStaticFiles();
 
             app.UseMvc(routes =>
