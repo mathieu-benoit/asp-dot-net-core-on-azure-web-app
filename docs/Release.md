@@ -1,23 +1,23 @@
 Here is one example to Release this Web App via VSTS. You could adapt it with your own context, needs and constraints.
 
-#Staging Environment
+# Staging Environment
 ![Staging Release Overview](/docs/StagingRelease.PNG)
 
-##Deployment conditions
+## Deployment conditions
 - Trigger = After release creation
 
-##Approvals
+## Approvals
 - Pre-deployment approver = Automatic
 - Post-deployment approver = Automatic
 
-##Variables
+## Variables
 - AdministratorLogin = set appropriate
 - AdministratorLoginPassword = set appropriate
 - ResourceGroupName = set appropriate
 - SlotName = staging
 - Location = East US
 
-##Steps 
+## Steps 
 - (Ensure) App Service Plan
   - Type = Azure Resource Group Deployment
   - Azure Connection Type = Azure Resource Manager
@@ -98,24 +98,24 @@ Here is one example to Release this Web App via VSTS. You could adapt it with yo
   - Location = Default
   - Run load test using = Automatically provisioned agents 
 
-#Preview Environment
+# Preview Environment
 ![Preview Release Overview](/docs/PreviewRelease.PNG)
 
-##Deployment conditions
+## Deployment conditions
 - Trigger = After successful deployment to another environment ("Staging")
 
-##Approvals
+## Approvals
 - Pre-deployment approver = Specific Users (set appropriate users)
 - Post-deployment approver = Automatic
 
-##Variables
+## Variables
 - AdministratorLogin = set appropriate
 - AdministratorLoginPassword = set appropriate
 - ResourceGroupName = set appropriate
 - SlotName = preview
 - Location = East US
 
-##Steps 
+## Steps 
 - Same than the "Staging Environment" but replace the last one: "Quick Web Performance Test Load" step by the one following:
 - Add Test In Production - disabled for now because the script doesn't work.
   - Type = Azure Powershell
@@ -124,24 +124,24 @@ Here is one example to Release this Web App via VSTS. You could adapt it with yo
   - Script Path = $(System.DefaultWorkingDirectory)/Build AspNetCoreApplication/scripts/[SetUpTestInProduction.ps1](../release/ManageAzureWebAppAzureResourceGroup/scripts/SetUpTestInProduction.ps1)
   - Script Arguments = $(ResourceGroupName) $(SlotName) 70
 
-#Production Environment
+# Production Environment
 ![Production Release Overview](/docs/ProductionRelease.PNG)
 
-##Deployment conditions
+## Deployment conditions
 - Trigger = After successful deployment to another environment ("Staging")
 
-##Approvals
+## Approvals
 - Pre-deployment approver = Specific Users (set appropriate users)
 - Post-deployment approver = Automatic
 
-##Variables
+## Variables
 - AdministratorLogin = set appropriate
 - AdministratorLoginPassword = set appropriate
 - ResourceGroupName = set appropriate
 - SlotToSwap = staging
 - Location = East US
 
-##Steps
+## Steps
 - (Ensure) App Service Plan
   - Type = Azure Resource Group Deployment
   - Azure Connection Type = Azure Resource Manager

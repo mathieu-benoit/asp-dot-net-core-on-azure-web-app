@@ -2,20 +2,20 @@ Here is one example to Build this Web App via VSTS. You could adapt it with your
 
 ![Build Overview](/docs/Build.PNG)
 
-#Variables
+# Variables
 - BuildConfiguration = release
 - DOTNET_SKIP_FIRST_TIME_EXPERIENCE = true
 
-#Repository
+# Repository
 - Repository Type = GitHub
 - Connection = set appropriate
 - Repository = mathieu-benoit/asp-dot-net-core-on-azure-web-app
 - Default branch = master
 
-#Triggers
+# Triggers
 - Continuous Integration (CI) = true
 
-#Steps 
+# Steps 
 - Restore
   - Type = .NET Core (Preview)
   - Command = restore
