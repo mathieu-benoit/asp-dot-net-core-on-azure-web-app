@@ -9,13 +9,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{5599B0FC-37F4-4E10-9CFD-96611FDF9794}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "release", "release", "{311822C6-CC4A-4A78-BE83-C5F462683B75}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "infra", "infra", "{311822C6-CC4A-4A78-BE83-C5F462683B75}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AspNetCoreApplication", "src\AspNetCoreApplication\AspNetCoreApplication.csproj", "{695403A6-C1ED-4647-B4BC-74133A41B70D}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AspNetCoreApplication.UnitTests", "test\AspNetCoreApplication.UnitTests\AspNetCoreApplication.UnitTests.csproj", "{EF0BB060-ADAF-4274-8AA7-DAA634BDBC5E}"
 EndProject
-Project("{151D2E53-A2C4-4D7D-83FE-D05416EBD58E}") = "ManageAzureWebAppAzureResourceGroup", "release\ManageAzureWebAppAzureResourceGroup\ManageAzureWebAppAzureResourceGroup.deployproj", "{34351608-AFC9-4552-B627-C463566B3659}"
+Project("{151D2E53-A2C4-4D7D-83FE-D05416EBD58E}") = "ManageAzureWebAppAzureResourceGroup", "infra\ManageAzureWebAppAzureResourceGroup\ManageAzureWebAppAzureResourceGroup.deployproj", "{34351608-AFC9-4552-B627-C463566B3659}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AspNetCoreApplication.UITests", "test\AspNetCoreApplication.UITests\AspNetCoreApplication.UITests.csproj", "{A14D0BCE-E68D-4622-8D8A-20F87E2D04DA}"
 EndProject

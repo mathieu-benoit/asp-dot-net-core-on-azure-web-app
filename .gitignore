@@ -18,4 +18,4 @@
 /test/AspNetCoreApplication.UITests/obj
 /test/AspNetCoreApplication.UnitTests/obj
 /test/AspNetCoreApplication.UnitTests/TEST-TestResults.xml
-/release/ManageAzureWebAppAzureResourceGroup/bin/
+/infra/ManageAzureWebAppAzureResourceGroup/bin/
