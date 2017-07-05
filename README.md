@@ -15,7 +15,7 @@ Then I do one changing on one cshtml file and one changing on one ARM Template t
 The commit of these changes will trigger automatically the Build (Continuous Integration - CI) and then the associated Release (Continuous Delivery - CD) accross the different environments until Production. 
 Staging and Preview dont exist on the initial state of this demo, so here we are illustrating the creation of these environments "on-demand" before publishing our changes in Production to check and guarantee the quality of our application before being concretely used by our end-users.
 
-![Process Overview](/docs/Process.PNG)
+![Process Overview](/docs/imgs/Process.PNG)
 
 # Build with VSTS
 

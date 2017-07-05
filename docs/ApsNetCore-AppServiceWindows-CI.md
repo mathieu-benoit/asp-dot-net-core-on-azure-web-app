@@ -1,14 +1,14 @@
 Here is one example to Build an ASP.NET Core 1.1 web application via VSTS. You could adapt it with your own context, needs and constraints.
 
-![Build Overview](/docs/Build.PNG)
+![Build Overview](/docs/imgs/ApsNetCore-AppServiceWindows-CI.PNG)
 
 # Import the Build Definition
-
-# Create manually the Build Definition
 
 You could import [the associated Build Definition stored in this repository](/vsts/ApsNetCore-AppServiceWindows-CI.json) and then follow these steps to adapt it to your current project, credentials, etc.:
 
 TODO
+
+# Create manually the Build Definition
 
 ## Variables
 - BuildConfiguration = release
@@ -22,6 +22,10 @@ TODO
 
 ## Triggers
 - Continuous Integration (CI) = true
+
+## Process - Build process
+- Name = ApsNetCore-AppServiceWindows-CI
+- Default agent queue = Hosted VS2017
 
 ## Steps 
 - Restore

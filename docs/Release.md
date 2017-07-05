@@ -1,7 +1,7 @@
 Here is one example to Release this Web App via VSTS. You could adapt it with your own context, needs and constraints.
 
 # Staging Environment
-![Staging Release Overview](/docs/StagingRelease.PNG)
+![Staging Release Overview](/docs/imgs/StagingRelease.PNG)
 
 ## Deployment conditions
 - Trigger = After release creation
