@@ -1,7 +1,9 @@
-Sample ASP.NET Core app which was used during my demonstration for [my presentation "Your DevOps journey starts with ALM!" at the Agile Tour Quebec city 2016](http://aka.ms/mabenoit-atq2016).
+Sample ASP.NET Core 1.1 app which was used during my demonstration for [my presentation "Your DevOps journey starts with ALM!" at the Agile Tour Quebec city 2016](http://aka.ms/mabenoit-atq2016) and updated according the history of changes below.
 
 # History of changes
-- Update to ASP.NET Core 1.1.
+- (in progress) July 2017 - Setup deployment as App Service (Linux)
+- June 2017 - Update to ASP.NET Core 1.1.
+- November 2016 - Initial setup.
 
 # Architecture Overview
 For this demonstration as Microsoft Azure services I use App Service (Web App), Application Insights and Sql Database. 
@@ -19,7 +21,8 @@ Staging and Preview dont exist on the initial state of this demo, so here we are
 
 # Build with VSTS
 
-[Here is the associated documentation for the AspDotNetCore-AppServiceWindows-CI Build Definition.](/docs/AspDotNetCore-AppServiceWindows-CI.md)
+- [Build Definition to publish later on the web app on an App Service (Windows)](/docs/AspDotNetCore-AppServiceWindows-CI.md)
+- [Build Definition to publish later on the web app on an App Service (Linux)](/docs/AspDotNetCore-AppServiceLinux-CI.md)
 
 # Release with VSTS
 
