@@ -419,13 +419,13 @@
         }
     },
     "id": 25,
-    "name": "ApsNetCore-AppServiceWindows-CI",
+    "name": "AspDotNetCore-AppServiceWindows-CI",
     "url": "https://mabenoit-ms.visualstudio.com/a09df269-8b88-43bb-b742-396def59efaa/_apis/build/Definitions/25",
     "uri": "vstfs:///Build/Definition/25",
     "path": "\\",
     "type": 2,
-    "revision": 20,
-    "createdDate": "2017-07-05T18:54:00.207Z",
+    "revision": 21,
+    "createdDate": "2017-07-05T20:21:06.090Z",
     "project": {
         "id": "a09df269-8b88-43bb-b742-396def59efaa",
         "name": "AspNetCoreApplication",
