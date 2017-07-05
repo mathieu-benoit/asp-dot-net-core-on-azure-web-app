@@ -19,7 +19,7 @@ Staging and Preview dont exist on the initial state of this demo, so here we are
 
 # Build with VSTS
 
-[Here is the associated documentation.](/docs/Build.md)
+[Here is the associated documentation for the ApsNetCore-AppServiceWindows-CI Build Definition.](/docs/ApsNetCore-AppServiceWindows-CI.md)
 
 # Release with VSTS
 
