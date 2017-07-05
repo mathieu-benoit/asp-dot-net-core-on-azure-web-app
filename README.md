@@ -7,7 +7,7 @@ Sample ASP.NET Core app which was used during my demonstration for [my presentat
 For this demonstration as Microsoft Azure services I use App Service (Web App), Application Insights and Sql Database. 
 To manage them (create, update or delete) I use ARM Templates.
 
-![Architecture Overview](/docs/Overview.PNG)
+![Architecture Overview](/docs/imgs/Overview.PNG)
 
 # Process Overview
 The initial state of the demonstration is to have on one hand the source code of an ASP.NET application in GitHub and the associated Production environment.
@@ -23,7 +23,7 @@ Staging and Preview dont exist on the initial state of this demo, so here we are
 
 # Release with VSTS
 
-[Here is the associated documentation.](/docs/Release.md)
+[Here is the associated documentation for the ApsNetCore-AppServiceWindows-CD Release Definition.](/docs/ApsNetCore-AppServiceWindows-CD.md)
 
 # Further steps:
 - Deploy the application on Web App on Linux.
