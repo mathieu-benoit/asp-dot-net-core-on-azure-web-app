@@ -26,22 +26,13 @@ TODO
 - Location = East US
 
 ### Steps 
-- (Ensure) App Service Plan
+- (Ensure) App Service Plan and Web App
   - Azure Subscription = set appropriate
   - Action = Create Or Update Resource Group
   - Resource Group = $(ResourceGroupName)
   - Location = $(Location)
   - Template location = Linked artifact
-  - Template = $(System.DefaultWorkingDirectory)/AspDotNetCore-AppServiceWindows-CI/infra/[AppServicePlan.json](../infra/ManageAzureWebAppAzureResourceGroup/templates/AppServicePlan.json)
-  - Override Template Parameters = -appServicePlanName $(ResourceGroupName)
-  - Deployment Mode = Incremental
-- (Ensure) Web App
-  - Azure Subscription = set appropriate
-  - Action = Create Or Update Resource Group
-  - Resource Group = $(ResourceGroupName)
-  - Location = $(Location)
-  - Template location = Linked artifact
-  - Template = $(System.DefaultWorkingDirectory)/AspDotNetCore-AppServiceWindows-CI/infra/[WebApp.json](../infra/ManageAzureWebAppAzureResourceGroup/templates/WebApp.json)
+  - Template = $(System.DefaultWorkingDirectory)/AspDotNetCore-AppServiceWindows-CI/infra/[deploy-windows.json](../infra/ManageAzureWebAppAzureResourceGroup/templates/deploy-windows.json)
   - Override Template Parameters = -webAppName $(ResourceGroupName) -appServicePlanName $(ResourceGroupName)
   - Deployment Mode = Incremental
 - Slot
@@ -143,22 +134,13 @@ TODO
 - Location = East US
 
 ### Steps
-- (Ensure) App Service Plan
+- (Ensure) App Service Plan and Web App
   - Azure Subscription = set appropriate
   - Action = Create Or Update Resource Group
   - Resource Group = $(ResourceGroupName)
   - Location = $(Location)
   - Template location = Linked artifact
-  - Template = $(System.DefaultWorkingDirectory)/AspDotNetCore-AppServiceWindows-CI/infra/[AppServicePlan.json](../infra/ManageAzureWebAppAzureResourceGroup/templates/AppServicePlan.json)
-  - Override Template Parameters = -appServicePlanName $(ResourceGroupName)
-  - Deployment Mode = Incremental
-- Web App
-  - Azure Subscription = set appropriate
-  - Action = Create Or Update Resource Group
-  - Resource Group = $(ResourceGroupName)
-  - Location = $(Location)
-  - Template location = Linked artifact
-  - Template = $(System.DefaultWorkingDirectory)/AspDotNetCore-AppServiceWindows-CI/infra/[WebApp.json](../infra/ManageAzureWebAppAzureResourceGroup/templates/WebApp.json)
+  - Template = $(System.DefaultWorkingDirectory)/AspDotNetCore-AppServiceWindows-CI/infra/[deploy-windows.json](../infra/ManageAzureWebAppAzureResourceGroup/templates/deploy-windows.json)
   - Override Template Parameters = -webAppName $(ResourceGroupName) -appServicePlanName $(ResourceGroupName)
   - Deployment Mode = Incremental
 - App Insights

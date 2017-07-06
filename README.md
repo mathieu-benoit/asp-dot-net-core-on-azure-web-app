@@ -19,10 +19,10 @@ Staging and Preview dont exist on the initial state of this demo, so here we are
 
 ![Process Overview](/docs/imgs/Process.PNG)
 
-# Build with VSTS
+# Build Definition with VSTS
 
-- [Build Definition to publish later on the web app on an App Service (Windows)](/docs/AspDotNetCore-AppServiceWindows-CI.md)
-- [Build Definition to publish later on the web app on an App Service (Linux)](/docs/AspDotNetCore-AppServiceLinux-CI.md)
+- [On an App Service (Windows)](/docs/AspDotNetCore-AppServiceWindows-CI.md)
+- [On an App Service (Linux)](/docs/AspDotNetCore-AppServiceLinux-CI.md)
 
 # Release with VSTS
 
