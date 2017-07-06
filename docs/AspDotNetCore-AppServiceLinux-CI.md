@@ -6,9 +6,26 @@ Here is one example to Build an ASP.NET Core 1.1 web application to an App Servi
 
 Because [we cannot dynamicaly incorporate the Container Registry name within the associated VSTS task](https://blogs.msdn.microsoft.com/devops/2017/06/09/deploying-applications-to-azure-container-service/#comment-90545), currently the only way to use it is to create and configure manually the Azure Container Registry service. Otherwise, and when it will be available, the goal will be to add in the Build/CI Definition the CreateOrUpdate VSTS task to manage the Container Resitry ARM Templates.
 
-For that, I would suggest to do that via CLI 2.0 by using the Azure Cloud Shell with the following steps:
+I would suggest to do that via [Azure CLI 2.0](https://aka.ms/azcli-docs) by using the [Azure Cloud Shell](https://azure.microsoft.com/en-us/features/cloud-shell/) with the following steps:
 
-TODO
+- Go to [https://portal.azure.com](https://portal.azure.com)
+- Launch [Cloud Shell](https://docs.microsoft.com/en-us/azure/cloud-shell/quickstart) from the top navigation of the Azure portal
+- List the subsriptions you have access to:
+```
+az account list
+```
+- Set your preferred subscription:
+```
+az account set --subscription my-subscription-name
+```
+- Create a resource group:
+```
+az group create -l westus -n MyRG
+```
+- Create a Container Registry:
+```
+az acr create --admin-enabled --sku Basic --verbose -l westus -n demoregfoo123 -g MyRG 
+```
 
 # Import the Build Definition
 
