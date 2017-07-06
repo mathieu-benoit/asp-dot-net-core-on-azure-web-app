@@ -1,6 +1,6 @@
 Here is one example to Build an ASP.NET Core 1.1 web application to an App Service (Linux) via VSTS. You could adapt it with your own context, needs and constraints.
 
-![Build Overview](/docs/imgs/ApsNetCore-AppServiceLinux-CI.PNG)
+![Build Overview](/docs/imgs/AspDotNetCore-AppServiceLinux-CI.PNG)
 
 # Prerequisities - Create manually an Azure Container Registry
 
