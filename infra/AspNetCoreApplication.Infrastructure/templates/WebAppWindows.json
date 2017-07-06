@@ -25,6 +25,10 @@
         "2"
       ],
       "defaultValue": "0"
+    },
+    "webAppName": {
+      "type": "string",
+      "minLength": 1
     }
   },
   "variables": {},
@@ -39,6 +43,19 @@
         "sku": "[parameters('appServicePlanSKU')]",
         "workerSize": "[parameters('appServicePlanWorkerSize')]",
         "numberOfWorkers": 1
+      }
+    },
+    {
+      "name": "[parameters('webAppName')]",
+      "type": "Microsoft.Web/sites",
+      "location": "[resourceGroup().location]",
+      "apiVersion": "2015-08-01",
+      "dependsOn": [
+        "[resourceId('Microsoft.Web/serverfarms', parameters('appServicePlanName'))]"
+      ],
+      "properties": {
+        "name": "[parameters('webAppName')]",
+        "serverFarmId": "[resourceId('Microsoft.Web/serverfarms', parameters('appServicePlanName'))]"
       }
     }
   ],

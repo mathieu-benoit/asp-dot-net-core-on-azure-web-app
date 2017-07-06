@@ -1,0 +1,87 @@
+﻿{
+  "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "appServicePlanName": {
+      "type": "string",
+      "minLength": 1
+    },
+    "webAppName": {
+      "type": "string",
+      "minLength": 1
+    },
+    "registryName": {
+      "type": "string",
+      "metadata": {
+        "description": "Container registry name, must be globally unique"
+      }
+    },
+    "dockerImageName": {
+      "type": "string",
+      "metadata": {
+        "description": "Docker image containing your app"
+      }
+    },
+    "dockerImagePort": {
+      "defaultValue": "3000",
+      "type": "string",
+      "metadata": {
+        "description": "Port exposed by your app container"
+      }
+    }
+  },
+  "variables": {},
+  "resources": [
+    {
+      "name": "[parameters('appServicePlanName')]",
+      "type": "Microsoft.Web/serverfarms",
+      "location": "westus",
+      "apiVersion": "2016-09-01",
+      "kind": "linux",
+      "sku": {
+        "name": "B2",
+        "capacity": 1
+      },
+      "properties": {
+        "reserved": true
+      }
+    },
+    {
+      "name": "[parameters('webAppName')]",
+      "type": "Microsoft.Web/sites",
+      "location": "westus",
+      "apiVersion": "2016-08-01",
+      "properties": {
+        "serverFarmId": "[resourceId('Microsoft.Web/serverfarms', parameters('appServicePlanName'))]",
+        "siteConfig": {
+          "appSettings": [
+            {
+              "name": "PORT",
+              "value": "[parameters('dockerImagePort')]"
+            },
+            {
+              "name": "DOCKER_CUSTOM_IMAGE_NAME",
+              "value": "[concat(parameters('registryName'), '.azurecr.io/', parameters('dockerImageName'))]"
+            },
+            {
+              "name": "DOCKER_REGISTRY_SERVER_URL",
+              "value": "[concat('https://', parameters('registryName'), '.azurecr.io')]"
+            },
+            {
+              "name": "DOCKER_REGISTRY_SERVER_USERNAME",
+              "value": "[parameters('registryName')]"
+            },
+            {
+              "name": "DOCKER_REGISTRY_SERVER_PASSWORD",
+              "value": "[listCredentials(resourceId('Microsoft.ContainerRegistry/registries', parameters('registryName')), '2017-03-01').passwords[0].value]"
+            }
+          ]
+        }
+      },
+      "dependsOn": [
+        "[resourceId('Microsoft.Web/serverfarms', parameters('appServicePlanName'))]"
+      ]
+    }
+  ],
+  "outputs": {}
+}

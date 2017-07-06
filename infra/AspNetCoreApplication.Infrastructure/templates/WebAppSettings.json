@@ -20,13 +20,12 @@
   },
   "variables": {
     "appInsightsName": "[parameters('webAppName')]",
-    "databaseName": "[concat(variables('serverName'), '/', variables('databasePrefixName'))]",
     "serverName": "[resourceGroup().name]",
     "databasePrefixName": "[parameters('webAppName')]"
   },
   "resources": [
     {
-      "apiVersion": "2015-08-01",
+      "apiVersion": "2016-08-01",
       "name": "[concat(parameters('webAppName'), '/', 'web')]",
       "type": "Microsoft.Web/sites/config",
       "dependsOn": [],
@@ -40,7 +39,7 @@
       }
     },
     {
-      "apiVersion": "2015-08-01",
+      "apiVersion": "2016-08-01",
       "name": "[concat(parameters('webAppName'), '/', 'connectionstrings')]",
       "type": "Microsoft.Web/sites/config",
       "dependsOn": [],
@@ -52,7 +51,7 @@
       }
     },
     {
-      "apiVersion": "2015-08-01",
+      "apiVersion": "2016-08-01",
       "name": "[concat(parameters('webAppName'), '/', 'appsettings')]",
       "type": "Microsoft.Web/sites/config",
       "dependsOn": [],
@@ -61,17 +60,13 @@
       }
     },
     {
-      "apiVersion": "2015-08-01",
+      "apiVersion": "2016-08-01",
       "name": "[concat(parameters('webAppName'), '/', 'slotconfignames')]",
       "type": "Microsoft.Web/sites/config",
       "dependsOn": [],
       "properties": {
-        "appSettingNames": [
-          "ApplicationInsights:InstrumentationKey"
-        ],
-        "connectionStringNames": [
-          "Data:DefaultConnection:ConnectionString"
-        ]
+        "appSettingNames": "ApplicationInsights:InstrumentationKey",
+        "connectionStringNames": "Data:DefaultConnection:ConnectionString"
       }
     }
   ],

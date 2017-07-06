@@ -24,13 +24,12 @@
   },
   "variables": {
     "appInsightsName": "[concat(parameters('webAppName'), '-', parameters('slotName'))]",
-    "databaseName": "[concat(variables('serverName'), '/', variables('databasePrefixName'))]",
     "serverName": "[resourceGroup().name]",
     "databasePrefixName": "[concat(parameters('webAppName'), '-', parameters('slotName'))]"
   },
   "resources": [
     {
-      "apiVersion": "2015-08-01",
+      "apiVersion": "2016-08-01",
       "name": "[concat(parameters('webAppName'), '/', parameters('slotName'), '/', 'web')]",
       "type": "Microsoft.Web/sites/slots/config",
       "dependsOn": [],
@@ -44,7 +43,7 @@
       }
     },
     {
-      "apiVersion": "2015-08-01",
+      "apiVersion": "2016-08-01",
       "name": "[concat(parameters('webAppName'), '/', parameters('slotName'), '/', 'connectionstrings')]",
       "type": "Microsoft.Web/sites/slots/config",
       "dependsOn": [],
@@ -56,7 +55,7 @@
       }
     },
     {
-      "apiVersion": "2015-08-01",
+      "apiVersion": "2016-08-01",
       "name": "[concat(parameters('webAppName'), '/', parameters('slotName'), '/', 'appsettings')]",
       "type": "Microsoft.Web/sites/slots/config",
       "dependsOn": [],

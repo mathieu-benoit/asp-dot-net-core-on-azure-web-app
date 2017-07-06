@@ -3,8 +3,7 @@
 Param(
     [string] $ResourceGroupLocation = 'East US',
     [string] [Parameter(Mandatory=$true)] $ResourceGroupName,
-    [string] $TemplateFile = '..\templates\AppServicePlan.json',
-	[string] $TemplateParameterFile = 'DeployARMTemplate.parameters.json'
+    [string] $TemplateFile = '..\templates\AppServicePlan.json'
 )
 
 #Login-AzureRmAccount
@@ -13,5 +12,4 @@ New-AzureRmResourceGroup -Name $ResourceGroupName -Location $ResourceGroupLocati
 New-AzureRmResourceGroupDeployment -Name $ResourceGroupName `
                                        -ResourceGroupName $ResourceGroupName `
                                        -TemplateFile $TemplateFile `
-									   -TemplateParameterFile $TemplateParameterFile `
 									   -Force -Verbose

@@ -1,0 +1,59 @@
+{
+    "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "appServicePlanName": {
+            "type": "string",
+            "minLength": 1
+        },
+        "webAppName": {
+            "type": "string",
+            "minLength": 1
+        },
+        "registryName": {
+            "type": "string",
+            "metadata": {
+                "description": "Container registry name, must be globally unique"
+            }
+        },
+        "dockerImageName": {
+            "type": "string",
+            "metadata": {
+                "description": "Docker image containing your app"
+            }
+        },
+        "templateLinkBase": {
+            "type": "string",
+            "minLength": 1,
+            "defaultValue": "https://raw.githubusercontent.com/mathieu-benoit/asp-dot-net-core-on-azure-web-app/master/infra/AspNetCoreApplication.Infrastructure/templates/"
+        }
+    },
+    "variables": {},
+    "resources": [
+        {
+            "apiVersion": "2015-01-01",
+            "name": "webapp-linux",
+            "type": "Microsoft.Resources/deployments",
+            "properties": {
+                "mode": "Incremental",
+                "templateLink": {
+                    "uri": "[concat(parameters('templateLinkBase'), 'WebAppLinux.json')]"
+                },
+                "parameters": {
+                    "appServicePlanName": {
+                        "value": "[parameters('appServicePlanName')]"
+                    },
+                    "webAppName": {
+                        "value": "[parameters('webAppName')]"
+                    },
+                    "registryName": {
+                        "value": "[parameters('registryName')]"
+                    },
+                    "dockerImageName": {
+                        "value": "[parameters('dockerImageName')]"
+                    }
+                }
+            }
+        }
+    ]
+}

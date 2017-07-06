@@ -54,7 +54,7 @@
       "type": "Microsoft.Sql/servers",
       "kind": "v12.0",
       "location": "[resourceGroup().location]",
-      "apiVersion": "2014-04-01-preview",
+      "apiVersion": "2015-05-01-preview",
       "properties": {
         "administratorLogin": "[parameters('adminLogin')]",
         "administratorLoginPassword": "[parameters('adminLoginPassword')]"
@@ -65,7 +65,7 @@
       "name": "[variables('databaseFullName')]",
       "kind": "v12.0",
       "location": "[resourceGroup().location]",
-      "apiVersion": "2014-04-01-preview",
+      "apiVersion": "2014-04-01",
       "dependsOn": [
         "[resourceId('Microsoft.Sql/servers', variables('serverName'))]"
       ],
@@ -80,7 +80,7 @@
       "type": "Microsoft.Sql/servers/firewallRules",
       "name": "[concat(variables('serverName'), '/', 'AllowAllWindowsAzureIps')]",
       "location": "[resourceGroup().location]",
-      "apiVersion": "2014-04-01-preview",
+      "apiVersion": "2014-04-01",
       "dependsOn": [
         "[resourceId('Microsoft.Sql/servers', variables('serverName'))]"
       ],
