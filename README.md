@@ -28,6 +28,18 @@ Staging and Preview dont exist on the initial state of this demo, so here we are
 
 [Here is the associated documentation for the AspDotNetCore-AppServiceWindows-CD Release Definition.](/docs/AspDotNetCore-AppServiceWindows-CD.md)
 
-# Further steps:
-- Deploy the application on Web App on Linux.
-- Use Azure Key Vault to store secrets
+# "Deploy to Azure" buttons
+
+By using the buttons below it's another way to deploy the Azure services without VSTS and without taking into account the web app, just deploying the infrastructure within Azure.
+
+Deploy the Azure App Service (Windows) and its associated services within the Azure portal:
+
+<a href="https://raw.githubusercontent.com/mathieu-benoit/asp-dot-net-core-on-azure-web-app/master/infra/AspNetCoreApplication.Infrastructure/templates/deploy-windows.json" target="_blank">![Deploy to Azure](http://azuredeploy.net/deploybutton.png)</a>
+
+Deploy the Azure App Service (Linux) and its associated services within the Azure portal:
+
+<a href="https://raw.githubusercontent.com/mathieu-benoit/asp-dot-net-core-on-azure-web-app/master/infra/AspNetCoreApplication.Infrastructure/templates/deploy-linux.json" target="_blank">![Deploy to Azure](http://azuredeploy.net/deploybutton.png)</a>
+
+Deploy the Azure Container Registry and its associated Blob Storage within the Azure portal:
+
+<a href="https://raw.githubusercontent.com/mathieu-benoit/asp-dot-net-core-on-azure-web-app/master/infra/AspNetCoreApplication.Infrastructure/templates/ContainerRegistry.json" target="_blank">![Deploy to Azure](http://azuredeploy.net/deploybutton.png)</a>

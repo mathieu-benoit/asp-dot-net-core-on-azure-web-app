@@ -1,1 +1,994 @@
-{"source":2,"id":6,"revision":15,"name":"AspDotNetCore-AppServiceWindows-CD","description":null,"createdBy":{"id":"17256fe4-f2a3-4370-b081-ec283edb6a77","displayName":"Mathieu Benoit","uniqueName":"mabenoit@microsoft.com","url":"https://app.vssps.visualstudio.com/A6d1a4ff8-9a1f-46cb-bd61-54cb9a797939/_apis/Identities/17256fe4-f2a3-4370-b081-ec283edb6a77","imageUrl":"https://mabenoit-ms.visualstudio.com/_api/_common/identityImage?id=17256fe4-f2a3-4370-b081-ec283edb6a77"},"createdOn":"2017-07-05T19:28:07.200Z","modifiedBy":{"id":"17256fe4-f2a3-4370-b081-ec283edb6a77","displayName":"Mathieu Benoit","uniqueName":"mabenoit@microsoft.com","url":"https://app.vssps.visualstudio.com/A6d1a4ff8-9a1f-46cb-bd61-54cb9a797939/_apis/Identities/17256fe4-f2a3-4370-b081-ec283edb6a77","imageUrl":"https://mabenoit-ms.visualstudio.com/_api/_common/identityImage?id=17256fe4-f2a3-4370-b081-ec283edb6a77"},"modifiedOn":"2017-07-06T19:48:08.263Z","lastRelease":null,"path":"\\","variables":{"Location":{"value":"East US"}},"variableGroups":[],"environments":[{"id":19,"name":"Staging","rank":1,"owner":{"id":"17256fe4-f2a3-4370-b081-ec283edb6a77","displayName":"Mathieu Benoit","uniqueName":"mabenoit@microsoft.com","url":"https://app.vssps.visualstudio.com/A6d1a4ff8-9a1f-46cb-bd61-54cb9a797939/_apis/Identities/17256fe4-f2a3-4370-b081-ec283edb6a77","imageUrl":"https://mabenoit-ms.visualstudio.com/_api/_common/identityImage?id=17256fe4-f2a3-4370-b081-ec283edb6a77"},"variables":{"AdministratorLogin":{"value":"mabenoit"},"AdministratorLoginPassword":{"value":null,"isSecret":true},"ResourceGroupName":{"value":"mabenoit-atq2016"},"SlotName":{"value":"staging"}},"preDeployApprovals":{"approvals":[{"rank":1,"isAutomated":true,"isNotificationOn":false,"id":56}]},"deployStep":{"tasks":[],"id":61},"postDeployApprovals":{"approvals":[{"rank":1,"isAutomated":true,"isNotificationOn":false,"id":62}]},"deployPhases":[{"deploymentInput":{"parallelExecution":{"multipliers":"","maxNumberOfAgents":1,"continueOnError":true,"parallelExecutionType":"multiConfiguration"},"skipArtifactsDownload":false,"timeoutInMinutes":0,"queueId":3,"demands":[],"enableAccessToken":false,"jobCancelTimeoutInMinutes":1},"rank":1,"phaseType":1,"name":"Run on agent","workflowTasks":[{"taskId":"94a74903-f93f-4075-884f-dc11f34058b4","version":"2.*","name":"(Ensure) App Service Plan and Web App","enabled":true,"alwaysRun":false,"continueOnError":false,"timeoutInMinutes":0,"definitionType":"task","inputs":{"ConnectedServiceName":"3fcb20b6-eca0-48e5-9e59-35c9822a7152","action":"Create Or Update Resource Group","resourceGroupName":"$(ResourceGroupName)","location":"$(Location)","templateLocation":"Linked artifact","csmFileLink":"","csmParametersFileLink":"","csmFile":"$(System.DefaultWorkingDirectory)/ApsNetCore-AppServiceWindows-CI/infra/deploy-windows.json","csmParametersFile":"","overrideParameters":"-webAppName $(ResourceGroupName) -appServicePlanName $(ResourceGroupName)","deploymentMode":"Incremental","enableDeploymentPrerequisites":"None","deploymentGroupEndpoint":"","project":"","deploymentGroupName":"","copyAzureVMTags":"true","outputVariable":""}},{"taskId":"94a74903-f93f-4075-884f-dc11f34058b4","version":"2.*","name":"Slot","enabled":true,"alwaysRun":false,"continueOnError":false,"timeoutInMinutes":0,"definitionType":"task","inputs":{"ConnectedServiceName":"3fcb20b6-eca0-48e5-9e59-35c9822a7152","action":"Create Or Update Resource Group","resourceGroupName":"$(ResourceGroupName)","location":"$(Location)","templateLocation":"Linked artifact","csmFileLink":"","csmParametersFileLink":"","csmFile":"$(System.DefaultWorkingDirectory)/AspDotNetCore-AppServiceWindows-CI/infra/WebAppSlot.json","csmParametersFile":"","overrideParameters":"-webAppName $(ResourceGroupName) -slotName $(SlotName)","deploymentMode":"Incremental","enableDeploymentPrerequisites":"None","deploymentGroupEndpoint":"","project":"","deploymentGroupName":"","copyAzureVMTags":"true","outputVariable":""}},{"taskId":"94a74903-f93f-4075-884f-dc11f34058b4","version":"2.*","name":"App Insights","enabled":true,"alwaysRun":false,"continueOnError":false,"timeoutInMinutes":0,"definitionType":"task","inputs":{"ConnectedServiceName":"3fcb20b6-eca0-48e5-9e59-35c9822a7152","action":"Create Or Update Resource Group","resourceGroupName":"$(ResourceGroupName)","location":"$(Location)","templateLocation":"Linked artifact","csmFileLink":"","csmParametersFileLink":"","csmFile":"$(System.DefaultWorkingDirectory)/AspDotNetCore-AppServiceWindows-CI/infra/ApplicationInsights.json","csmParametersFile":"","overrideParameters":"-appInsightsName $(ResourceGroupName)-$(SlotName)","deploymentMode":"Incremental","enableDeploymentPrerequisites":"None","deploymentGroupEndpoint":"","project":"","deploymentGroupName":"","copyAzureVMTags":"true","outputVariable":""}},{"taskId":"94a74903-f93f-4075-884f-dc11f34058b4","version":"2.*","name":"Sql Database","enabled":true,"alwaysRun":false,"continueOnError":false,"timeoutInMinutes":0,"definitionType":"task","inputs":{"ConnectedServiceName":"3fcb20b6-eca0-48e5-9e59-35c9822a7152","action":"Create Or Update Resource Group","resourceGroupName":"$(ResourceGroupName)","location":"$(Location)","templateLocation":"Linked artifact","csmFileLink":"","csmParametersFileLink":"","csmFile":"$(System.DefaultWorkingDirectory)/AspDotNetCore-AppServiceWindows-CI/infra/SqlDatabase.json","csmParametersFile":"","overrideParameters":"-databaseName $(ResourceGroupName)-$(SlotName) -adminLogin $(AdministratorLogin) -adminLoginPassword (ConvertTo-SecureString -String '$(AdministratorLoginPassword)' -AsPlainText -Force)","deploymentMode":"Incremental","enableDeploymentPrerequisites":"None","deploymentGroupEndpoint":"","project":"","deploymentGroupName":"","copyAzureVMTags":"true","outputVariable":""}},{"taskId":"94a74903-f93f-4075-884f-dc11f34058b4","version":"2.*","name":"Slot App Settings","enabled":true,"alwaysRun":false,"continueOnError":false,"timeoutInMinutes":0,"definitionType":"task","inputs":{"ConnectedServiceName":"3fcb20b6-eca0-48e5-9e59-35c9822a7152","action":"Create Or Update Resource Group","resourceGroupName":"$(ResourceGroupName)","location":"$(Location)","templateLocation":"Linked artifact","csmFileLink":"","csmParametersFileLink":"","csmFile":"$(System.DefaultWorkingDirectory)/AspDotNetCore-AppServiceWindows-CI/infra/WebAppSlotSettings.json","csmParametersFile":"","overrideParameters":"-webAppName $(ResourceGroupName) -slotName $(SlotName) -adminLogin $(AdministratorLogin) -adminLoginPassword (ConvertTo-SecureString -String '$(AdministratorLoginPassword)' -AsPlainText -Force)","deploymentMode":"Incremental","enableDeploymentPrerequisites":"None","deploymentGroupEndpoint":"","project":"","deploymentGroupName":"","copyAzureVMTags":"true","outputVariable":""}},{"taskId":"497d490f-eea7-4f2b-ab94-48d9c1acdcb1","version":"3.*","name":"Deploy Web App","enabled":true,"alwaysRun":false,"continueOnError":false,"timeoutInMinutes":0,"definitionType":null,"inputs":{"ConnectedServiceName":"3fcb20b6-eca0-48e5-9e59-35c9822a7152","WebAppName":"$(ResourceGroupName)","ServerfarmId":"invalidServerfarmId","WebAppKind":"app","DockerNamespace":"","DockerRepository":"","DockerImageTag":"","StartupCommand":"","DeployToSlotFlag":"true","ResourceGroupName":"$(ResourceGroupName)","SlotName":"$(SlotName)","VirtualApplication":"","Package":"$(System.DefaultWorkingDirectory)/AspDotNetCore-AppServiceWindows-CI/web/AspNetCoreApplication.zip","WebAppUri":"","ScriptType":"","InlineScript":":: You can provide your deployment commands here. One command per line.","ScriptPath":"","TakeAppOfflineFlag":"true","UseWebDeploy":"true","SetParametersFile":"","RemoveAdditionalFilesFlag":"false","ExcludeFilesFromAppDataFlag":"false","AdditionalArguments":"","RenameFilesFlag":"false","GenerateWebConfig":"false","WebConfigParameters":"","XmlTransformation":"false","XmlVariableSubstitution":"false","JSONFiles":"","AppSettings":""}},{"taskId":"9648625c-1523-4eb5-b015-dfe7c685840c","version":"1.*","name":"Quick Web Performance Test Load","enabled":false,"alwaysRun":false,"continueOnError":false,"timeoutInMinutes":0,"definitionType":"task","inputs":{"connectedServiceName":"4e41d74e-956a-46f7-83c0-36d2067eb785","websiteUrl":"http://$(ResourceGroupName)-$(SlotName).azurewebsites.net/","testName":"Load Tests on Homepage in QA-Staging","vuLoad":"25","runDuration":"60","geoLocation":"Default","machineType":"0","avgResponseTimeThreshold":"0"}}]}],"environmentOptions":{"emailNotificationType":"OnlyOnFailure","emailRecipients":"release.environment.owner;release.creator","skipArtifactsDownload":false,"timeoutInMinutes":0,"enableAccessToken":false,"publishDeploymentStatus":false},"demands":[],"conditions":[],"executionPolicy":{"concurrencyCount":0,"queueDepthCount":0},"schedules":[],"retentionPolicy":{"daysToKeep":30,"releasesToKeep":3,"retainBuild":true},"properties":{}},{"id":22,"name":"Preview","rank":2,"owner":{"id":"17256fe4-f2a3-4370-b081-ec283edb6a77","displayName":"Mathieu Benoit","uniqueName":"mabenoit@microsoft.com","url":"https://app.vssps.visualstudio.com/A6d1a4ff8-9a1f-46cb-bd61-54cb9a797939/_apis/Identities/17256fe4-f2a3-4370-b081-ec283edb6a77","imageUrl":"https://mabenoit-ms.visualstudio.com/_api/_common/identityImage?id=17256fe4-f2a3-4370-b081-ec283edb6a77"},"variables":{"AdministratorLogin":{"value":"mabenoit"},"AdministratorLoginPassword":{"value":null,"isSecret":true},"ResourceGroupName":{"value":"mabenoit-atq2016"},"SlotName":{"value":"preview"}},"preDeployApprovals":{"approvals":[{"rank":1,"isAutomated":false,"isNotificationOn":false,"approver":{"id":"17256fe4-f2a3-4370-b081-ec283edb6a77","displayName":"Mathieu Benoit","uniqueName":"mabenoit@microsoft.com","url":"https://app.vssps.visualstudio.com/A6d1a4ff8-9a1f-46cb-bd61-54cb9a797939/_apis/Identities/17256fe4-f2a3-4370-b081-ec283edb6a77","imageUrl":"https://mabenoit-ms.visualstudio.com/_api/_common/identityImage?id=17256fe4-f2a3-4370-b081-ec283edb6a77"},"id":65}],"approvalOptions":{"requiredApproverCount":0,"releaseCreatorCanBeApprover":true,"autoTriggeredAndPreviousEnvironmentApprovedCanBeSkipped":false,"enforceIdentityRevalidation":false,"timeoutInMintues":43200}},"deployStep":{"tasks":[],"id":66},"postDeployApprovals":{"approvals":[{"rank":1,"isAutomated":true,"isNotificationOn":false,"id":67}]},"deployPhases":[{"deploymentInput":{"parallelExecution":{"multipliers":"","maxNumberOfAgents":1,"continueOnError":true,"parallelExecutionType":"multiConfiguration"},"skipArtifactsDownload":false,"timeoutInMinutes":0,"queueId":3,"demands":[],"enableAccessToken":false,"jobCancelTimeoutInMinutes":1},"rank":1,"phaseType":1,"name":"Run on agent","workflowTasks":[{"taskId":"94a74903-f93f-4075-884f-dc11f34058b4","version":"2.*","name":"(Ensure) App Service Plan and Web App","enabled":true,"alwaysRun":false,"continueOnError":false,"timeoutInMinutes":0,"definitionType":"task","inputs":{"ConnectedServiceName":"3fcb20b6-eca0-48e5-9e59-35c9822a7152","action":"Create Or Update Resource Group","resourceGroupName":"$(ResourceGroupName)","location":"$(Location)","templateLocation":"Linked artifact","csmFileLink":"","csmParametersFileLink":"","csmFile":"$(System.DefaultWorkingDirectory)/ApsNetCore-AppServiceWindows-CI/infra/deploy-windows.json","csmParametersFile":"","overrideParameters":"-webAppName $(ResourceGroupName) -appServicePlanName $(ResourceGroupName)","deploymentMode":"Incremental","enableDeploymentPrerequisites":"None","deploymentGroupEndpoint":"","project":"","deploymentGroupName":"","copyAzureVMTags":"true","outputVariable":""}},{"taskId":"94a74903-f93f-4075-884f-dc11f34058b4","version":"2.*","name":"Slot","enabled":true,"alwaysRun":false,"continueOnError":false,"timeoutInMinutes":0,"definitionType":"task","inputs":{"ConnectedServiceName":"3fcb20b6-eca0-48e5-9e59-35c9822a7152","action":"Create Or Update Resource Group","resourceGroupName":"$(ResourceGroupName)","location":"$(Location)","templateLocation":"Linked artifact","csmFileLink":"","csmParametersFileLink":"","csmFile":"$(System.DefaultWorkingDirectory)/AspDotNetCore-AppServiceWindows-CI/infra/WebAppSlot.json","csmParametersFile":"","overrideParameters":"-webAppName $(ResourceGroupName) -slotName $(SlotName)","deploymentMode":"Incremental","enableDeploymentPrerequisites":"None","deploymentGroupEndpoint":"","project":"","deploymentGroupName":"","copyAzureVMTags":"true","outputVariable":""}},{"taskId":"94a74903-f93f-4075-884f-dc11f34058b4","version":"2.*","name":"App Insights","enabled":true,"alwaysRun":false,"continueOnError":false,"timeoutInMinutes":0,"definitionType":"task","inputs":{"ConnectedServiceName":"3fcb20b6-eca0-48e5-9e59-35c9822a7152","action":"Create Or Update Resource Group","resourceGroupName":"$(ResourceGroupName)","location":"$(Location)","templateLocation":"Linked artifact","csmFileLink":"","csmParametersFileLink":"","csmFile":"$(System.DefaultWorkingDirectory)/AspDotNetCore-AppServiceWindows-CI/infra/ApplicationInsights.json","csmParametersFile":"","overrideParameters":"-appInsightsName $(ResourceGroupName)-$(SlotName)","deploymentMode":"Incremental","enableDeploymentPrerequisites":"None","deploymentGroupEndpoint":"","project":"","deploymentGroupName":"","copyAzureVMTags":"true","outputVariable":""}},{"taskId":"94a74903-f93f-4075-884f-dc11f34058b4","version":"2.*","name":"Sql Database","enabled":true,"alwaysRun":false,"continueOnError":false,"timeoutInMinutes":0,"definitionType":"task","inputs":{"ConnectedServiceName":"3fcb20b6-eca0-48e5-9e59-35c9822a7152","action":"Create Or Update Resource Group","resourceGroupName":"$(ResourceGroupName)","location":"$(Location)","templateLocation":"Linked artifact","csmFileLink":"","csmParametersFileLink":"","csmFile":"$(System.DefaultWorkingDirectory)/AspDotNetCore-AppServiceWindows-CI/infra/SqlDatabase.json","csmParametersFile":"","overrideParameters":"-databaseName $(ResourceGroupName)-$(SlotName) -adminLogin $(AdministratorLogin) -adminLoginPassword (ConvertTo-SecureString -String '$(AdministratorLoginPassword)' -AsPlainText -Force)","deploymentMode":"Incremental","enableDeploymentPrerequisites":"None","deploymentGroupEndpoint":"","project":"","deploymentGroupName":"","copyAzureVMTags":"true","outputVariable":""}},{"taskId":"94a74903-f93f-4075-884f-dc11f34058b4","version":"2.*","name":"Slot App Settings","enabled":true,"alwaysRun":false,"continueOnError":false,"timeoutInMinutes":0,"definitionType":"task","inputs":{"ConnectedServiceName":"3fcb20b6-eca0-48e5-9e59-35c9822a7152","action":"Create Or Update Resource Group","resourceGroupName":"$(ResourceGroupName)","location":"$(Location)","templateLocation":"Linked artifact","csmFileLink":"","csmParametersFileLink":"","csmFile":"$(System.DefaultWorkingDirectory)/AspDotNetCore-AppServiceWindows-CI/infra/WebAppSlotSettings.json","csmParametersFile":"","overrideParameters":"-webAppName $(ResourceGroupName) -slotName $(SlotName) -adminLogin $(AdministratorLogin) -adminLoginPassword (ConvertTo-SecureString -String '$(AdministratorLoginPassword)' -AsPlainText -Force)","deploymentMode":"Incremental","enableDeploymentPrerequisites":"None","deploymentGroupEndpoint":"","project":"","deploymentGroupName":"","copyAzureVMTags":"true","outputVariable":""}},{"taskId":"497d490f-eea7-4f2b-ab94-48d9c1acdcb1","version":"3.*","name":"Deploy Web App","enabled":true,"alwaysRun":false,"continueOnError":false,"timeoutInMinutes":0,"definitionType":null,"inputs":{"ConnectedServiceName":"3fcb20b6-eca0-48e5-9e59-35c9822a7152","WebAppName":"$(ResourceGroupName)","ServerfarmId":"invalidServerfarmId","WebAppKind":"app","DockerNamespace":"","DockerRepository":"","DockerImageTag":"","StartupCommand":"","DeployToSlotFlag":"true","ResourceGroupName":"$(ResourceGroupName)","SlotName":"$(SlotName)","VirtualApplication":"","Package":"$(System.DefaultWorkingDirectory)/AspDotNetCore-AppServiceWindows-CI/web/AspNetCoreApplication.zip","WebAppUri":"","ScriptType":"","InlineScript":":: You can provide your deployment commands here. One command per line.","ScriptPath":"","TakeAppOfflineFlag":"true","UseWebDeploy":"true","SetParametersFile":"","RemoveAdditionalFilesFlag":"false","ExcludeFilesFromAppDataFlag":"false","AdditionalArguments":"","RenameFilesFlag":"false","GenerateWebConfig":"false","WebConfigParameters":"","XmlTransformation":"false","XmlVariableSubstitution":"false","JSONFiles":"","AppSettings":""}},{"taskId":"72a1931b-effb-4d2e-8fd8-f8472a07cb62","version":"1.*","name":"Add Test In Production","enabled":false,"alwaysRun":false,"continueOnError":false,"timeoutInMinutes":0,"definitionType":"task","inputs":{"ConnectedServiceNameSelector":"ConnectedServiceNameARM","ConnectedServiceName":"","ConnectedServiceNameARM":"3fcb20b6-eca0-48e5-9e59-35c9822a7152","ScriptType":"FilePath","ScriptPath":"$(System.DefaultWorkingDirectory)/AspDotNetCore-AppServiceWindows-CI/scripts/SetUpTestInProduction.ps1","Inline":"# You can write your azure powershell scripts inline here. \n# You can also pass predefined and custom variables to this script using arguments","ScriptArguments":"$(ResourceGroupName) $(SlotName) 70"}}]}],"environmentOptions":{"emailNotificationType":"OnlyOnFailure","emailRecipients":"release.environment.owner;release.creator","skipArtifactsDownload":false,"timeoutInMinutes":0,"enableAccessToken":false,"publishDeploymentStatus":false},"demands":[],"conditions":[{"name":"Production","conditionType":2,"value":"4"}],"executionPolicy":{"concurrencyCount":0,"queueDepthCount":0},"schedules":[],"retentionPolicy":{"daysToKeep":30,"releasesToKeep":3,"retainBuild":true},"properties":{}},{"id":21,"name":"Production","rank":3,"owner":{"id":"17256fe4-f2a3-4370-b081-ec283edb6a77","displayName":"Mathieu Benoit","uniqueName":"mabenoit@microsoft.com","url":"https://app.vssps.visualstudio.com/A6d1a4ff8-9a1f-46cb-bd61-54cb9a797939/_apis/Identities/17256fe4-f2a3-4370-b081-ec283edb6a77","imageUrl":"https://mabenoit-ms.visualstudio.com/_api/_common/identityImage?id=17256fe4-f2a3-4370-b081-ec283edb6a77"},"variables":{"AdministratorLogin":{"value":"mabenoit"},"AdministratorLoginPassword":{"value":null,"isSecret":true},"ResourceGroupName":{"value":"mabenoit-atq2016"},"SlotToSwap":{"value":"staging"}},"preDeployApprovals":{"approvals":[{"rank":1,"isAutomated":false,"isNotificationOn":false,"approver":{"id":"17256fe4-f2a3-4370-b081-ec283edb6a77","displayName":"Mathieu Benoit","uniqueName":"mabenoit@microsoft.com","url":"https://app.vssps.visualstudio.com/A6d1a4ff8-9a1f-46cb-bd61-54cb9a797939/_apis/Identities/17256fe4-f2a3-4370-b081-ec283edb6a77","imageUrl":"https://mabenoit-ms.visualstudio.com/_api/_common/identityImage?id=17256fe4-f2a3-4370-b081-ec283edb6a77"},"id":58}],"approvalOptions":{"requiredApproverCount":0,"releaseCreatorCanBeApprover":true,"autoTriggeredAndPreviousEnvironmentApprovedCanBeSkipped":false,"enforceIdentityRevalidation":false,"timeoutInMintues":43200}},"deployStep":{"tasks":[],"id":59},"postDeployApprovals":{"approvals":[{"rank":1,"isAutomated":true,"isNotificationOn":false,"id":64}]},"deployPhases":[{"deploymentInput":{"parallelExecution":{"multipliers":"","maxNumberOfAgents":1,"continueOnError":true,"parallelExecutionType":"multiConfiguration"},"skipArtifactsDownload":false,"timeoutInMinutes":0,"queueId":4,"demands":[],"enableAccessToken":false,"jobCancelTimeoutInMinutes":1},"rank":1,"phaseType":1,"name":"Run on agent","workflowTasks":[{"taskId":"94a74903-f93f-4075-884f-dc11f34058b4","version":"2.*","name":"(Ensure) App Service Plan and Web App","enabled":true,"alwaysRun":false,"continueOnError":false,"timeoutInMinutes":0,"definitionType":"task","inputs":{"ConnectedServiceName":"3fcb20b6-eca0-48e5-9e59-35c9822a7152","action":"Create Or Update Resource Group","resourceGroupName":"$(ResourceGroupName)","location":"$(Location)","templateLocation":"Linked artifact","csmFileLink":"","csmParametersFileLink":"","csmFile":"$(System.DefaultWorkingDirectory)/ApsNetCore-AppServiceWindows-CI/infra/deploy-windows.json","csmParametersFile":"","overrideParameters":"-webAppName $(ResourceGroupName) -appServicePlanName $(ResourceGroupName)","deploymentMode":"Incremental","enableDeploymentPrerequisites":"None","deploymentGroupEndpoint":"","project":"","deploymentGroupName":"","copyAzureVMTags":"true","outputVariable":""}},{"taskId":"94a74903-f93f-4075-884f-dc11f34058b4","version":"2.*","name":"App Insights","enabled":true,"alwaysRun":false,"continueOnError":false,"timeoutInMinutes":0,"definitionType":"task","inputs":{"ConnectedServiceName":"3fcb20b6-eca0-48e5-9e59-35c9822a7152","action":"Create Or Update Resource Group","resourceGroupName":"$(ResourceGroupName)","location":"$(Location)","templateLocation":"Linked artifact","csmFileLink":"","csmParametersFileLink":"","csmFile":"$(System.DefaultWorkingDirectory)/AspDotNetCore-AppServiceWindows-CI/infra/ApplicationInsights.json","csmParametersFile":"","overrideParameters":"-appInsightsName $(ResourceGroupName)","deploymentMode":"Incremental","enableDeploymentPrerequisites":"None","deploymentGroupEndpoint":"","project":"","deploymentGroupName":"","copyAzureVMTags":"true","outputVariable":""}},{"taskId":"94a74903-f93f-4075-884f-dc11f34058b4","version":"2.*","name":"Sql Database","enabled":true,"alwaysRun":false,"continueOnError":false,"timeoutInMinutes":0,"definitionType":"task","inputs":{"ConnectedServiceName":"3fcb20b6-eca0-48e5-9e59-35c9822a7152","action":"Create Or Update Resource Group","resourceGroupName":"$(ResourceGroupName)","location":"$(Location)","templateLocation":"Linked artifact","csmFileLink":"","csmParametersFileLink":"","csmFile":"$(System.DefaultWorkingDirectory)/AspDotNetCore-AppServiceWindows-CI/infra/SqlDatabase.json","csmParametersFile":"","overrideParameters":"-databaseName $(ResourceGroupName) -adminLogin $(AdministratorLogin) -adminLoginPassword (ConvertTo-SecureString -String '$(AdministratorLoginPassword)' -AsPlainText -Force)","deploymentMode":"Incremental","enableDeploymentPrerequisites":"None","deploymentGroupEndpoint":"","project":"","deploymentGroupName":"","copyAzureVMTags":"true","outputVariable":""}},{"taskId":"94a74903-f93f-4075-884f-dc11f34058b4","version":"2.*","name":"App Settings","enabled":true,"alwaysRun":false,"continueOnError":false,"timeoutInMinutes":0,"definitionType":"task","inputs":{"ConnectedServiceName":"3fcb20b6-eca0-48e5-9e59-35c9822a7152","action":"Create Or Update Resource Group","resourceGroupName":"$(ResourceGroupName)","location":"$(Location)","templateLocation":"Linked artifact","csmFileLink":"","csmParametersFileLink":"","csmFile":"$(System.DefaultWorkingDirectory)/AspDotNetCore-AppServiceWindows-CI/infra/WebAppSettings.json","csmParametersFile":"","overrideParameters":"-webAppName $(ResourceGroupName)  -adminLogin $(AdministratorLogin) -adminLoginPassword (ConvertTo-SecureString -String '$(AdministratorLoginPassword)' -AsPlainText -Force)","deploymentMode":"Incremental","enableDeploymentPrerequisites":"None","deploymentGroupEndpoint":"","project":"","deploymentGroupName":"","copyAzureVMTags":"true","outputVariable":""}},{"taskId":"72a1931b-effb-4d2e-8fd8-f8472a07cb62","version":"1.*","name":"Remove Test In Production","enabled":false,"alwaysRun":false,"continueOnError":false,"timeoutInMinutes":0,"definitionType":"task","inputs":{"ConnectedServiceNameSelector":"ConnectedServiceNameARM","ConnectedServiceName":"","ConnectedServiceNameARM":"8758f048-1ba7-49fb-b008-5d63928c4cef","ScriptType":"FilePath","ScriptPath":"$(System.DefaultWorkingDirectory)/AspDotNetCore-AppServiceWindows-CI/scripts/SetUpTestInProduction.ps1","Inline":"# You can write your azure powershell scripts inline here. \n# You can also pass predefined and custom variables to this script using arguments","ScriptArguments":"$(ResourceGroupName) $(SlotToSwap) 0"}},{"taskId":"f045e430-8704-11e6-968f-e717e6411619","version":"0.*","name":"Swap Staging to Production","enabled":true,"alwaysRun":false,"continueOnError":false,"timeoutInMinutes":0,"definitionType":"task","inputs":{"ConnectedServiceName":"8758f048-1ba7-49fb-b008-5d63928c4cef","Action":"Swap Slots","WebAppName":"$(ResourceGroupName)","SpecifySlot":"false","ResourceGroupName":"$(ResourceGroupName)","SourceSlot":"$(SlotToSwap)","SwapWithProduction":"true","TargetSlot":"","PreserveVnet":"false","Slot":"","ExtensionsList":"","OutputVariable":""}},{"taskId":"72a1931b-effb-4d2e-8fd8-f8472a07cb62","version":"1.*","name":"Set Resource Group Lock","enabled":true,"alwaysRun":false,"continueOnError":false,"timeoutInMinutes":0,"definitionType":"task","inputs":{"ConnectedServiceNameSelector":"ConnectedServiceNameARM","ConnectedServiceName":"","ConnectedServiceNameARM":"8758f048-1ba7-49fb-b008-5d63928c4cef","ScriptType":"FilePath","ScriptPath":"$(System.DefaultWorkingDirectory)/AspDotNetCore-AppServiceWindows-CI/scripts/AddResourceGroupLock.ps1","Inline":"# You can write your azure powershell scripts inline here. \n# You can also pass predefined and custom variables to this script using arguments","ScriptArguments":"$(ResourceGroupName)"}}]}],"environmentOptions":{"emailNotificationType":"OnlyOnFailure","emailRecipients":"release.environment.owner;release.creator","skipArtifactsDownload":false,"timeoutInMinutes":0,"enableAccessToken":false,"publishDeploymentStatus":false},"demands":[],"conditions":[],"executionPolicy":{"concurrencyCount":0,"queueDepthCount":0},"schedules":[],"retentionPolicy":{"daysToKeep":30,"releasesToKeep":3,"retainBuild":true},"properties":{}}],"artifacts":[{"sourceId":"a09df269-8b88-43bb-b742-396def59efaa:25","type":"Build","alias":"ApsNetCore-AppServiceWindows-CI","definitionReference":{"artifactSourceDefinitionUrl":{"id":"https://mabenoit-ms.visualstudio.com/_permalink/_build/index?collectionId=e373a2ff-a162-446f-b7ec-415465e9e56c&projectId=a09df269-8b88-43bb-b742-396def59efaa&definitionId=25","name":""},"defaultVersionBranch":{"id":"","name":""},"defaultVersionSpecific":{"id":"","name":""},"defaultVersionTags":{"id":"","name":""},"defaultVersionType":{"id":"selectDuringReleaseCreationType","name":"Specify at the time of release creation"},"definition":{"id":"25","name":"ApsNetCore-AppServiceWindows-CI"},"project":{"id":"a09df269-8b88-43bb-b742-396def59efaa","name":"AspNetCoreApplication"}},"isPrimary":true}],"triggers":[],"releaseNameFormat":"Release-$(rev:r)","url":"https://mabenoit-ms.vsrm.visualstudio.com/a09df269-8b88-43bb-b742-396def59efaa/_apis/Release/definitions/6","_links":{"self":{"href":"https://mabenoit-ms.vsrm.visualstudio.com/a09df269-8b88-43bb-b742-396def59efaa/_apis/Release/definitions/6"},"web":{"href":"https://mabenoit-ms.visualstudio.com/a09df269-8b88-43bb-b742-396def59efaa/_release?definitionId=6"}},"tags":[],"properties":{}}
+{
+    "source": 2,
+    "id": 6,
+    "revision": 15,
+    "name": "AspDotNetCore-AppServiceWindows-CD",
+    "description": null,
+    "createdBy": {
+        "id": "17256fe4-f2a3-4370-b081-ec283edb6a77",
+        "displayName": "Mathieu Benoit",
+        "uniqueName": "mabenoit@microsoft.com",
+        "url": "https://app.vssps.visualstudio.com/A6d1a4ff8-9a1f-46cb-bd61-54cb9a797939/_apis/Identities/17256fe4-f2a3-4370-b081-ec283edb6a77",
+        "imageUrl": "https://mabenoit-ms.visualstudio.com/_api/_common/identityImage?id=17256fe4-f2a3-4370-b081-ec283edb6a77"
+    },
+    "createdOn": "2017-07-05T19:28:07.200Z",
+    "modifiedBy": {
+        "id": "17256fe4-f2a3-4370-b081-ec283edb6a77",
+        "displayName": "Mathieu Benoit",
+        "uniqueName": "mabenoit@microsoft.com",
+        "url": "https://app.vssps.visualstudio.com/A6d1a4ff8-9a1f-46cb-bd61-54cb9a797939/_apis/Identities/17256fe4-f2a3-4370-b081-ec283edb6a77",
+        "imageUrl": "https://mabenoit-ms.visualstudio.com/_api/_common/identityImage?id=17256fe4-f2a3-4370-b081-ec283edb6a77"
+    },
+    "modifiedOn": "2017-07-06T19:48:08.263Z",
+    "lastRelease": null,
+    "path": "\\",
+    "variables": {
+        "Location": {
+            "value": "East US"
+        }
+    },
+    "variableGroups": [],
+    "environments": [
+        {
+            "id": 19,
+            "name": "Staging",
+            "rank": 1,
+            "owner": {
+                "id": "17256fe4-f2a3-4370-b081-ec283edb6a77",
+                "displayName": "Mathieu Benoit",
+                "uniqueName": "mabenoit@microsoft.com",
+                "url": "https://app.vssps.visualstudio.com/A6d1a4ff8-9a1f-46cb-bd61-54cb9a797939/_apis/Identities/17256fe4-f2a3-4370-b081-ec283edb6a77",
+                "imageUrl": "https://mabenoit-ms.visualstudio.com/_api/_common/identityImage?id=17256fe4-f2a3-4370-b081-ec283edb6a77"
+            },
+            "variables": {
+                "AdministratorLogin": {
+                    "value": "mabenoit"
+                },
+                "AdministratorLoginPassword": {
+                    "value": null,
+                    "isSecret": true
+                },
+                "ResourceGroupName": {
+                    "value": "mabenoit-atq2016"
+                },
+                "SlotName": {
+                    "value": "staging"
+                }
+            },
+            "preDeployApprovals": {
+                "approvals": [
+                    {
+                        "rank": 1,
+                        "isAutomated": true,
+                        "isNotificationOn": false,
+                        "id": 56
+                    }
+                ]
+            },
+            "deployStep": {
+                "tasks": [],
+                "id": 61
+            },
+            "postDeployApprovals": {
+                "approvals": [
+                    {
+                        "rank": 1,
+                        "isAutomated": true,
+                        "isNotificationOn": false,
+                        "id": 62
+                    }
+                ]
+            },
+            "deployPhases": [
+                {
+                    "deploymentInput": {
+                        "parallelExecution": {
+                            "multipliers": "",
+                            "maxNumberOfAgents": 1,
+                            "continueOnError": true,
+                            "parallelExecutionType": "multiConfiguration"
+                        },
+                        "skipArtifactsDownload": false,
+                        "timeoutInMinutes": 0,
+                        "queueId": 3,
+                        "demands": [],
+                        "enableAccessToken": false,
+                        "jobCancelTimeoutInMinutes": 1
+                    },
+                    "rank": 1,
+                    "phaseType": 1,
+                    "name": "Run on agent",
+                    "workflowTasks": [
+                        {
+                            "taskId": "94a74903-f93f-4075-884f-dc11f34058b4",
+                            "version": "2.*",
+                            "name": "(Ensure) App Service Plan and Web App",
+                            "enabled": true,
+                            "alwaysRun": false,
+                            "continueOnError": false,
+                            "timeoutInMinutes": 0,
+                            "definitionType": "task",
+                            "inputs": {
+                                "ConnectedServiceName": "3fcb20b6-eca0-48e5-9e59-35c9822a7152",
+                                "action": "Create Or Update Resource Group",
+                                "resourceGroupName": "$(ResourceGroupName)",
+                                "location": "$(Location)",
+                                "templateLocation": "Linked artifact",
+                                "csmFileLink": "",
+                                "csmParametersFileLink": "",
+                                "csmFile": "$(System.DefaultWorkingDirectory)/ApsNetCore-AppServiceWindows-CI/infra/deploy-windows.json",
+                                "csmParametersFile": "",
+                                "overrideParameters": "-webAppName $(ResourceGroupName) -appServicePlanName $(ResourceGroupName)",
+                                "deploymentMode": "Incremental",
+                                "enableDeploymentPrerequisites": "None",
+                                "deploymentGroupEndpoint": "",
+                                "project": "",
+                                "deploymentGroupName": "",
+                                "copyAzureVMTags": "true",
+                                "outputVariable": ""
+                            }
+                        },
+                        {
+                            "taskId": "94a74903-f93f-4075-884f-dc11f34058b4",
+                            "version": "2.*",
+                            "name": "Slot",
+                            "enabled": true,
+                            "alwaysRun": false,
+                            "continueOnError": false,
+                            "timeoutInMinutes": 0,
+                            "definitionType": "task",
+                            "inputs": {
+                                "ConnectedServiceName": "3fcb20b6-eca0-48e5-9e59-35c9822a7152",
+                                "action": "Create Or Update Resource Group",
+                                "resourceGroupName": "$(ResourceGroupName)",
+                                "location": "$(Location)",
+                                "templateLocation": "Linked artifact",
+                                "csmFileLink": "",
+                                "csmParametersFileLink": "",
+                                "csmFile": "$(System.DefaultWorkingDirectory)/AspDotNetCore-AppServiceWindows-CI/infra/WebAppSlot.json",
+                                "csmParametersFile": "",
+                                "overrideParameters": "-webAppName $(ResourceGroupName) -slotName $(SlotName)",
+                                "deploymentMode": "Incremental",
+                                "enableDeploymentPrerequisites": "None",
+                                "deploymentGroupEndpoint": "",
+                                "project": "",
+                                "deploymentGroupName": "",
+                                "copyAzureVMTags": "true",
+                                "outputVariable": ""
+                            }
+                        },
+                        {
+                            "taskId": "94a74903-f93f-4075-884f-dc11f34058b4",
+                            "version": "2.*",
+                            "name": "App Insights",
+                            "enabled": true,
+                            "alwaysRun": false,
+                            "continueOnError": false,
+                            "timeoutInMinutes": 0,
+                            "definitionType": "task",
+                            "inputs": {
+                                "ConnectedServiceName": "3fcb20b6-eca0-48e5-9e59-35c9822a7152",
+                                "action": "Create Or Update Resource Group",
+                                "resourceGroupName": "$(ResourceGroupName)",
+                                "location": "$(Location)",
+                                "templateLocation": "Linked artifact",
+                                "csmFileLink": "",
+                                "csmParametersFileLink": "",
+                                "csmFile": "$(System.DefaultWorkingDirectory)/AspDotNetCore-AppServiceWindows-CI/infra/ApplicationInsights.json",
+                                "csmParametersFile": "",
+                                "overrideParameters": "-appInsightsName $(ResourceGroupName)-$(SlotName)",
+                                "deploymentMode": "Incremental",
+                                "enableDeploymentPrerequisites": "None",
+                                "deploymentGroupEndpoint": "",
+                                "project": "",
+                                "deploymentGroupName": "",
+                                "copyAzureVMTags": "true",
+                                "outputVariable": ""
+                            }
+                        },
+                        {
+                            "taskId": "94a74903-f93f-4075-884f-dc11f34058b4",
+                            "version": "2.*",
+                            "name": "Sql Database",
+                            "enabled": true,
+                            "alwaysRun": false,
+                            "continueOnError": false,
+                            "timeoutInMinutes": 0,
+                            "definitionType": "task",
+                            "inputs": {
+                                "ConnectedServiceName": "3fcb20b6-eca0-48e5-9e59-35c9822a7152",
+                                "action": "Create Or Update Resource Group",
+                                "resourceGroupName": "$(ResourceGroupName)",
+                                "location": "$(Location)",
+                                "templateLocation": "Linked artifact",
+                                "csmFileLink": "",
+                                "csmParametersFileLink": "",
+                                "csmFile": "$(System.DefaultWorkingDirectory)/AspDotNetCore-AppServiceWindows-CI/infra/SqlDatabase.json",
+                                "csmParametersFile": "",
+                                "overrideParameters": "-databaseName $(ResourceGroupName)-$(SlotName) -adminLogin $(AdministratorLogin) -adminLoginPassword (ConvertTo-SecureString -String '$(AdministratorLoginPassword)' -AsPlainText -Force)",
+                                "deploymentMode": "Incremental",
+                                "enableDeploymentPrerequisites": "None",
+                                "deploymentGroupEndpoint": "",
+                                "project": "",
+                                "deploymentGroupName": "",
+                                "copyAzureVMTags": "true",
+                                "outputVariable": ""
+                            }
+                        },
+                        {
+                            "taskId": "94a74903-f93f-4075-884f-dc11f34058b4",
+                            "version": "2.*",
+                            "name": "Slot App Settings",
+                            "enabled": true,
+                            "alwaysRun": false,
+                            "continueOnError": false,
+                            "timeoutInMinutes": 0,
+                            "definitionType": "task",
+                            "inputs": {
+                                "ConnectedServiceName": "3fcb20b6-eca0-48e5-9e59-35c9822a7152",
+                                "action": "Create Or Update Resource Group",
+                                "resourceGroupName": "$(ResourceGroupName)",
+                                "location": "$(Location)",
+                                "templateLocation": "Linked artifact",
+                                "csmFileLink": "",
+                                "csmParametersFileLink": "",
+                                "csmFile": "$(System.DefaultWorkingDirectory)/AspDotNetCore-AppServiceWindows-CI/infra/WebAppSlotSettings.json",
+                                "csmParametersFile": "",
+                                "overrideParameters": "-webAppName $(ResourceGroupName) -slotName $(SlotName) -adminLogin $(AdministratorLogin) -adminLoginPassword (ConvertTo-SecureString -String '$(AdministratorLoginPassword)' -AsPlainText -Force)",
+                                "deploymentMode": "Incremental",
+                                "enableDeploymentPrerequisites": "None",
+                                "deploymentGroupEndpoint": "",
+                                "project": "",
+                                "deploymentGroupName": "",
+                                "copyAzureVMTags": "true",
+                                "outputVariable": ""
+                            }
+                        },
+                        {
+                            "taskId": "497d490f-eea7-4f2b-ab94-48d9c1acdcb1",
+                            "version": "3.*",
+                            "name": "Deploy Web App",
+                            "enabled": true,
+                            "alwaysRun": false,
+                            "continueOnError": false,
+                            "timeoutInMinutes": 0,
+                            "definitionType": null,
+                            "inputs": {
+                                "ConnectedServiceName": "3fcb20b6-eca0-48e5-9e59-35c9822a7152",
+                                "WebAppName": "$(ResourceGroupName)",
+                                "ServerfarmId": "invalidServerfarmId",
+                                "WebAppKind": "app",
+                                "DockerNamespace": "",
+                                "DockerRepository": "",
+                                "DockerImageTag": "",
+                                "StartupCommand": "",
+                                "DeployToSlotFlag": "true",
+                                "ResourceGroupName": "$(ResourceGroupName)",
+                                "SlotName": "$(SlotName)",
+                                "VirtualApplication": "",
+                                "Package": "$(System.DefaultWorkingDirectory)/AspDotNetCore-AppServiceWindows-CI/web/AspNetCoreApplication.zip",
+                                "WebAppUri": "",
+                                "ScriptType": "",
+                                "InlineScript": ":: You can provide your deployment commands here. One command per line.",
+                                "ScriptPath": "",
+                                "TakeAppOfflineFlag": "true",
+                                "UseWebDeploy": "true",
+                                "SetParametersFile": "",
+                                "RemoveAdditionalFilesFlag": "false",
+                                "ExcludeFilesFromAppDataFlag": "false",
+                                "AdditionalArguments": "",
+                                "RenameFilesFlag": "false",
+                                "GenerateWebConfig": "false",
+                                "WebConfigParameters": "",
+                                "XmlTransformation": "false",
+                                "XmlVariableSubstitution": "false",
+                                "JSONFiles": "",
+                                "AppSettings": ""
+                            }
+                        },
+                        {
+                            "taskId": "9648625c-1523-4eb5-b015-dfe7c685840c",
+                            "version": "1.*",
+                            "name": "Quick Web Performance Test Load",
+                            "enabled": false,
+                            "alwaysRun": false,
+                            "continueOnError": false,
+                            "timeoutInMinutes": 0,
+                            "definitionType": "task",
+                            "inputs": {
+                                "connectedServiceName": "4e41d74e-956a-46f7-83c0-36d2067eb785",
+                                "websiteUrl": "http://$(ResourceGroupName)-$(SlotName).azurewebsites.net/",
+                                "testName": "Load Tests on Homepage in QA-Staging",
+                                "vuLoad": "25",
+                                "runDuration": "60",
+                                "geoLocation": "Default",
+                                "machineType": "0",
+                                "avgResponseTimeThreshold": "0"
+                            }
+                        }
+                    ]
+                }
+            ],
+            "environmentOptions": {
+                "emailNotificationType": "OnlyOnFailure",
+                "emailRecipients": "release.environment.owner;release.creator",
+                "skipArtifactsDownload": false,
+                "timeoutInMinutes": 0,
+                "enableAccessToken": false,
+                "publishDeploymentStatus": false
+            },
+            "demands": [],
+            "conditions": [],
+            "executionPolicy": {
+                "concurrencyCount": 0,
+                "queueDepthCount": 0
+            },
+            "schedules": [],
+            "retentionPolicy": {
+                "daysToKeep": 30,
+                "releasesToKeep": 3,
+                "retainBuild": true
+            },
+            "properties": {}
+        },
+        {
+            "id": 22,
+            "name": "Preview",
+            "rank": 2,
+            "owner": {
+                "id": "17256fe4-f2a3-4370-b081-ec283edb6a77",
+                "displayName": "Mathieu Benoit",
+                "uniqueName": "mabenoit@microsoft.com",
+                "url": "https://app.vssps.visualstudio.com/A6d1a4ff8-9a1f-46cb-bd61-54cb9a797939/_apis/Identities/17256fe4-f2a3-4370-b081-ec283edb6a77",
+                "imageUrl": "https://mabenoit-ms.visualstudio.com/_api/_common/identityImage?id=17256fe4-f2a3-4370-b081-ec283edb6a77"
+            },
+            "variables": {
+                "AdministratorLogin": {
+                    "value": "mabenoit"
+                },
+                "AdministratorLoginPassword": {
+                    "value": null,
+                    "isSecret": true
+                },
+                "ResourceGroupName": {
+                    "value": "mabenoit-atq2016"
+                },
+                "SlotName": {
+                    "value": "preview"
+                }
+            },
+            "preDeployApprovals": {
+                "approvals": [
+                    {
+                        "rank": 1,
+                        "isAutomated": false,
+                        "isNotificationOn": false,
+                        "approver": {
+                            "id": "17256fe4-f2a3-4370-b081-ec283edb6a77",
+                            "displayName": "Mathieu Benoit",
+                            "uniqueName": "mabenoit@microsoft.com",
+                            "url": "https://app.vssps.visualstudio.com/A6d1a4ff8-9a1f-46cb-bd61-54cb9a797939/_apis/Identities/17256fe4-f2a3-4370-b081-ec283edb6a77",
+                            "imageUrl": "https://mabenoit-ms.visualstudio.com/_api/_common/identityImage?id=17256fe4-f2a3-4370-b081-ec283edb6a77"
+                        },
+                        "id": 65
+                    }
+                ],
+                "approvalOptions": {
+                    "requiredApproverCount": 0,
+                    "releaseCreatorCanBeApprover": true,
+                    "autoTriggeredAndPreviousEnvironmentApprovedCanBeSkipped": false,
+                    "enforceIdentityRevalidation": false,
+                    "timeoutInMintues": 43200
+                }
+            },
+            "deployStep": {
+                "tasks": [],
+                "id": 66
+            },
+            "postDeployApprovals": {
+                "approvals": [
+                    {
+                        "rank": 1,
+                        "isAutomated": true,
+                        "isNotificationOn": false,
+                        "id": 67
+                    }
+                ]
+            },
+            "deployPhases": [
+                {
+                    "deploymentInput": {
+                        "parallelExecution": {
+                            "multipliers": "",
+                            "maxNumberOfAgents": 1,
+                            "continueOnError": true,
+                            "parallelExecutionType": "multiConfiguration"
+                        },
+                        "skipArtifactsDownload": false,
+                        "timeoutInMinutes": 0,
+                        "queueId": 3,
+                        "demands": [],
+                        "enableAccessToken": false,
+                        "jobCancelTimeoutInMinutes": 1
+                    },
+                    "rank": 1,
+                    "phaseType": 1,
+                    "name": "Run on agent",
+                    "workflowTasks": [
+                        {
+                            "taskId": "94a74903-f93f-4075-884f-dc11f34058b4",
+                            "version": "2.*",
+                            "name": "(Ensure) App Service Plan and Web App",
+                            "enabled": true,
+                            "alwaysRun": false,
+                            "continueOnError": false,
+                            "timeoutInMinutes": 0,
+                            "definitionType": "task",
+                            "inputs": {
+                                "ConnectedServiceName": "3fcb20b6-eca0-48e5-9e59-35c9822a7152",
+                                "action": "Create Or Update Resource Group",
+                                "resourceGroupName": "$(ResourceGroupName)",
+                                "location": "$(Location)",
+                                "templateLocation": "Linked artifact",
+                                "csmFileLink": "",
+                                "csmParametersFileLink": "",
+                                "csmFile": "$(System.DefaultWorkingDirectory)/ApsNetCore-AppServiceWindows-CI/infra/deploy-windows.json",
+                                "csmParametersFile": "",
+                                "overrideParameters": "-webAppName $(ResourceGroupName) -appServicePlanName $(ResourceGroupName)",
+                                "deploymentMode": "Incremental",
+                                "enableDeploymentPrerequisites": "None",
+                                "deploymentGroupEndpoint": "",
+                                "project": "",
+                                "deploymentGroupName": "",
+                                "copyAzureVMTags": "true",
+                                "outputVariable": ""
+                            }
+                        },
+                        {
+                            "taskId": "94a74903-f93f-4075-884f-dc11f34058b4",
+                            "version": "2.*",
+                            "name": "Slot",
+                            "enabled": true,
+                            "alwaysRun": false,
+                            "continueOnError": false,
+                            "timeoutInMinutes": 0,
+                            "definitionType": "task",
+                            "inputs": {
+                                "ConnectedServiceName": "3fcb20b6-eca0-48e5-9e59-35c9822a7152",
+                                "action": "Create Or Update Resource Group",
+                                "resourceGroupName": "$(ResourceGroupName)",
+                                "location": "$(Location)",
+                                "templateLocation": "Linked artifact",
+                                "csmFileLink": "",
+                                "csmParametersFileLink": "",
+                                "csmFile": "$(System.DefaultWorkingDirectory)/AspDotNetCore-AppServiceWindows-CI/infra/WebAppSlot.json",
+                                "csmParametersFile": "",
+                                "overrideParameters": "-webAppName $(ResourceGroupName) -slotName $(SlotName)",
+                                "deploymentMode": "Incremental",
+                                "enableDeploymentPrerequisites": "None",
+                                "deploymentGroupEndpoint": "",
+                                "project": "",
+                                "deploymentGroupName": "",
+                                "copyAzureVMTags": "true",
+                                "outputVariable": ""
+                            }
+                        },
+                        {
+                            "taskId": "94a74903-f93f-4075-884f-dc11f34058b4",
+                            "version": "2.*",
+                            "name": "App Insights",
+                            "enabled": true,
+                            "alwaysRun": false,
+                            "continueOnError": false,
+                            "timeoutInMinutes": 0,
+                            "definitionType": "task",
+                            "inputs": {
+                                "ConnectedServiceName": "3fcb20b6-eca0-48e5-9e59-35c9822a7152",
+                                "action": "Create Or Update Resource Group",
+                                "resourceGroupName": "$(ResourceGroupName)",
+                                "location": "$(Location)",
+                                "templateLocation": "Linked artifact",
+                                "csmFileLink": "",
+                                "csmParametersFileLink": "",
+                                "csmFile": "$(System.DefaultWorkingDirectory)/AspDotNetCore-AppServiceWindows-CI/infra/ApplicationInsights.json",
+                                "csmParametersFile": "",
+                                "overrideParameters": "-appInsightsName $(ResourceGroupName)-$(SlotName)",
+                                "deploymentMode": "Incremental",
+                                "enableDeploymentPrerequisites": "None",
+                                "deploymentGroupEndpoint": "",
+                                "project": "",
+                                "deploymentGroupName": "",
+                                "copyAzureVMTags": "true",
+                                "outputVariable": ""
+                            }
+                        },
+                        {
+                            "taskId": "94a74903-f93f-4075-884f-dc11f34058b4",
+                            "version": "2.*",
+                            "name": "Sql Database",
+                            "enabled": true,
+                            "alwaysRun": false,
+                            "continueOnError": false,
+                            "timeoutInMinutes": 0,
+                            "definitionType": "task",
+                            "inputs": {
+                                "ConnectedServiceName": "3fcb20b6-eca0-48e5-9e59-35c9822a7152",
+                                "action": "Create Or Update Resource Group",
+                                "resourceGroupName": "$(ResourceGroupName)",
+                                "location": "$(Location)",
+                                "templateLocation": "Linked artifact",
+                                "csmFileLink": "",
+                                "csmParametersFileLink": "",
+                                "csmFile": "$(System.DefaultWorkingDirectory)/AspDotNetCore-AppServiceWindows-CI/infra/SqlDatabase.json",
+                                "csmParametersFile": "",
+                                "overrideParameters": "-databaseName $(ResourceGroupName)-$(SlotName) -adminLogin $(AdministratorLogin) -adminLoginPassword (ConvertTo-SecureString -String '$(AdministratorLoginPassword)' -AsPlainText -Force)",
+                                "deploymentMode": "Incremental",
+                                "enableDeploymentPrerequisites": "None",
+                                "deploymentGroupEndpoint": "",
+                                "project": "",
+                                "deploymentGroupName": "",
+                                "copyAzureVMTags": "true",
+                                "outputVariable": ""
+                            }
+                        },
+                        {
+                            "taskId": "94a74903-f93f-4075-884f-dc11f34058b4",
+                            "version": "2.*",
+                            "name": "Slot App Settings",
+                            "enabled": true,
+                            "alwaysRun": false,
+                            "continueOnError": false,
+                            "timeoutInMinutes": 0,
+                            "definitionType": "task",
+                            "inputs": {
+                                "ConnectedServiceName": "3fcb20b6-eca0-48e5-9e59-35c9822a7152",
+                                "action": "Create Or Update Resource Group",
+                                "resourceGroupName": "$(ResourceGroupName)",
+                                "location": "$(Location)",
+                                "templateLocation": "Linked artifact",
+                                "csmFileLink": "",
+                                "csmParametersFileLink": "",
+                                "csmFile": "$(System.DefaultWorkingDirectory)/AspDotNetCore-AppServiceWindows-CI/infra/WebAppSlotSettings.json",
+                                "csmParametersFile": "",
+                                "overrideParameters": "-webAppName $(ResourceGroupName) -slotName $(SlotName) -adminLogin $(AdministratorLogin) -adminLoginPassword (ConvertTo-SecureString -String '$(AdministratorLoginPassword)' -AsPlainText -Force)",
+                                "deploymentMode": "Incremental",
+                                "enableDeploymentPrerequisites": "None",
+                                "deploymentGroupEndpoint": "",
+                                "project": "",
+                                "deploymentGroupName": "",
+                                "copyAzureVMTags": "true",
+                                "outputVariable": ""
+                            }
+                        },
+                        {
+                            "taskId": "497d490f-eea7-4f2b-ab94-48d9c1acdcb1",
+                            "version": "3.*",
+                            "name": "Deploy Web App",
+                            "enabled": true,
+                            "alwaysRun": false,
+                            "continueOnError": false,
+                            "timeoutInMinutes": 0,
+                            "definitionType": null,
+                            "inputs": {
+                                "ConnectedServiceName": "3fcb20b6-eca0-48e5-9e59-35c9822a7152",
+                                "WebAppName": "$(ResourceGroupName)",
+                                "ServerfarmId": "invalidServerfarmId",
+                                "WebAppKind": "app",
+                                "DockerNamespace": "",
+                                "DockerRepository": "",
+                                "DockerImageTag": "",
+                                "StartupCommand": "",
+                                "DeployToSlotFlag": "true",
+                                "ResourceGroupName": "$(ResourceGroupName)",
+                                "SlotName": "$(SlotName)",
+                                "VirtualApplication": "",
+                                "Package": "$(System.DefaultWorkingDirectory)/AspDotNetCore-AppServiceWindows-CI/web/AspNetCoreApplication.zip",
+                                "WebAppUri": "",
+                                "ScriptType": "",
+                                "InlineScript": ":: You can provide your deployment commands here. One command per line.",
+                                "ScriptPath": "",
+                                "TakeAppOfflineFlag": "true",
+                                "UseWebDeploy": "true",
+                                "SetParametersFile": "",
+                                "RemoveAdditionalFilesFlag": "false",
+                                "ExcludeFilesFromAppDataFlag": "false",
+                                "AdditionalArguments": "",
+                                "RenameFilesFlag": "false",
+                                "GenerateWebConfig": "false",
+                                "WebConfigParameters": "",
+                                "XmlTransformation": "false",
+                                "XmlVariableSubstitution": "false",
+                                "JSONFiles": "",
+                                "AppSettings": ""
+                            }
+                        },
+                        {
+                            "taskId": "72a1931b-effb-4d2e-8fd8-f8472a07cb62",
+                            "version": "1.*",
+                            "name": "Add Test In Production",
+                            "enabled": false,
+                            "alwaysRun": false,
+                            "continueOnError": false,
+                            "timeoutInMinutes": 0,
+                            "definitionType": "task",
+                            "inputs": {
+                                "ConnectedServiceNameSelector": "ConnectedServiceNameARM",
+                                "ConnectedServiceName": "",
+                                "ConnectedServiceNameARM": "3fcb20b6-eca0-48e5-9e59-35c9822a7152",
+                                "ScriptType": "FilePath",
+                                "ScriptPath": "$(System.DefaultWorkingDirectory)/AspDotNetCore-AppServiceWindows-CI/scripts/SetUpTestInProduction.ps1",
+                                "Inline": "# You can write your azure powershell scripts inline here. \n# You can also pass predefined and custom variables to this script using arguments",
+                                "ScriptArguments": "$(ResourceGroupName) $(SlotName) 70"
+                            }
+                        }
+                    ]
+                }
+            ],
+            "environmentOptions": {
+                "emailNotificationType": "OnlyOnFailure",
+                "emailRecipients": "release.environment.owner;release.creator",
+                "skipArtifactsDownload": false,
+                "timeoutInMinutes": 0,
+                "enableAccessToken": false,
+                "publishDeploymentStatus": false
+            },
+            "demands": [],
+            "conditions": [
+                {
+                    "name": "Production",
+                    "conditionType": 2,
+                    "value": "4"
+                }
+            ],
+            "executionPolicy": {
+                "concurrencyCount": 0,
+                "queueDepthCount": 0
+            },
+            "schedules": [],
+            "retentionPolicy": {
+                "daysToKeep": 30,
+                "releasesToKeep": 3,
+                "retainBuild": true
+            },
+            "properties": {}
+        },
+        {
+            "id": 21,
+            "name": "Production",
+            "rank": 3,
+            "owner": {
+                "id": "17256fe4-f2a3-4370-b081-ec283edb6a77",
+                "displayName": "Mathieu Benoit",
+                "uniqueName": "mabenoit@microsoft.com",
+                "url": "https://app.vssps.visualstudio.com/A6d1a4ff8-9a1f-46cb-bd61-54cb9a797939/_apis/Identities/17256fe4-f2a3-4370-b081-ec283edb6a77",
+                "imageUrl": "https://mabenoit-ms.visualstudio.com/_api/_common/identityImage?id=17256fe4-f2a3-4370-b081-ec283edb6a77"
+            },
+            "variables": {
+                "AdministratorLogin": {
+                    "value": "mabenoit"
+                },
+                "AdministratorLoginPassword": {
+                    "value": null,
+                    "isSecret": true
+                },
+                "ResourceGroupName": {
+                    "value": "mabenoit-atq2016"
+                },
+                "SlotToSwap": {
+                    "value": "staging"
+                }
+            },
+            "preDeployApprovals": {
+                "approvals": [
+                    {
+                        "rank": 1,
+                        "isAutomated": false,
+                        "isNotificationOn": false,
+                        "approver": {
+                            "id": "17256fe4-f2a3-4370-b081-ec283edb6a77",
+                            "displayName": "Mathieu Benoit",
+                            "uniqueName": "mabenoit@microsoft.com",
+                            "url": "https://app.vssps.visualstudio.com/A6d1a4ff8-9a1f-46cb-bd61-54cb9a797939/_apis/Identities/17256fe4-f2a3-4370-b081-ec283edb6a77",
+                            "imageUrl": "https://mabenoit-ms.visualstudio.com/_api/_common/identityImage?id=17256fe4-f2a3-4370-b081-ec283edb6a77"
+                        },
+                        "id": 58
+                    }
+                ],
+                "approvalOptions": {
+                    "requiredApproverCount": 0,
+                    "releaseCreatorCanBeApprover": true,
+                    "autoTriggeredAndPreviousEnvironmentApprovedCanBeSkipped": false,
+                    "enforceIdentityRevalidation": false,
+                    "timeoutInMintues": 43200
+                }
+            },
+            "deployStep": {
+                "tasks": [],
+                "id": 59
+            },
+            "postDeployApprovals": {
+                "approvals": [
+                    {
+                        "rank": 1,
+                        "isAutomated": true,
+                        "isNotificationOn": false,
+                        "id": 64
+                    }
+                ]
+            },
+            "deployPhases": [
+                {
+                    "deploymentInput": {
+                        "parallelExecution": {
+                            "multipliers": "",
+                            "maxNumberOfAgents": 1,
+                            "continueOnError": true,
+                            "parallelExecutionType": "multiConfiguration"
+                        },
+                        "skipArtifactsDownload": false,
+                        "timeoutInMinutes": 0,
+                        "queueId": 4,
+                        "demands": [],
+                        "enableAccessToken": false,
+                        "jobCancelTimeoutInMinutes": 1
+                    },
+                    "rank": 1,
+                    "phaseType": 1,
+                    "name": "Run on agent",
+                    "workflowTasks": [
+                        {
+                            "taskId": "94a74903-f93f-4075-884f-dc11f34058b4",
+                            "version": "2.*",
+                            "name": "(Ensure) App Service Plan and Web App",
+                            "enabled": true,
+                            "alwaysRun": false,
+                            "continueOnError": false,
+                            "timeoutInMinutes": 0,
+                            "definitionType": "task",
+                            "inputs": {
+                                "ConnectedServiceName": "3fcb20b6-eca0-48e5-9e59-35c9822a7152",
+                                "action": "Create Or Update Resource Group",
+                                "resourceGroupName": "$(ResourceGroupName)",
+                                "location": "$(Location)",
+                                "templateLocation": "Linked artifact",
+                                "csmFileLink": "",
+                                "csmParametersFileLink": "",
+                                "csmFile": "$(System.DefaultWorkingDirectory)/ApsNetCore-AppServiceWindows-CI/infra/deploy-windows.json",
+                                "csmParametersFile": "",
+                                "overrideParameters": "-webAppName $(ResourceGroupName) -appServicePlanName $(ResourceGroupName)",
+                                "deploymentMode": "Incremental",
+                                "enableDeploymentPrerequisites": "None",
+                                "deploymentGroupEndpoint": "",
+                                "project": "",
+                                "deploymentGroupName": "",
+                                "copyAzureVMTags": "true",
+                                "outputVariable": ""
+                            }
+                        },
+                        {
+                            "taskId": "94a74903-f93f-4075-884f-dc11f34058b4",
+                            "version": "2.*",
+                            "name": "App Insights",
+                            "enabled": true,
+                            "alwaysRun": false,
+                            "continueOnError": false,
+                            "timeoutInMinutes": 0,
+                            "definitionType": "task",
+                            "inputs": {
+                                "ConnectedServiceName": "3fcb20b6-eca0-48e5-9e59-35c9822a7152",
+                                "action": "Create Or Update Resource Group",
+                                "resourceGroupName": "$(ResourceGroupName)",
+                                "location": "$(Location)",
+                                "templateLocation": "Linked artifact",
+                                "csmFileLink": "",
+                                "csmParametersFileLink": "",
+                                "csmFile": "$(System.DefaultWorkingDirectory)/AspDotNetCore-AppServiceWindows-CI/infra/ApplicationInsights.json",
+                                "csmParametersFile": "",
+                                "overrideParameters": "-appInsightsName $(ResourceGroupName)",
+                                "deploymentMode": "Incremental",
+                                "enableDeploymentPrerequisites": "None",
+                                "deploymentGroupEndpoint": "",
+                                "project": "",
+                                "deploymentGroupName": "",
+                                "copyAzureVMTags": "true",
+                                "outputVariable": ""
+                            }
+                        },
+                        {
+                            "taskId": "94a74903-f93f-4075-884f-dc11f34058b4",
+                            "version": "2.*",
+                            "name": "Sql Database",
+                            "enabled": true,
+                            "alwaysRun": false,
+                            "continueOnError": false,
+                            "timeoutInMinutes": 0,
+                            "definitionType": "task",
+                            "inputs": {
+                                "ConnectedServiceName": "3fcb20b6-eca0-48e5-9e59-35c9822a7152",
+                                "action": "Create Or Update Resource Group",
+                                "resourceGroupName": "$(ResourceGroupName)",
+                                "location": "$(Location)",
+                                "templateLocation": "Linked artifact",
+                                "csmFileLink": "",
+                                "csmParametersFileLink": "",
+                                "csmFile": "$(System.DefaultWorkingDirectory)/AspDotNetCore-AppServiceWindows-CI/infra/SqlDatabase.json",
+                                "csmParametersFile": "",
+                                "overrideParameters": "-databaseName $(ResourceGroupName) -adminLogin $(AdministratorLogin) -adminLoginPassword (ConvertTo-SecureString -String '$(AdministratorLoginPassword)' -AsPlainText -Force)",
+                                "deploymentMode": "Incremental",
+                                "enableDeploymentPrerequisites": "None",
+                                "deploymentGroupEndpoint": "",
+                                "project": "",
+                                "deploymentGroupName": "",
+                                "copyAzureVMTags": "true",
+                                "outputVariable": ""
+                            }
+                        },
+                        {
+                            "taskId": "94a74903-f93f-4075-884f-dc11f34058b4",
+                            "version": "2.*",
+                            "name": "App Settings",
+                            "enabled": true,
+                            "alwaysRun": false,
+                            "continueOnError": false,
+                            "timeoutInMinutes": 0,
+                            "definitionType": "task",
+                            "inputs": {
+                                "ConnectedServiceName": "3fcb20b6-eca0-48e5-9e59-35c9822a7152",
+                                "action": "Create Or Update Resource Group",
+                                "resourceGroupName": "$(ResourceGroupName)",
+                                "location": "$(Location)",
+                                "templateLocation": "Linked artifact",
+                                "csmFileLink": "",
+                                "csmParametersFileLink": "",
+                                "csmFile": "$(System.DefaultWorkingDirectory)/AspDotNetCore-AppServiceWindows-CI/infra/WebAppSettings.json",
+                                "csmParametersFile": "",
+                                "overrideParameters": "-webAppName $(ResourceGroupName)  -adminLogin $(AdministratorLogin) -adminLoginPassword (ConvertTo-SecureString -String '$(AdministratorLoginPassword)' -AsPlainText -Force)",
+                                "deploymentMode": "Incremental",
+                                "enableDeploymentPrerequisites": "None",
+                                "deploymentGroupEndpoint": "",
+                                "project": "",
+                                "deploymentGroupName": "",
+                                "copyAzureVMTags": "true",
+                                "outputVariable": ""
+                            }
+                        },
+                        {
+                            "taskId": "72a1931b-effb-4d2e-8fd8-f8472a07cb62",
+                            "version": "1.*",
+                            "name": "Remove Test In Production",
+                            "enabled": false,
+                            "alwaysRun": false,
+                            "continueOnError": false,
+                            "timeoutInMinutes": 0,
+                            "definitionType": "task",
+                            "inputs": {
+                                "ConnectedServiceNameSelector": "ConnectedServiceNameARM",
+                                "ConnectedServiceName": "",
+                                "ConnectedServiceNameARM": "8758f048-1ba7-49fb-b008-5d63928c4cef",
+                                "ScriptType": "FilePath",
+                                "ScriptPath": "$(System.DefaultWorkingDirectory)/AspDotNetCore-AppServiceWindows-CI/scripts/SetUpTestInProduction.ps1",
+                                "Inline": "# You can write your azure powershell scripts inline here. \n# You can also pass predefined and custom variables to this script using arguments",
+                                "ScriptArguments": "$(ResourceGroupName) $(SlotToSwap) 0"
+                            }
+                        },
+                        {
+                            "taskId": "f045e430-8704-11e6-968f-e717e6411619",
+                            "version": "0.*",
+                            "name": "Swap Staging to Production",
+                            "enabled": true,
+                            "alwaysRun": false,
+                            "continueOnError": false,
+                            "timeoutInMinutes": 0,
+                            "definitionType": "task",
+                            "inputs": {
+                                "ConnectedServiceName": "8758f048-1ba7-49fb-b008-5d63928c4cef",
+                                "Action": "Swap Slots",
+                                "WebAppName": "$(ResourceGroupName)",
+                                "SpecifySlot": "false",
+                                "ResourceGroupName": "$(ResourceGroupName)",
+                                "SourceSlot": "$(SlotToSwap)",
+                                "SwapWithProduction": "true",
+                                "TargetSlot": "",
+                                "PreserveVnet": "false",
+                                "Slot": "",
+                                "ExtensionsList": "",
+                                "OutputVariable": ""
+                            }
+                        },
+                        {
+                            "taskId": "72a1931b-effb-4d2e-8fd8-f8472a07cb62",
+                            "version": "1.*",
+                            "name": "Set Resource Group Lock",
+                            "enabled": true,
+                            "alwaysRun": false,
+                            "continueOnError": false,
+                            "timeoutInMinutes": 0,
+                            "definitionType": "task",
+                            "inputs": {
+                                "ConnectedServiceNameSelector": "ConnectedServiceNameARM",
+                                "ConnectedServiceName": "",
+                                "ConnectedServiceNameARM": "8758f048-1ba7-49fb-b008-5d63928c4cef",
+                                "ScriptType": "FilePath",
+                                "ScriptPath": "$(System.DefaultWorkingDirectory)/AspDotNetCore-AppServiceWindows-CI/scripts/AddResourceGroupLock.ps1",
+                                "Inline": "# You can write your azure powershell scripts inline here. \n# You can also pass predefined and custom variables to this script using arguments",
+                                "ScriptArguments": "$(ResourceGroupName)"
+                            }
+                        }
+                    ]
+                }
+            ],
+            "environmentOptions": {
+                "emailNotificationType": "OnlyOnFailure",
+                "emailRecipients": "release.environment.owner;release.creator",
+                "skipArtifactsDownload": false,
+                "timeoutInMinutes": 0,
+                "enableAccessToken": false,
+                "publishDeploymentStatus": false
+            },
+            "demands": [],
+            "conditions": [],
+            "executionPolicy": {
+                "concurrencyCount": 0,
+                "queueDepthCount": 0
+            },
+            "schedules": [],
+            "retentionPolicy": {
+                "daysToKeep": 30,
+                "releasesToKeep": 3,
+                "retainBuild": true
+            },
+            "properties": {}
+        }
+    ],
+    "artifacts": [
+        {
+            "sourceId": "a09df269-8b88-43bb-b742-396def59efaa:25",
+            "type": "Build",
+            "alias": "ApsNetCore-AppServiceWindows-CI",
+            "definitionReference": {
+                "artifactSourceDefinitionUrl": {
+                    "id": "https://mabenoit-ms.visualstudio.com/_permalink/_build/index?collectionId=e373a2ff-a162-446f-b7ec-415465e9e56c&projectId=a09df269-8b88-43bb-b742-396def59efaa&definitionId=25",
+                    "name": ""
+                },
+                "defaultVersionBranch": {
+                    "id": "",
+                    "name": ""
+                },
+                "defaultVersionSpecific": {
+                    "id": "",
+                    "name": ""
+                },
+                "defaultVersionTags": {
+                    "id": "",
+                    "name": ""
+                },
+                "defaultVersionType": {
+                    "id": "selectDuringReleaseCreationType",
+                    "name": "Specify at the time of release creation"
+                },
+                "definition": {
+                    "id": "25",
+                    "name": "ApsNetCore-AppServiceWindows-CI"
+                },
+                "project": {
+                    "id": "a09df269-8b88-43bb-b742-396def59efaa",
+                    "name": "AspNetCoreApplication"
+                }
+            },
+            "isPrimary": true
+        }
+    ],
+    "triggers": [],
+    "releaseNameFormat": "Release-$(rev:r)",
+    "url": "https://mabenoit-ms.vsrm.visualstudio.com/a09df269-8b88-43bb-b742-396def59efaa/_apis/Release/definitions/6",
+    "_links": {
+        "self": {
+            "href": "https://mabenoit-ms.vsrm.visualstudio.com/a09df269-8b88-43bb-b742-396def59efaa/_apis/Release/definitions/6"
+        },
+        "web": {
+            "href": "https://mabenoit-ms.visualstudio.com/a09df269-8b88-43bb-b742-396def59efaa/_release?definitionId=6"
+        }
+    },
+    "tags": [],
+    "properties": {}
+}

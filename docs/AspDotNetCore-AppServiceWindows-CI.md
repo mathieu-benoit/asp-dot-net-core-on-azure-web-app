@@ -52,6 +52,15 @@ TODO
   - Publish Web Projects = true
   - Arguments = --configuration $(BuildConfiguration) --output $(build.artifactstagingdirectory)
   - Zip Published Projects = true
+- Validate ARM Templates
+  - Azure subscription = set appropriate
+  - Action = Create or update resource group
+  - Resource group = test
+  - Location = East US
+  - Template location = Linked artifact
+  - Template = infra/AspNetCoreApplication.Infrastructure/templates/deploy-windows.json
+  - Override template parameters = -appServicePlanName test -webAppName test
+  - Deployment mode = Validation only
 - Publish Artifact: web
   - Type = Publish Build Artifacts
   - Path to publish = $(build.artifactstagingdirectory)

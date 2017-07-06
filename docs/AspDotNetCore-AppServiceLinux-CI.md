@@ -2,9 +2,13 @@ Here is one example to Build an ASP.NET Core 1.1 web application to an App Servi
 
 ![Build Overview](/docs/imgs/ApsNetCore-AppServiceLinux-CI.PNG)
 
-# Prerequisities - Create an Azure Container Registry
+# Prerequisities - Create manually an Azure Container Registry
 
-TODO - Create an Azure Container Registry and its associated Azure Blob storage.
+Because [we cannot dynamicaly incorporate the Container Registry name within the associated VSTS task](https://blogs.msdn.microsoft.com/devops/2017/06/09/deploying-applications-to-azure-container-service/#comment-90545), currently the only way to use it is to create and configure manually the Azure Container Registry service. Otherwise, and when it will be available, the goal will be to add in the Build/CI Definition the CreateOrUpdate VSTS task to manage the Container Resitry ARM Templates.
+
+For that, I would suggest to do that via CLI 2.0 by using the Azure Cloud Shell with the following steps:
+
+TODO
 
 # Import the Build Definition
 
@@ -75,6 +79,15 @@ TODO
   - Image Name = $(Build.Repository.Name):$(Build.BuildId)
   - Qualify Image Name = true
   - Additional Image Tags = $(Build.BuildId)
+- Validate ARM Templates
+  - Azure subscription = set appropriate
+  - Action = Create or update resource group
+  - Resource group = test
+  - Location = West US
+  - Template location = Linked artifact
+  - Template = infra/AspNetCoreApplication.Infrastructure/templates/deploy-linux.json
+  - Override template parameters = -appServicePlanName test -webAppName test -registryName test -dockerImageName test
+  - Deployment mode = Validation only
 - Publish Artifact: infra
   - Type = Publish Build Artifacts
   - Path to publish = infra/AspNetCoreApplication.Infrastructure/templates
