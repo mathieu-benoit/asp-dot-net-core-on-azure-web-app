@@ -34,12 +34,12 @@ By using the buttons below it's another way to deploy the Azure services without
 
 Deploy the Azure App Service (Windows) and its associated services within the Azure portal:
 
-<a href="https://raw.githubusercontent.com/mathieu-benoit/asp-dot-net-core-on-azure-web-app/master/infra/AspNetCoreApplication.Infrastructure/templates/deploy-windows.json" target="_blank">![Deploy to Azure](http://azuredeploy.net/deploybutton.png)</a>
+<a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2mathieu-benoit%2asp-dot-net-core-on-azure-web-app%2master%2infra%2AspNetCoreApplication.Infrastructure%2templates%2deploy-windows.json" target="_blank">![Deploy to Azure](http://azuredeploy.net/deploybutton.png)</a>
 
 Deploy the Azure App Service (Linux) and its associated services within the Azure portal:
 
-<a href="https://raw.githubusercontent.com/mathieu-benoit/asp-dot-net-core-on-azure-web-app/master/infra/AspNetCoreApplication.Infrastructure/templates/deploy-linux.json" target="_blank">![Deploy to Azure](http://azuredeploy.net/deploybutton.png)</a>
+<a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2mathieu-benoit%2asp-dot-net-core-on-azure-web-app%2master%2infra%2AspNetCoreApplication.Infrastructure%2templates%2deploy-linux.json" target="_blank">![Deploy to Azure](http://azuredeploy.net/deploybutton.png)</a>
 
 Deploy the Azure Container Registry and its associated Blob Storage within the Azure portal:
 
-<a href="https://raw.githubusercontent.com/mathieu-benoit/asp-dot-net-core-on-azure-web-app/master/infra/AspNetCoreApplication.Infrastructure/templates/ContainerRegistry.json" target="_blank">![Deploy to Azure](http://azuredeploy.net/deploybutton.png)</a>
+<a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2mathieu-benoit%2asp-dot-net-core-on-azure-web-app%2master%2infra%2AspNetCoreApplication.Infrastructure%2templates%2ContainerRegistry.json" target="_blank">![Deploy to Azure](http://azuredeploy.net/deploybutton.png)</a>
