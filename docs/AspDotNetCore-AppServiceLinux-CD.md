@@ -1,15 +1,15 @@
-Here is one example to Release an ASP.NET Core 1.1 web application to an App Service (Windows). You could adapt it with your own context, needs and constraints.
+Here is one example to Release an ASP.NET Core 1.1 web application to an App Service (Linux). You could adapt it with your own context, needs and constraints.
 
 # Import the Release Definition
 
-You could import [the associated Release Definition stored in this repository](/vsts/AspDotNetCore-AppServiceWindows-CD.json) and then follow these steps to adapt it to your current project, credentials, etc.:
+You could import [the associated Release Definition stored in this repository](/vsts/AspDotNetCore-AppServiceLinux-CD.json) and then follow these steps to adapt it to your current project, credentials, etc.:
 
 TODO
 
 # Create manually the Release Definition
 
 ## Staging Environment
-![Staging Release Overview](/docs/imgs/AspDotNetCore-AppServiceWindows-CD-Staging.PNG)
+![Staging Release Overview](/docs/imgs/AspDotNetCore-AppServiceLinux-CD-Staging.PNG)
 
 ### Deployment conditions
 - Trigger = After release creation
@@ -33,7 +33,7 @@ TODO
   - Resource Group = $(ResourceGroupName)
   - Location = $(Location)
   - Template location = Linked artifact
-  - Template = $(System.DefaultWorkingDirectory)/AspDotNetCore-AppServiceWindows-CI/infra/[deploy-windows.json](../infra/ManageAzureWebAppAzureResourceGroup/templates/deploy-windows.json)
+  - Template = $(System.DefaultWorkingDirectory)/AspDotNetCore-AppServiceLinux-CI/infra/[deploy-linux.json](../infra/ManageAzureWebAppAzureResourceGroup/templates/deploy-linux.json)
   - Override Template Parameters = -webAppName $(ResourceGroupName) -appServicePlanName $(ResourceGroupName)
   - Deployment Mode = Incremental
 - Slot
@@ -43,7 +43,7 @@ TODO
   - Resource Group = $(ResourceGroupName)
   - Location = $(Location)
   - Template location = Linked artifact
-  - Template = $(System.DefaultWorkingDirectory)/AspDotNetCore-AppServiceWindows-CI/infra/[WebAppSlot.json](../infra/ManageAzureWebAppAzureResourceGroup/templates/WebAppSlot.json)
+  - Template = $(System.DefaultWorkingDirectory)/AspDotNetCore-AppServiceLinux-CI/infra/[WebAppSlot.json](../infra/ManageAzureWebAppAzureResourceGroup/templates/WebAppSlot.json)
   - Override Template Parameters = -webAppName $(ResourceGroupName) -slotName $(SlotName)
   - Deployment Mode = Incremental
 - App Insights
@@ -53,7 +53,7 @@ TODO
   - Resource Group = $(ResourceGroupName)
   - Location = $(Location)
   - Template location = Linked artifact
-  - Template = $(System.DefaultWorkingDirectory)/AspDotNetCore-AppServiceWindows-CI/infra/[ApplicationInsights.json](../infra/ManageAzureWebAppAzureResourceGroup/templates/ApplicationInsights.json)
+  - Template = $(System.DefaultWorkingDirectory)/AspDotNetCore-AppServiceLinux-CI/infra/[ApplicationInsights.json](../infra/ManageAzureWebAppAzureResourceGroup/templates/ApplicationInsights.json)
   - Override Template Parameters = -appInsightsName $(ResourceGroupName)-$(SlotName)
   - Deployment Mode = Incremental
 - Sql Database
@@ -63,7 +63,7 @@ TODO
   - Resource Group = $(ResourceGroupName)
   - Location = $(Location)
   - Template location = Linked artifact
-  - Template = $(System.DefaultWorkingDirectory)/AspDotNetCore-AppServiceWindows-CI/infra/[SqlDatabase.json](../infra/ManageAzureWebAppAzureResourceGroup/templates/SqlDatabase.json)
+  - Template = $(System.DefaultWorkingDirectory)/AspDotNetCore-AppServiceLinux-CI/infra/[SqlDatabase.json](../infra/ManageAzureWebAppAzureResourceGroup/templates/SqlDatabase.json)
   - Override Template Parameters = -databaseName $(ResourceGroupName)-$(SlotName) -adminLogin $(AdministratorLogin) -adminLoginPassword (ConvertTo-SecureString -String '$(AdministratorLoginPassword)' -AsPlainText -Force)
   - Deployment Mode = Incremental
 - Slot App Settings
@@ -73,19 +73,17 @@ TODO
   - Resource Group = $(ResourceGroupName)
   - Location = $(Location)
   - Template location = Linked artifact
-  - Template = $(System.DefaultWorkingDirectory)/AspDotNetCore-AppServiceWindows-CI/infra/[WebAppSlotSettings.json](../infra/ManageAzureWebAppAzureResourceGroup/templates/WebAppSlotSettings.json)
+  - Template = $(System.DefaultWorkingDirectory)/AspDotNetCore-AppServiceLinux-CI/infra/[WebAppSlotSettings.json](../infra/ManageAzureWebAppAzureResourceGroup/templates/WebAppSlotSettings.json)
   - Override Template Parameters = -webAppName $(ResourceGroupName) -slotName $(SlotName) -adminLogin $(AdministratorLogin) -adminLoginPassword (ConvertTo-SecureString -String '$(AdministratorLoginPassword)' -AsPlainText -Force)
   - Deployment Mode = Incremental
-- Deploy Web App
+- Restart Web App
   - Type = Azure App Service Manage (PREVIEW)
   - Azure Subscription = set appropriate
+  - Action = Restart App Service
   - App Service Name = $(ResourceGroupName)
-  - Deploy to Slot = true
+  - Specify Slot = true
   - Resource Group = $(ResourceGroupName)
   - Slot = $(SlotName)
-  - Package or Folder = $(System.DefaultWorkingDirectory)/AspDotNetCore-AppServiceWindows-CI/infra/AspNetCoreApplication.zip
-  - Publish using Web Deploy = true
-  - Take App Offline = true
 - Quick Web Performance Test Load
   - Type = Cloud-based Web Performance Test
   - VS Team Services Connection = set appropriate
@@ -97,7 +95,7 @@ TODO
   - Run load test using = Automatically provisioned agents 
 
 ## Production Environment
-![Production Release Overview](/docs/imgs/AspDotNetCore-AppServiceWindows-CD-Production.PNG)
+![Production Release Overview](/docs/imgs/AspDotNetCore-AppServiceLinux-CD-Production.PNG)
 
 ### Deployment conditions
 - Trigger = After successful deployment to another environment ("Staging")
@@ -121,7 +119,7 @@ TODO
   - Resource Group = $(ResourceGroupName)
   - Location = $(Location)
   - Template location = Linked artifact
-  - Template = $(System.DefaultWorkingDirectory)/AspDotNetCore-AppServiceWindows-CI/infra/[deploy-windows.json](../infra/ManageAzureWebAppAzureResourceGroup/templates/deploy-windows.json)
+  - Template = $(System.DefaultWorkingDirectory)/AspDotNetCore-AppServiceLinux-CI/infra/[deploy-linux.json](../infra/ManageAzureWebAppAzureResourceGroup/templates/deploy-linux.json)
   - Override Template Parameters = -webAppName $(ResourceGroupName) -appServicePlanName $(ResourceGroupName)
   - Deployment Mode = Incremental
 - App Insights
@@ -131,7 +129,7 @@ TODO
   - Resource Group = $(ResourceGroupName)
   - Location = $(Location)
   - Template location = Linked artifact
-  - Template = $(System.DefaultWorkingDirectory)/AspDotNetCore-AppServiceWindows-CI/infra/[ApplicationInsights.json](../infra/ManageAzureWebAppAzureResourceGroup/templates/ApplicationInsights.json)
+  - Template = $(System.DefaultWorkingDirectory)/AspDotNetCore-AppServiceLinux-CI/infra/[ApplicationInsights.json](../infra/ManageAzureWebAppAzureResourceGroup/templates/ApplicationInsights.json)
   - Override Template Parameters = -appInsightsName $(ResourceGroupName)
   - Deployment Mode = Incremental
 - Sql Database
@@ -141,7 +139,7 @@ TODO
   - Resource Group = $(ResourceGroupName)
   - Location = $(Location)
   - Template location = Linked artifact
-  - Template = $(System.DefaultWorkingDirectory)/AspDotNetCore-AppServiceWindows-CI/infra/[SqlDatabase.json](../infra/ManageAzureWebAppAzureResourceGroup/templates/SqlDatabase.json)
+  - Template = $(System.DefaultWorkingDirectory)/AspDotNetCore-AppServiceLinux-CI/infra/[SqlDatabase.json](../infra/ManageAzureWebAppAzureResourceGroup/templates/SqlDatabase.json)
   - Override Template Parameters = -databaseName $(ResourceGroupName) -adminLogin $(AdministratorLogin) -adminLoginPassword (ConvertTo-SecureString -String '$(AdministratorLoginPassword)' -AsPlainText -Force)
   - Deployment Mode = Incremental
 - App Settings
@@ -151,7 +149,7 @@ TODO
   - Resource Group = $(ResourceGroupName)
   - Location = $(Location)
   - Template location = Linked artifact
-  - Template = $(System.DefaultWorkingDirectory)/AspDotNetCore-AppServiceWindows-CI/infra/[WebAppSettings.json](../infra/ManageAzureWebAppAzureResourceGroup/templates/WebAppSettings.json)
+  - Template = $(System.DefaultWorkingDirectory)/AspDotNetCore-AppServiceLinux-CI/infra/[WebAppSettings.json](../infra/ManageAzureWebAppAzureResourceGroup/templates/WebAppSettings.json)
   - Override Template Parameters = -webAppName $(ResourceGroupName)  -adminLogin $(AdministratorLogin) -adminLoginPassword (ConvertTo-SecureString -String '$(AdministratorLoginPassword)' -AsPlainText -Force)
   - Deployment Mode = Incremental
 - Swap Staging to Production
@@ -166,5 +164,5 @@ TODO
   - Type = Azure PowerShell
   - Azure Connection Type = set appropriate
   - Azure RM Subscription = set appropriate
-  - Script Path = $(System.DefaultWorkingDirectory)/AspDotNetCore-AppServiceWindows-CI/scripts/[AddResourceGroupLock.ps1](../infra/ManageAzureWebAppAzureResourceGroup/scripts/AddResourceGroupLock.ps1)
+  - Script Path = $(System.DefaultWorkingDirectory)/AspDotNetCore-AppServiceLinux-CI/scripts/[AddResourceGroupLock.ps1](../infra/ManageAzureWebAppAzureResourceGroup/scripts/AddResourceGroupLock.ps1)
   - Script Arguments = $(ResourceGroupName)

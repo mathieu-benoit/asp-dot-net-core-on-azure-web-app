@@ -24,9 +24,10 @@ Staging and Preview dont exist on the initial state of this demo, so here we are
 - [On an App Service (Windows)](/docs/AspDotNetCore-AppServiceWindows-CI.md)
 - [On an App Service (Linux)](/docs/AspDotNetCore-AppServiceLinux-CI.md)
 
-# Release with VSTS
+# Release Definition with VSTS
 
-[Here is the associated documentation for the AspDotNetCore-AppServiceWindows-CD Release Definition.](/docs/AspDotNetCore-AppServiceWindows-CD.md)
+- [On an App Service (Windows)](/docs/AspDotNetCore-AppServiceWindows-CD.md)
+- [On an App Service (Linux)](/docs/AspDotNetCore-AppServiceLinux-CD.md)
 
 # "Deploy to Azure" buttons
 

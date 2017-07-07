@@ -1,8 +1,8 @@
 {
     "source": 2,
-    "id": 6,
-    "revision": 17,
-    "name": "AspDotNetCore-AppServiceWindows-CD",
+    "id": 7,
+    "revision": 11,
+    "name": "AspDotNetCore-AppServiceLinux-CD",
     "description": null,
     "createdBy": {
         "id": "17256fe4-f2a3-4370-b081-ec283edb6a77",
@@ -11,7 +11,7 @@
         "url": "https://app.vssps.visualstudio.com/A6d1a4ff8-9a1f-46cb-bd61-54cb9a797939/_apis/Identities/17256fe4-f2a3-4370-b081-ec283edb6a77",
         "imageUrl": "https://mabenoit-ms.visualstudio.com/_api/_common/identityImage?id=17256fe4-f2a3-4370-b081-ec283edb6a77"
     },
-    "createdOn": "2017-07-05T19:28:07.200Z",
+    "createdOn": "2017-07-07T17:17:53.817Z",
     "modifiedBy": {
         "id": "17256fe4-f2a3-4370-b081-ec283edb6a77",
         "displayName": "Mathieu Benoit",
@@ -19,7 +19,7 @@
         "url": "https://app.vssps.visualstudio.com/A6d1a4ff8-9a1f-46cb-bd61-54cb9a797939/_apis/Identities/17256fe4-f2a3-4370-b081-ec283edb6a77",
         "imageUrl": "https://mabenoit-ms.visualstudio.com/_api/_common/identityImage?id=17256fe4-f2a3-4370-b081-ec283edb6a77"
     },
-    "modifiedOn": "2017-07-07T19:07:21.373Z",
+    "modifiedOn": "2017-07-07T19:45:42.943Z",
     "lastRelease": null,
     "path": "\\",
     "variables": {
@@ -30,7 +30,7 @@
     "variableGroups": [],
     "environments": [
         {
-            "id": 19,
+            "id": 23,
             "name": "Staging",
             "rank": 1,
             "owner": {
@@ -61,13 +61,13 @@
                         "rank": 1,
                         "isAutomated": true,
                         "isNotificationOn": false,
-                        "id": 56
+                        "id": 68
                     }
                 ]
             },
             "deployStep": {
                 "tasks": [],
-                "id": 61
+                "id": 71
             },
             "postDeployApprovals": {
                 "approvals": [
@@ -75,7 +75,7 @@
                         "rank": 1,
                         "isAutomated": true,
                         "isNotificationOn": false,
-                        "id": 62
+                        "id": 72
                     }
                 ]
             },
@@ -116,7 +116,7 @@
                                 "templateLocation": "Linked artifact",
                                 "csmFileLink": "",
                                 "csmParametersFileLink": "",
-                                "csmFile": "$(System.DefaultWorkingDirectory)/ApsNetCore-AppServiceWindows-CI/infra/deploy-windows.json",
+                                "csmFile": "$(System.DefaultWorkingDirectory)/ApsNetCore-AppServiceLinux-CI/infra/deploy-linux.json",
                                 "csmParametersFile": "",
                                 "overrideParameters": "-webAppName $(ResourceGroupName) -appServicePlanName $(ResourceGroupName)",
                                 "deploymentMode": "Incremental",
@@ -145,7 +145,7 @@
                                 "templateLocation": "Linked artifact",
                                 "csmFileLink": "",
                                 "csmParametersFileLink": "",
-                                "csmFile": "$(System.DefaultWorkingDirectory)/AspDotNetCore-AppServiceWindows-CI/infra/WebAppSlot.json",
+                                "csmFile": "$(System.DefaultWorkingDirectory)/AspDotNetCore-AppServiceLinux-CI/infra/WebAppSlot.json",
                                 "csmParametersFile": "",
                                 "overrideParameters": "-webAppName $(ResourceGroupName) -slotName $(SlotName)",
                                 "deploymentMode": "Incremental",
@@ -174,7 +174,7 @@
                                 "templateLocation": "Linked artifact",
                                 "csmFileLink": "",
                                 "csmParametersFileLink": "",
-                                "csmFile": "$(System.DefaultWorkingDirectory)/AspDotNetCore-AppServiceWindows-CI/infra/ApplicationInsights.json",
+                                "csmFile": "$(System.DefaultWorkingDirectory)/AspDotNetCore-AppServiceLinux-CI/infra/ApplicationInsights.json",
                                 "csmParametersFile": "",
                                 "overrideParameters": "-appInsightsName $(ResourceGroupName)-$(SlotName)",
                                 "deploymentMode": "Incremental",
@@ -203,7 +203,7 @@
                                 "templateLocation": "Linked artifact",
                                 "csmFileLink": "",
                                 "csmParametersFileLink": "",
-                                "csmFile": "$(System.DefaultWorkingDirectory)/AspDotNetCore-AppServiceWindows-CI/infra/SqlDatabase.json",
+                                "csmFile": "$(System.DefaultWorkingDirectory)/AspDotNetCore-AppServiceLinux-CI/infra/SqlDatabase.json",
                                 "csmParametersFile": "",
                                 "overrideParameters": "-databaseName $(ResourceGroupName)-$(SlotName) -adminLogin $(AdministratorLogin) -adminLoginPassword (ConvertTo-SecureString -String '$(AdministratorLoginPassword)' -AsPlainText -Force)",
                                 "deploymentMode": "Incremental",
@@ -232,7 +232,7 @@
                                 "templateLocation": "Linked artifact",
                                 "csmFileLink": "",
                                 "csmParametersFileLink": "",
-                                "csmFile": "$(System.DefaultWorkingDirectory)/AspDotNetCore-AppServiceWindows-CI/infra/WebAppSlotSettings.json",
+                                "csmFile": "$(System.DefaultWorkingDirectory)/AspDotNetCore-AppServiceLinux-CI/infra/WebAppSlotSettings.json",
                                 "csmParametersFile": "",
                                 "overrideParameters": "-webAppName $(ResourceGroupName) -slotName $(SlotName) -adminLogin $(AdministratorLogin) -adminLoginPassword (ConvertTo-SecureString -String '$(AdministratorLoginPassword)' -AsPlainText -Force)",
                                 "deploymentMode": "Incremental",
@@ -245,45 +245,27 @@
                             }
                         },
                         {
-                            "taskId": "497d490f-eea7-4f2b-ab94-48d9c1acdcb1",
-                            "version": "3.*",
-                            "name": "Deploy Web App",
+                            "taskId": "f045e430-8704-11e6-968f-e717e6411619",
+                            "version": "0.*",
+                            "name": "Restart Web App",
                             "enabled": true,
                             "alwaysRun": false,
                             "continueOnError": false,
                             "timeoutInMinutes": 0,
-                            "definitionType": null,
+                            "definitionType": "task",
                             "inputs": {
                                 "ConnectedServiceName": "3fcb20b6-eca0-48e5-9e59-35c9822a7152",
+                                "Action": "Restart Azure App Service",
                                 "WebAppName": "$(ResourceGroupName)",
-                                "ServerfarmId": "invalidServerfarmId",
-                                "WebAppKind": "app",
-                                "DockerNamespace": "",
-                                "DockerRepository": "",
-                                "DockerImageTag": "",
-                                "StartupCommand": "",
-                                "DeployToSlotFlag": "true",
+                                "SpecifySlot": "true",
                                 "ResourceGroupName": "$(ResourceGroupName)",
-                                "SlotName": "$(SlotName)",
-                                "VirtualApplication": "",
-                                "Package": "$(System.DefaultWorkingDirectory)/AspDotNetCore-AppServiceWindows-CI/web/AspNetCoreApplication.zip",
-                                "WebAppUri": "",
-                                "ScriptType": "",
-                                "InlineScript": ":: You can provide your deployment commands here. One command per line.",
-                                "ScriptPath": "",
-                                "TakeAppOfflineFlag": "true",
-                                "UseWebDeploy": "true",
-                                "SetParametersFile": "",
-                                "RemoveAdditionalFilesFlag": "false",
-                                "ExcludeFilesFromAppDataFlag": "false",
-                                "AdditionalArguments": "",
-                                "RenameFilesFlag": "false",
-                                "GenerateWebConfig": "false",
-                                "WebConfigParameters": "",
-                                "XmlTransformation": "false",
-                                "XmlVariableSubstitution": "false",
-                                "JSONFiles": "",
-                                "AppSettings": ""
+                                "SourceSlot": "",
+                                "SwapWithProduction": "true",
+                                "TargetSlot": "",
+                                "PreserveVnet": "false",
+                                "Slot": "$(SlotName)",
+                                "ExtensionsList": "",
+                                "OutputVariable": ""
                             }
                         },
                         {
@@ -332,7 +314,7 @@
             "properties": {}
         },
         {
-            "id": 21,
+            "id": 24,
             "name": "Production",
             "rank": 2,
             "owner": {
@@ -370,7 +352,7 @@
                             "url": "https://app.vssps.visualstudio.com/A6d1a4ff8-9a1f-46cb-bd61-54cb9a797939/_apis/Identities/17256fe4-f2a3-4370-b081-ec283edb6a77",
                             "imageUrl": "https://mabenoit-ms.visualstudio.com/_api/_common/identityImage?id=17256fe4-f2a3-4370-b081-ec283edb6a77"
                         },
-                        "id": 58
+                        "id": 69
                     }
                 ],
                 "approvalOptions": {
@@ -383,7 +365,7 @@
             },
             "deployStep": {
                 "tasks": [],
-                "id": 59
+                "id": 70
             },
             "postDeployApprovals": {
                 "approvals": [
@@ -391,7 +373,7 @@
                         "rank": 1,
                         "isAutomated": true,
                         "isNotificationOn": false,
-                        "id": 64
+                        "id": 73
                     }
                 ]
             },
@@ -432,7 +414,7 @@
                                 "templateLocation": "Linked artifact",
                                 "csmFileLink": "",
                                 "csmParametersFileLink": "",
-                                "csmFile": "$(System.DefaultWorkingDirectory)/ApsNetCore-AppServiceWindows-CI/infra/deploy-windows.json",
+                                "csmFile": "$(System.DefaultWorkingDirectory)/ApsNetCore-AppServiceLinux-CI/infra/deploy-linux.json",
                                 "csmParametersFile": "",
                                 "overrideParameters": "-webAppName $(ResourceGroupName) -appServicePlanName $(ResourceGroupName)",
                                 "deploymentMode": "Incremental",
@@ -461,7 +443,7 @@
                                 "templateLocation": "Linked artifact",
                                 "csmFileLink": "",
                                 "csmParametersFileLink": "",
-                                "csmFile": "$(System.DefaultWorkingDirectory)/AspDotNetCore-AppServiceWindows-CI/infra/ApplicationInsights.json",
+                                "csmFile": "$(System.DefaultWorkingDirectory)/AspDotNetCore-AppServiceLinux-CI/infra/ApplicationInsights.json",
                                 "csmParametersFile": "",
                                 "overrideParameters": "-appInsightsName $(ResourceGroupName)",
                                 "deploymentMode": "Incremental",
@@ -490,7 +472,7 @@
                                 "templateLocation": "Linked artifact",
                                 "csmFileLink": "",
                                 "csmParametersFileLink": "",
-                                "csmFile": "$(System.DefaultWorkingDirectory)/AspDotNetCore-AppServiceWindows-CI/infra/SqlDatabase.json",
+                                "csmFile": "$(System.DefaultWorkingDirectory)/AspDotNetCore-AppServiceLinux-CI/infra/SqlDatabase.json",
                                 "csmParametersFile": "",
                                 "overrideParameters": "-databaseName $(ResourceGroupName) -adminLogin $(AdministratorLogin) -adminLoginPassword (ConvertTo-SecureString -String '$(AdministratorLoginPassword)' -AsPlainText -Force)",
                                 "deploymentMode": "Incremental",
@@ -519,7 +501,7 @@
                                 "templateLocation": "Linked artifact",
                                 "csmFileLink": "",
                                 "csmParametersFileLink": "",
-                                "csmFile": "$(System.DefaultWorkingDirectory)/AspDotNetCore-AppServiceWindows-CI/infra/WebAppSettings.json",
+                                "csmFile": "$(System.DefaultWorkingDirectory)/AspDotNetCore-AppServiceLinux-CI/infra/WebAppSettings.json",
                                 "csmParametersFile": "",
                                 "overrideParameters": "-webAppName $(ResourceGroupName)  -adminLogin $(AdministratorLogin) -adminLoginPassword (ConvertTo-SecureString -String '$(AdministratorLoginPassword)' -AsPlainText -Force)",
                                 "deploymentMode": "Incremental",
@@ -569,7 +551,7 @@
                                 "ConnectedServiceName": "",
                                 "ConnectedServiceNameARM": "8758f048-1ba7-49fb-b008-5d63928c4cef",
                                 "ScriptType": "FilePath",
-                                "ScriptPath": "$(System.DefaultWorkingDirectory)/AspDotNetCore-AppServiceWindows-CI/scripts/AddResourceGroupLock.ps1",
+                                "ScriptPath": "$(System.DefaultWorkingDirectory)/AspDotNetCore-AppServiceLinux-CI/scripts/AddResourceGroupLock.ps1",
                                 "Inline": "# You can write your azure powershell scripts inline here. \n# You can also pass predefined and custom variables to this script using arguments",
                                 "ScriptArguments": "$(ResourceGroupName)"
                             }
@@ -602,12 +584,12 @@
     ],
     "artifacts": [
         {
-            "sourceId": "a09df269-8b88-43bb-b742-396def59efaa:25",
+            "sourceId": "a09df269-8b88-43bb-b742-396def59efaa:26",
             "type": "Build",
-            "alias": "ApsNetCore-AppServiceWindows-CI",
+            "alias": "AspDotNetCore-AppServiceLinux-CI",
             "definitionReference": {
                 "artifactSourceDefinitionUrl": {
-                    "id": "https://mabenoit-ms.visualstudio.com/_permalink/_build/index?collectionId=e373a2ff-a162-446f-b7ec-415465e9e56c&projectId=a09df269-8b88-43bb-b742-396def59efaa&definitionId=25",
+                    "id": "https://mabenoit-ms.visualstudio.com/_permalink/_build/index?collectionId=e373a2ff-a162-446f-b7ec-415465e9e56c&projectId=a09df269-8b88-43bb-b742-396def59efaa&definitionId=26",
                     "name": ""
                 },
                 "defaultVersionBranch": {
@@ -627,8 +609,8 @@
                     "name": "Specify at the time of release creation"
                 },
                 "definition": {
-                    "id": "25",
-                    "name": "ApsNetCore-AppServiceWindows-CI"
+                    "id": "26",
+                    "name": "AspDotNetCore-AppServiceLinux-CI"
                 },
                 "project": {
                     "id": "a09df269-8b88-43bb-b742-396def59efaa",
@@ -640,13 +622,13 @@
     ],
     "triggers": [],
     "releaseNameFormat": "Release-$(rev:r)",
-    "url": "https://mabenoit-ms.vsrm.visualstudio.com/a09df269-8b88-43bb-b742-396def59efaa/_apis/Release/definitions/6",
+    "url": "https://mabenoit-ms.vsrm.visualstudio.com/a09df269-8b88-43bb-b742-396def59efaa/_apis/Release/definitions/7",
     "_links": {
         "self": {
-            "href": "https://mabenoit-ms.vsrm.visualstudio.com/a09df269-8b88-43bb-b742-396def59efaa/_apis/Release/definitions/6"
+            "href": "https://mabenoit-ms.vsrm.visualstudio.com/a09df269-8b88-43bb-b742-396def59efaa/_apis/Release/definitions/7"
         },
         "web": {
-            "href": "https://mabenoit-ms.visualstudio.com/a09df269-8b88-43bb-b742-396def59efaa/_release?definitionId=6"
+            "href": "https://mabenoit-ms.visualstudio.com/a09df269-8b88-43bb-b742-396def59efaa/_release?definitionId=7"
         }
     },
     "tags": [],
