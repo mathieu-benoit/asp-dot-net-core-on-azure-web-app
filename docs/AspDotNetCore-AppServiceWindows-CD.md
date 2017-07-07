@@ -90,32 +90,6 @@ TODO
   - Location = Default
   - Run load test using = Automatically provisioned agents 
 
-## Preview Environment
-![Preview Release Overview](/docs/imgs/AspDotNetCore-AppServiceWindows-CD-Preview.PNG)
-
-### Deployment conditions
-- Trigger = After successful deployment to another environment ("Staging")
-
-### Approvals
-- Pre-deployment approver = Specific Users (set appropriate users)
-- Post-deployment approver = Automatic
-
-### Variables
-- AdministratorLogin = set appropriate
-- AdministratorLoginPassword = set appropriate
-- ResourceGroupName = set appropriate
-- SlotName = preview
-- Location = East US
-
-### Steps 
-- Same than the "Staging Environment" but replace the last one: "Quick Web Performance Test Load" step by the one following:
-- Add Test In Production - disabled for now because the script doesn't work.
-  - Type = Azure Powershell
-  - Azure Connection Type = Azure Resource Manager
-  - Azure RM Subscription = set appropriate
-  - Script Path = $(System.DefaultWorkingDirectory)/AspDotNetCore-AppServiceWindows-CI/scripts/[SetUpTestInProduction.ps1](../infra/ManageAzureWebAppAzureResourceGroup/scripts/SetUpTestInProduction.ps1)
-  - Script Arguments = $(ResourceGroupName) $(SlotName) 70
-
 ## Production Environment
 ![Production Release Overview](/docs/imgs/AspDotNetCore-AppServiceWindows-CD-Production.PNG)
 
@@ -170,12 +144,6 @@ TODO
   - Template = $(System.DefaultWorkingDirectory)/AspDotNetCore-AppServiceWindows-CI/infra/[WebAppSettings.json](../infra/ManageAzureWebAppAzureResourceGroup/templates/WebAppSettings.json)
   - Override Template Parameters = -webAppName $(ResourceGroupName)  -adminLogin $(AdministratorLogin) -adminLoginPassword (ConvertTo-SecureString -String '$(AdministratorLoginPassword)' -AsPlainText -Force)
   - Deployment Mode = Incremental
-- Remove Test In Production - disabled for now because the script doesn't work.
-  - Type = Azure Powershell
-  - Azure Connection Type = Azure Resource Manager
-  - Azure RM Subscription = set appropriate
-  - Script Path = $(System.DefaultWorkingDirectory)/AspDotNetCore-AppServiceWindows-CI/scripts/[SetUpTestInProduction.ps1](../infra/ManageAzureWebAppAzureResourceGroup/scripts/SetUpTestInProduction.ps1)
-  - Script Arguments = $(ResourceGroupName) $(SlotToSwap) 0
 - Swap Staging to Production
   - Type = Azure App Service Manage (PREVIEW)
   - Azure Subscription = set appropriate
