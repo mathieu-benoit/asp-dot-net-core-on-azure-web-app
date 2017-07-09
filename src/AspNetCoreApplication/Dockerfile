@@ -1,6 +1,6 @@
-FROM microsoft/aspnetcore:1.1
+FROM microsoft/aspnetcore:1.1.2
 ARG source
 WORKDIR /app
-EXPOSE 80
-COPY ${source:-obj/Docker/publish} .
+EXPOSE 5000
+COPY $source .
 ENTRYPOINT ["dotnet", "AspNetCoreApplication.dll"]
