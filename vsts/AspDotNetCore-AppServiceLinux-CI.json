@@ -104,8 +104,8 @@
                 "command": "publish",
                 "publishWebProjects": "true",
                 "projects": "",
-                "arguments": "--configuration $(BuildConfiguration) --output $(build.artifactstagingdirectory)",
-                "zipAfterPublish": "true"
+                "arguments": "--configuration $(BuildConfiguration) --output pub",
+                "zipAfterPublish": "false"
             }
         },
         {
@@ -178,17 +178,17 @@
                 "containerregistrytype": "Azure Container Registry",
                 "dockerRegistryEndpoint": "",
                 "azureSubscriptionEndpoint": "3fcb20b6-eca0-48e5-9e59-35c9822a7152",
-                "azureContainerRegistry": "{\"loginServer\":\"mabenoittest.azurecr.io\", \"id\" : \"/subscriptions/0bd042ec-b6bc-4162-8385-c05a21d55572/resourceGroups/mabenoittest/providers/Microsoft.ContainerRegistry/registries/mabenoittest\"}",
+                "azureContainerRegistry": "{\"loginServer\":\"demoregfoo123.azurecr.io\", \"id\" : \"/subscriptions/0bd042ec-b6bc-4162-8385-c05a21d55572/resourcegroups/MyResGroup/providers/Microsoft.ContainerRegistry/registries/demoregfoo123\"}",
                 "action": "Build an image",
                 "dockerFile": "**/Dockerfile",
-                "buildArguments": "",
+                "buildArguments": "source=pub",
                 "defaultContext": "true",
                 "context": "",
                 "imageName": "$(Build.Repository.Name):$(Build.BuildId)",
                 "qualifyImageName": "true",
-                "additionalImageTags": "$(Build.BuildId)",
+                "additionalImageTags": "",
                 "includeSourceTags": "false",
-                "includeLatestTag": "false",
+                "includeLatestTag": "true",
                 "imageDigestFile": "",
                 "containerName": "",
                 "ports": "",
@@ -222,7 +222,7 @@
                 "containerregistrytype": "Azure Container Registry",
                 "dockerRegistryEndpoint": "",
                 "azureSubscriptionEndpoint": "3fcb20b6-eca0-48e5-9e59-35c9822a7152",
-                "azureContainerRegistry": "{\"loginServer\":\"mabenoittest.azurecr.io\", \"id\" : \"/subscriptions/0bd042ec-b6bc-4162-8385-c05a21d55572/resourceGroups/mabenoittest/providers/Microsoft.ContainerRegistry/registries/mabenoittest\"}",
+                "azureContainerRegistry": "{\"loginServer\":\"demoregfoo123.azurecr.io\", \"id\" : \"/subscriptions/0bd042ec-b6bc-4162-8385-c05a21d55572/resourcegroups/MyResGroup/providers/Microsoft.ContainerRegistry/registries/demoregfoo123\"}",
                 "action": "Push an image",
                 "dockerFile": "**/Dockerfile",
                 "buildArguments": "",
@@ -230,9 +230,9 @@
                 "context": "",
                 "imageName": "$(Build.Repository.Name):$(Build.BuildId)",
                 "qualifyImageName": "true",
-                "additionalImageTags": "$(Build.BuildId)",
+                "additionalImageTags": "",
                 "includeSourceTags": "false",
-                "includeLatestTag": "false",
+                "includeLatestTag": "true",
                 "imageDigestFile": "",
                 "containerName": "",
                 "ports": "",
@@ -400,6 +400,78 @@
             "deleteTestResults": true
         }
     ],
+    "metrics": [
+        {
+            "name": "CurrentBuildsInQueue",
+            "scope": "refs/heads/master",
+            "intValue": 0
+        },
+        {
+            "name": "CurrentBuildsInProgress",
+            "scope": "refs/heads/master",
+            "intValue": 0
+        },
+        {
+            "name": "CanceledBuilds",
+            "scope": "refs/heads/master",
+            "intValue": 0,
+            "date": "2017-07-09T00:00:00.000Z"
+        },
+        {
+            "name": "CanceledBuilds",
+            "scope": "refs/heads/master",
+            "intValue": 0,
+            "date": "2017-07-07T00:00:00.000Z"
+        },
+        {
+            "name": "FailedBuilds",
+            "scope": "refs/heads/master",
+            "intValue": 2,
+            "date": "2017-07-09T00:00:00.000Z"
+        },
+        {
+            "name": "FailedBuilds",
+            "scope": "refs/heads/master",
+            "intValue": 6,
+            "date": "2017-07-07T00:00:00.000Z"
+        },
+        {
+            "name": "PartiallySuccessfulBuilds",
+            "scope": "refs/heads/master",
+            "intValue": 0,
+            "date": "2017-07-09T00:00:00.000Z"
+        },
+        {
+            "name": "PartiallySuccessfulBuilds",
+            "scope": "refs/heads/master",
+            "intValue": 0,
+            "date": "2017-07-07T00:00:00.000Z"
+        },
+        {
+            "name": "SuccessfulBuilds",
+            "scope": "refs/heads/master",
+            "intValue": 1,
+            "date": "2017-07-09T00:00:00.000Z"
+        },
+        {
+            "name": "SuccessfulBuilds",
+            "scope": "refs/heads/master",
+            "intValue": 0,
+            "date": "2017-07-07T00:00:00.000Z"
+        },
+        {
+            "name": "TotalBuilds",
+            "scope": "refs/heads/master",
+            "intValue": 3,
+            "date": "2017-07-09T00:00:00.000Z"
+        },
+        {
+            "name": "TotalBuilds",
+            "scope": "refs/heads/master",
+            "intValue": 6,
+            "date": "2017-07-07T00:00:00.000Z"
+        }
+    ],
     "_links": {
         "self": {
             "href": "https://mabenoit-ms.visualstudio.com/a09df269-8b88-43bb-b742-396def59efaa/_apis/build/Definitions/26"
@@ -463,8 +535,8 @@
     "uri": "vstfs:///Build/Definition/26",
     "path": "\\",
     "type": 2,
-    "revision": 6,
-    "createdDate": "2017-07-06T20:40:12.510Z",
+    "revision": 22,
+    "createdDate": "2017-07-09T02:35:33.510Z",
     "project": {
         "id": "a09df269-8b88-43bb-b742-396def59efaa",
         "name": "AspNetCoreApplication",
