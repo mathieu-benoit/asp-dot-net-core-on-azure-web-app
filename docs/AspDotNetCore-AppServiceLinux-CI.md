@@ -75,8 +75,8 @@ TODO
   - Type = .NET Core
   - Command = publish
   - Publish Web Projects = true
-  - Arguments = --configuration $(BuildConfiguration) --output $(build.artifactstagingdirectory)
-  - Zip Published Projects = true
+  - Arguments = --configuration $(BuildConfiguration) --output pub
+  - Zip Published Projects = false
 - Build Docker image
   - Type = Docker (PREVIEW)
   - Container Registry Type = Azure Container Registry
@@ -84,9 +84,10 @@ TODO
   - Azure Container Registry = set appropriate
   - Action = Build an image
   - Docker File = **/[Dockerfile](../../src/AspNetCoreApplication/Dockerfile)
+  - Build Arguments = source=pub
   - Image Name = $(Build.Repository.Name):$(Build.BuildId)
   - Qualify Image Name = true
-  - Additional Image Tags = $(Build.BuildId)
+  - Include Latest Tags = true
 - Push an image
   - Type = Docker (PREVIEW)
   - Container Registry Type = Azure Container Registry
@@ -95,7 +96,7 @@ TODO
   - Action = Push an image
   - Image Name = $(Build.Repository.Name):$(Build.BuildId)
   - Qualify Image Name = true
-  - Additional Image Tags = $(Build.BuildId)
+  - Include Latest Tags = true
 - Validate ARM Templates
   - Azure subscription = set appropriate
   - Action = Create or update resource group
