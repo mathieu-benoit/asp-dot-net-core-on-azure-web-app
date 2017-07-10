@@ -33,7 +33,7 @@ TODO
   - Resource Group = $(ResourceGroupName)
   - Location = $(Location)
   - Template location = Linked artifact
-  - Template = $(System.DefaultWorkingDirectory)/AspDotNetCore-AppServiceLinux-CI/infra/[deploy-linux.json](../infra/ManageAzureWebAppAzureResourceGroup/templates/deploy-linux.json)
+  - Template = $(System.DefaultWorkingDirectory)/AspDotNetCore-AppServiceLinux-CI/infra/[deploy-linux.json](../infra/templates/deploy-linux.json)
   - Override Template Parameters = -webAppName $(ResourceGroupName) -appServicePlanName $(ResourceGroupName)
   - Deployment Mode = Incremental
 - Slot
@@ -43,7 +43,7 @@ TODO
   - Resource Group = $(ResourceGroupName)
   - Location = $(Location)
   - Template location = Linked artifact
-  - Template = $(System.DefaultWorkingDirectory)/AspDotNetCore-AppServiceLinux-CI/infra/[WebAppSlot.json](../infra/ManageAzureWebAppAzureResourceGroup/templates/WebAppSlot.json)
+  - Template = $(System.DefaultWorkingDirectory)/AspDotNetCore-AppServiceLinux-CI/infra/[WebAppSlot.json](../infra/templates/WebAppSlot.json)
   - Override Template Parameters = -webAppName $(ResourceGroupName) -slotName $(SlotName)
   - Deployment Mode = Incremental
 - App Insights
@@ -53,7 +53,7 @@ TODO
   - Resource Group = $(ResourceGroupName)
   - Location = $(Location)
   - Template location = Linked artifact
-  - Template = $(System.DefaultWorkingDirectory)/AspDotNetCore-AppServiceLinux-CI/infra/[ApplicationInsights.json](../infra/ManageAzureWebAppAzureResourceGroup/templates/ApplicationInsights.json)
+  - Template = $(System.DefaultWorkingDirectory)/AspDotNetCore-AppServiceLinux-CI/infra/[ApplicationInsights.json](../infra/templates/ApplicationInsights.json)
   - Override Template Parameters = -appInsightsName $(ResourceGroupName)-$(SlotName)
   - Deployment Mode = Incremental
 - Sql Database
@@ -63,7 +63,7 @@ TODO
   - Resource Group = $(ResourceGroupName)
   - Location = $(Location)
   - Template location = Linked artifact
-  - Template = $(System.DefaultWorkingDirectory)/AspDotNetCore-AppServiceLinux-CI/infra/[SqlDatabase.json](../infra/ManageAzureWebAppAzureResourceGroup/templates/SqlDatabase.json)
+  - Template = $(System.DefaultWorkingDirectory)/AspDotNetCore-AppServiceLinux-CI/infra/[SqlDatabase.json](../infra/templates/SqlDatabase.json)
   - Override Template Parameters = -databaseName $(ResourceGroupName)-$(SlotName) -adminLogin $(AdministratorLogin) -adminLoginPassword (ConvertTo-SecureString -String '$(AdministratorLoginPassword)' -AsPlainText -Force)
   - Deployment Mode = Incremental
 - Slot App Settings
@@ -73,7 +73,7 @@ TODO
   - Resource Group = $(ResourceGroupName)
   - Location = $(Location)
   - Template location = Linked artifact
-  - Template = $(System.DefaultWorkingDirectory)/AspDotNetCore-AppServiceLinux-CI/infra/[WebAppSlotSettings.json](../infra/ManageAzureWebAppAzureResourceGroup/templates/WebAppSlotSettings.json)
+  - Template = $(System.DefaultWorkingDirectory)/AspDotNetCore-AppServiceLinux-CI/infra/[WebAppSlotSettings.json](../infra/templates/WebAppSlotSettings.json)
   - Override Template Parameters = -webAppName $(ResourceGroupName) -slotName $(SlotName) -adminLogin $(AdministratorLogin) -adminLoginPassword (ConvertTo-SecureString -String '$(AdministratorLoginPassword)' -AsPlainText -Force)
   - Deployment Mode = Incremental
 - Restart Web App
@@ -119,7 +119,7 @@ TODO
   - Resource Group = $(ResourceGroupName)
   - Location = $(Location)
   - Template location = Linked artifact
-  - Template = $(System.DefaultWorkingDirectory)/AspDotNetCore-AppServiceLinux-CI/infra/[deploy-linux.json](../infra/ManageAzureWebAppAzureResourceGroup/templates/deploy-linux.json)
+  - Template = $(System.DefaultWorkingDirectory)/AspDotNetCore-AppServiceLinux-CI/infra/[deploy-linux.json](../infra/templates/deploy-linux.json)
   - Override Template Parameters = -webAppName $(ResourceGroupName) -appServicePlanName $(ResourceGroupName)
   - Deployment Mode = Incremental
 - App Insights
@@ -129,7 +129,7 @@ TODO
   - Resource Group = $(ResourceGroupName)
   - Location = $(Location)
   - Template location = Linked artifact
-  - Template = $(System.DefaultWorkingDirectory)/AspDotNetCore-AppServiceLinux-CI/infra/[ApplicationInsights.json](../infra/ManageAzureWebAppAzureResourceGroup/templates/ApplicationInsights.json)
+  - Template = $(System.DefaultWorkingDirectory)/AspDotNetCore-AppServiceLinux-CI/infra/[ApplicationInsights.json](../infra/templates/ApplicationInsights.json)
   - Override Template Parameters = -appInsightsName $(ResourceGroupName)
   - Deployment Mode = Incremental
 - Sql Database
@@ -139,7 +139,7 @@ TODO
   - Resource Group = $(ResourceGroupName)
   - Location = $(Location)
   - Template location = Linked artifact
-  - Template = $(System.DefaultWorkingDirectory)/AspDotNetCore-AppServiceLinux-CI/infra/[SqlDatabase.json](../infra/ManageAzureWebAppAzureResourceGroup/templates/SqlDatabase.json)
+  - Template = $(System.DefaultWorkingDirectory)/AspDotNetCore-AppServiceLinux-CI/infra/[SqlDatabase.json](../infra/templates/SqlDatabase.json)
   - Override Template Parameters = -databaseName $(ResourceGroupName) -adminLogin $(AdministratorLogin) -adminLoginPassword (ConvertTo-SecureString -String '$(AdministratorLoginPassword)' -AsPlainText -Force)
   - Deployment Mode = Incremental
 - App Settings
@@ -149,7 +149,7 @@ TODO
   - Resource Group = $(ResourceGroupName)
   - Location = $(Location)
   - Template location = Linked artifact
-  - Template = $(System.DefaultWorkingDirectory)/AspDotNetCore-AppServiceLinux-CI/infra/[WebAppSettings.json](../infra/ManageAzureWebAppAzureResourceGroup/templates/WebAppSettings.json)
+  - Template = $(System.DefaultWorkingDirectory)/AspDotNetCore-AppServiceLinux-CI/infra/[WebAppSettings.json](../infra/templates/WebAppSettings.json)
   - Override Template Parameters = -webAppName $(ResourceGroupName)  -adminLogin $(AdministratorLogin) -adminLoginPassword (ConvertTo-SecureString -String '$(AdministratorLoginPassword)' -AsPlainText -Force)
   - Deployment Mode = Incremental
 - Swap Staging to Production
@@ -164,5 +164,5 @@ TODO
   - Type = Azure PowerShell
   - Azure Connection Type = set appropriate
   - Azure RM Subscription = set appropriate
-  - Script Path = $(System.DefaultWorkingDirectory)/AspDotNetCore-AppServiceLinux-CI/scripts/[AddResourceGroupLock.ps1](../infra/ManageAzureWebAppAzureResourceGroup/scripts/AddResourceGroupLock.ps1)
+  - Script Path = $(System.DefaultWorkingDirectory)/AspDotNetCore-AppServiceLinux-CI/scripts/[AddResourceGroupLock.ps1](../infra/scripts/AddResourceGroupLock.ps1)
   - Script Arguments = $(ResourceGroupName)

@@ -68,11 +68,11 @@ TODO
   - Artifact Type = Server
 - Publish Artifact: infra
   - Type = Publish Build Artifacts
-  - Path to publish = infra/AspNetCoreApplication.Infrastructure/templates
+  - Path to publish = infra/templates
   - Artifact Name = infra
   - Artifact Type = Server
 - Publish Artifact: scripts
   - Type = Publish Build Artifacts
-  - Copy Root = infra/AspNetCoreApplication.Infrastructure/scripts
+  - Copy Root = infra/scripts
   - Artifact Name = scripts
   - Artifact Type = Server
