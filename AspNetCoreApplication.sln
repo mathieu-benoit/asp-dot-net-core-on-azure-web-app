@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26430.14
+VisualStudioVersion = 15.0.26621.2
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{D02777E3-31E1-40C9-B114-485E07E71B84}"
 EndProject
@@ -13,9 +13,55 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AspNetCoreApplication", "sr
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AspNetCoreApplication.UnitTests", "test\AspNetCoreApplication.UnitTests\AspNetCoreApplication.UnitTests.csproj", "{EF0BB060-ADAF-4274-8AA7-DAA634BDBC5E}"
 EndProject
-Project("{151D2E53-A2C4-4D7D-83FE-D05416EBD58E}") = "AspNetCoreApplication.Infrastructure", "infra\AspNetCoreApplication.Infrastructure\AspNetCoreApplication.Infrastructure.deployproj", "{34351608-AFC9-4552-B627-C463566B3659}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AspNetCoreApplication.UITests", "test\AspNetCoreApplication.UITests\AspNetCoreApplication.UITests.csproj", "{A14D0BCE-E68D-4622-8D8A-20F87E2D04DA}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docs", "docs", "{08DD53D4-88C4-4470-BF6C-63FD789A6E48}"
+	ProjectSection(SolutionItems) = preProject
+		docs\AspDotNetCore-AppServiceLinux-CD.md = docs\AspDotNetCore-AppServiceLinux-CD.md
+		docs\AspDotNetCore-AppServiceLinux-CI.md = docs\AspDotNetCore-AppServiceLinux-CI.md
+		docs\AspDotNetCore-AppServiceWindows-CD.md = docs\AspDotNetCore-AppServiceWindows-CD.md
+		docs\AspDotNetCore-AppServiceWindows-CI.md = docs\AspDotNetCore-AppServiceWindows-CI.md
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "imgs", "imgs", "{2E879452-6E6E-4ACF-B786-5C9061029B20}"
+	ProjectSection(SolutionItems) = preProject
+		docs\imgs\AspDotNetCore-AppServiceLinux-CD-Production.PNG = docs\imgs\AspDotNetCore-AppServiceLinux-CD-Production.PNG
+		docs\imgs\AspDotNetCore-AppServiceLinux-CD-Staging.PNG = docs\imgs\AspDotNetCore-AppServiceLinux-CD-Staging.PNG
+		docs\imgs\AspDotNetCore-AppServiceLinux-CI.PNG = docs\imgs\AspDotNetCore-AppServiceLinux-CI.PNG
+		docs\imgs\AspDotNetCore-AppServiceWindows-CD-Production.PNG = docs\imgs\AspDotNetCore-AppServiceWindows-CD-Production.PNG
+		docs\imgs\AspDotNetCore-AppServiceWindows-CD-Staging.PNG = docs\imgs\AspDotNetCore-AppServiceWindows-CD-Staging.PNG
+		docs\imgs\AspDotNetCore-AppServiceWindows-CI.PNG = docs\imgs\AspDotNetCore-AppServiceWindows-CI.PNG
+		docs\imgs\Overview.PNG = docs\imgs\Overview.PNG
+		docs\imgs\Process.PNG = docs\imgs\Process.PNG
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "vsts", "vsts", "{CA831602-A9B1-4D3E-92B6-EB318594EE26}"
+	ProjectSection(SolutionItems) = preProject
+		vsts\AspDotNetCore-AppServiceLinux-CD.json = vsts\AspDotNetCore-AppServiceLinux-CD.json
+		vsts\AspDotNetCore-AppServiceLinux-CI.json = vsts\AspDotNetCore-AppServiceLinux-CI.json
+		vsts\AspDotNetCore-AppServiceWindows-CD.json = vsts\AspDotNetCore-AppServiceWindows-CD.json
+		vsts\AspDotNetCore-AppServiceWindows-CI.json = vsts\AspDotNetCore-AppServiceWindows-CI.json
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "scripts", "scripts", "{4E6FA04D-993F-4F63-BCE4-80D237192CAF}"
+	ProjectSection(SolutionItems) = preProject
+		infra\scripts\AddResourceGroupLock.ps1 = infra\scripts\AddResourceGroupLock.ps1
+		infra\scripts\DeployARMTemplate.ps1 = infra\scripts\DeployARMTemplate.ps1
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "templates", "templates", "{7E6F2235-EBCD-4F78-AFC7-0F032C33CD9A}"
+	ProjectSection(SolutionItems) = preProject
+		infra\templates\ApplicationInsights.json = infra\templates\ApplicationInsights.json
+		infra\templates\ContainerRegistry.json = infra\templates\ContainerRegistry.json
+		infra\templates\deploy-linux.json = infra\templates\deploy-linux.json
+		infra\templates\deploy-windows.json = infra\templates\deploy-windows.json
+		infra\templates\SqlDatabase.json = infra\templates\SqlDatabase.json
+		infra\templates\WebAppLinux.json = infra\templates\WebAppLinux.json
+		infra\templates\WebAppSettings.json = infra\templates\WebAppSettings.json
+		infra\templates\WebAppSlot.json = infra\templates\WebAppSlot.json
+		infra\templates\WebAppSlotSettings.json = infra\templates\WebAppSlotSettings.json
+		infra\templates\WebAppWindows.json = infra\templates\WebAppWindows.json
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -31,10 +77,6 @@ Global
 		{EF0BB060-ADAF-4274-8AA7-DAA634BDBC5E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EF0BB060-ADAF-4274-8AA7-DAA634BDBC5E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EF0BB060-ADAF-4274-8AA7-DAA634BDBC5E}.Release|Any CPU.Build.0 = Release|Any CPU
-		{34351608-AFC9-4552-B627-C463566B3659}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{34351608-AFC9-4552-B627-C463566B3659}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{34351608-AFC9-4552-B627-C463566B3659}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{34351608-AFC9-4552-B627-C463566B3659}.Release|Any CPU.Build.0 = Release|Any CPU
 		{A14D0BCE-E68D-4622-8D8A-20F87E2D04DA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{A14D0BCE-E68D-4622-8D8A-20F87E2D04DA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A14D0BCE-E68D-4622-8D8A-20F87E2D04DA}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -46,7 +88,12 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{695403A6-C1ED-4647-B4BC-74133A41B70D} = {D02777E3-31E1-40C9-B114-485E07E71B84}
 		{EF0BB060-ADAF-4274-8AA7-DAA634BDBC5E} = {5599B0FC-37F4-4E10-9CFD-96611FDF9794}
-		{34351608-AFC9-4552-B627-C463566B3659} = {311822C6-CC4A-4A78-BE83-C5F462683B75}
 		{A14D0BCE-E68D-4622-8D8A-20F87E2D04DA} = {5599B0FC-37F4-4E10-9CFD-96611FDF9794}
+		{2E879452-6E6E-4ACF-B786-5C9061029B20} = {08DD53D4-88C4-4470-BF6C-63FD789A6E48}
+		{4E6FA04D-993F-4F63-BCE4-80D237192CAF} = {311822C6-CC4A-4A78-BE83-C5F462683B75}
+		{7E6F2235-EBCD-4F78-AFC7-0F032C33CD9A} = {311822C6-CC4A-4A78-BE83-C5F462683B75}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {9B740634-CDEC-4E86-B090-6576568FE53A}
 	EndGlobalSection
 EndGlobal
