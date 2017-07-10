@@ -58,7 +58,7 @@ TODO
   - Resource group = test
   - Location = East US
   - Template location = Linked artifact
-  - Template = infra/AspNetCoreApplication.Infrastructure/templates/deploy-windows.json
+  - Template = infra/templates/deploy-windows.json
   - Override template parameters = -appServicePlanName test -webAppName test
   - Deployment mode = Validation only
 - Publish Artifact: web

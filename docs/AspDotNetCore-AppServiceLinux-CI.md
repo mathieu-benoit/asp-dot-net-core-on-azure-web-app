@@ -103,7 +103,7 @@ TODO
   - Resource group = test
   - Location = West US
   - Template location = Linked artifact
-  - Template = infra/AspNetCoreApplication.Infrastructure/templates/deploy-linux.json
+  - Template = infra/templates/deploy-linux.json
   - Override template parameters = -appServicePlanName test -webAppName test -registryName test -dockerImageName test
   - Deployment mode = Validation only
 - Publish Artifact: infra

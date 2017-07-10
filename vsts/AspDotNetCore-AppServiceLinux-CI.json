@@ -270,7 +270,7 @@
                 "templateLocation": "Linked artifact",
                 "csmFileLink": "",
                 "csmParametersFileLink": "",
-                "csmFile": "infra/AspNetCoreApplication.Infrastructure/templates/deploy-linux.json",
+                "csmFile": "infra/templates/deploy-linux.json",
                 "csmParametersFile": "",
                 "overrideParameters": "-appServicePlanName test -webAppName test -registryName test -dockerImageName test",
                 "deploymentMode": "Validation",
@@ -296,7 +296,7 @@
                 "definitionType": "task"
             },
             "inputs": {
-                "PathtoPublish": "infra/AspNetCoreApplication.Infrastructure/templates",
+                "PathtoPublish": "infra/templates",
                 "ArtifactName": "infra",
                 "ArtifactType": "Container",
                 "TargetPath": "\\\\my\\share\\$(Build.DefinitionName)\\$(Build.BuildNumber)"
@@ -316,7 +316,7 @@
                 "definitionType": "task"
             },
             "inputs": {
-                "PathtoPublish": "infra/AspNetCoreApplication.Infrastructure/scripts",
+                "PathtoPublish": "infra/scripts",
                 "ArtifactName": "scripts",
                 "ArtifactType": "Container",
                 "TargetPath": "\\\\my\\share\\$(Build.DefinitionName)\\$(Build.BuildNumber)"
@@ -535,8 +535,8 @@
     "uri": "vstfs:///Build/Definition/26",
     "path": "\\",
     "type": 2,
-    "revision": 22,
-    "createdDate": "2017-07-09T02:35:33.510Z",
+    "revision": 23,
+    "createdDate": "2017-07-10T16:31:04.650Z",
     "project": {
         "id": "a09df269-8b88-43bb-b742-396def59efaa",
         "name": "AspNetCoreApplication",

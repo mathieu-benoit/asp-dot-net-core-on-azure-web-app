@@ -202,7 +202,7 @@
                 "templateLocation": "Linked artifact",
                 "csmFileLink": "",
                 "csmParametersFileLink": "",
-                "csmFile": "infra/AspNetCoreApplication.Infrastructure/templates/deploy-windows.json",
+                "csmFile": "infra/templates/deploy-windows.json",
                 "csmParametersFile": "",
                 "overrideParameters": "-appServicePlanName test -webAppName test",
                 "deploymentMode": "Validation",
@@ -248,7 +248,7 @@
                 "definitionType": "task"
             },
             "inputs": {
-                "PathtoPublish": "infra/AspNetCoreApplication.Infrastructure/templates",
+                "PathtoPublish": "infra/templates",
                 "ArtifactName": "infra",
                 "ArtifactType": "Container",
                 "TargetPath": "\\\\my\\share\\$(Build.DefinitionName)\\$(Build.BuildNumber)"
@@ -268,7 +268,7 @@
                 "definitionType": "task"
             },
             "inputs": {
-                "PathtoPublish": "infra/AspNetCoreApplication.Infrastructure/scripts",
+                "PathtoPublish": "infra/scripts",
                 "ArtifactName": "scripts",
                 "ArtifactType": "Container",
                 "TargetPath": "\\\\my\\share\\$(Build.DefinitionName)\\$(Build.BuildNumber)"
@@ -367,6 +367,12 @@
             "name": "CanceledBuilds",
             "scope": "refs/heads/master",
             "intValue": 0,
+            "date": "2017-07-07T00:00:00.000Z"
+        },
+        {
+            "name": "CanceledBuilds",
+            "scope": "refs/heads/master",
+            "intValue": 0,
             "date": "2017-07-06T00:00:00.000Z"
         },
         {
@@ -374,6 +380,12 @@
             "scope": "refs/heads/master",
             "intValue": 0,
             "date": "2017-07-05T00:00:00.000Z"
+        },
+        {
+            "name": "FailedBuilds",
+            "scope": "refs/heads/master",
+            "intValue": 0,
+            "date": "2017-07-07T00:00:00.000Z"
         },
         {
             "name": "FailedBuilds",
@@ -391,6 +403,12 @@
             "name": "PartiallySuccessfulBuilds",
             "scope": "refs/heads/master",
             "intValue": 0,
+            "date": "2017-07-07T00:00:00.000Z"
+        },
+        {
+            "name": "PartiallySuccessfulBuilds",
+            "scope": "refs/heads/master",
+            "intValue": 0,
             "date": "2017-07-06T00:00:00.000Z"
         },
         {
@@ -402,6 +420,12 @@
         {
             "name": "SuccessfulBuilds",
             "scope": "refs/heads/master",
+            "intValue": 2,
+            "date": "2017-07-07T00:00:00.000Z"
+        },
+        {
+            "name": "SuccessfulBuilds",
+            "scope": "refs/heads/master",
             "intValue": 1,
             "date": "2017-07-06T00:00:00.000Z"
         },
@@ -410,6 +434,12 @@
             "scope": "refs/heads/master",
             "intValue": 1,
             "date": "2017-07-05T00:00:00.000Z"
+        },
+        {
+            "name": "TotalBuilds",
+            "scope": "refs/heads/master",
+            "intValue": 2,
+            "date": "2017-07-07T00:00:00.000Z"
         },
         {
             "name": "TotalBuilds",
@@ -487,8 +517,8 @@
     "uri": "vstfs:///Build/Definition/25",
     "path": "\\",
     "type": 2,
-    "revision": 22,
-    "createdDate": "2017-07-06T19:27:25.350Z",
+    "revision": 24,
+    "createdDate": "2017-07-10T16:29:54.540Z",
     "project": {
         "id": "a09df269-8b88-43bb-b742-396def59efaa",
         "name": "AspNetCoreApplication",
