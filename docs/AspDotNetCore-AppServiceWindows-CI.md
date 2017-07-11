@@ -4,7 +4,7 @@ Here is one example to Build an ASP.NET Core 1.1 web application to an App Servi
 
 # Import the Build Definition
 
-You could import [the associated Build Definition stored in this repository](/vsts/ApsNetCore-AppServiceWindows-CI.json) and then follow these steps to adapt it to your current project, credentials, etc.:
+You could import [the associated Build Definition stored in this repository](/vsts/AspDotNetCore-AppServiceWindows-CI.json) and then follow these steps to adapt it to your current project, credentials, etc.:
 
 TODO
 
@@ -24,35 +24,42 @@ TODO
 - Continuous Integration (CI) = true
 
 ## Process - Build process
-- Name = ApsNetCore-AppServiceWindows-CI
+- Name = AspDotNetCore-AppServiceWindows-CI
 - Default agent queue = Hosted VS2017
 
 ## Steps 
 - Restore
   - Type = .NET Core
+  - Version = 1.*
   - Command = restore
   - Project(s) = **/*.csproj
 - Build
   - Type = .NET Core
+  - Version = 1.*
   - Command = build
   - Project(s) = src/AspNetCoreApplication/AspNetCoreApplication.csproj\ntest/AspNetCoreApplication.UnitTests/AspNetCoreApplication.UnitTests.csproj
   - Arguments = --configuration $(BuildConfiguration)
 - UnitTests
   - Type = .NET Core
+  - Version = 1.*
   - Command = test
   - Project(s) = **/*UnitTests/*.csproj
   - Arguments = --configuration $(BuildConfiguration) -xml TEST-TestResults.xml
 - Publish Test Results
   - Type = Publish Test Results
+  - Version = 2.*
   - Test Result Format = XUnit
   - Test Results Files = **/TEST-*.xml
 - Publish Web App
   - Type = .NET Core
+  - Version = 1.*
   - Command = publish
   - Publish Web Projects = true
   - Arguments = --configuration $(BuildConfiguration) --output $(build.artifactstagingdirectory)
   - Zip Published Projects = true
 - Validate ARM Templates
+  - Type = Azure Resource Group Deployment
+  - Version = 2.*
   - Azure subscription = set appropriate
   - Action = Create or update resource group
   - Resource group = test
@@ -63,16 +70,19 @@ TODO
   - Deployment mode = Validation only
 - Publish Artifact: web
   - Type = Publish Build Artifacts
+  - Version = 1.*
   - Path to publish = $(build.artifactstagingdirectory)
   - Artifact Name = web
   - Artifact Type = Server
 - Publish Artifact: infra
   - Type = Publish Build Artifacts
+  - Version = 1.*
   - Path to publish = infra/templates
   - Artifact Name = infra
   - Artifact Type = Server
 - Publish Artifact: scripts
   - Type = Publish Build Artifacts
-  - Copy Root = infra/scripts
+  - Version = 1.*
+  - Path to publish = infra/scripts
   - Artifact Name = scripts
   - Artifact Type = Server

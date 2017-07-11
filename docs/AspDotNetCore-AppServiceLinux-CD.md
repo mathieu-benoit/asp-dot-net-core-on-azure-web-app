@@ -8,6 +8,9 @@ TODO
 
 # Create manually the Release Definition
 
+## Overview
+![Release Overview](/docs/imgs/AspDotNetCore-AppServiceLinux-CD.PNG)
+
 ## Staging Environment
 ![Staging Release Overview](/docs/imgs/AspDotNetCore-AppServiceLinux-CD-Staging.PNG)
 
@@ -28,6 +31,7 @@ TODO
 ### Steps 
 - (Ensure) App Service Plan and Web App
   - Type = Azure Resource Group Deployment
+  - Version = 2.*
   - Azure Subscription = set appropriate
   - Action = Create Or Update Resource Group
   - Resource Group = $(ResourceGroupName)
@@ -38,6 +42,7 @@ TODO
   - Deployment Mode = Incremental
 - Slot
   - Type = Azure Resource Group Deployment
+  - Version = 2.*
   - Azure Subscription = set appropriate
   - Action = Create Or Update Resource Group
   - Resource Group = $(ResourceGroupName)
@@ -48,6 +53,7 @@ TODO
   - Deployment Mode = Incremental
 - App Insights
   - Type = Azure Resource Group Deployment
+  - Version = 2.*
   - Azure Subscription = set appropriate
   - Action = Create Or Update Resource Group
   - Resource Group = $(ResourceGroupName)
@@ -58,6 +64,7 @@ TODO
   - Deployment Mode = Incremental
 - Sql Database
   - Type = Azure Resource Group Deployment
+  - Version = 2.*
   - Azure Subscription = set appropriate
   - Action = Create Or Update Resource Group
   - Resource Group = $(ResourceGroupName)
@@ -68,6 +75,7 @@ TODO
   - Deployment Mode = Incremental
 - Slot App Settings
   - Type = Azure Resource Group Deployment
+  - Version = 2.*
   - Azure Subscription = set appropriate
   - Action = Create Or Update Resource Group
   - Resource Group = $(ResourceGroupName)
@@ -78,6 +86,7 @@ TODO
   - Deployment Mode = Incremental
 - Restart Web App
   - Type = Azure App Service Manage (PREVIEW)
+  - Version = 0.*
   - Azure Subscription = set appropriate
   - Action = Restart App Service
   - App Service Name = $(ResourceGroupName)
@@ -86,6 +95,7 @@ TODO
   - Slot = $(SlotName)
 - Quick Web Performance Test Load
   - Type = Cloud-based Web Performance Test
+  - Version = 1.*
   - VS Team Services Connection = set appropriate
   - Website Url = http://$(ResourceGroupName)-$(SlotName).azurewebsites.net/
   - Test name = Load Tests on $(ResourceGroupName)-$(SlotName) Homepage
@@ -114,6 +124,7 @@ TODO
 ### Steps
 - (Ensure) App Service Plan and Web App
   - Type = Azure Resource Group Deployment
+  - Version = 2.*
   - Azure Subscription = set appropriate
   - Action = Create Or Update Resource Group
   - Resource Group = $(ResourceGroupName)
@@ -124,6 +135,7 @@ TODO
   - Deployment Mode = Incremental
 - App Insights
   - Type = Azure Resource Group Deployment
+  - Version = 2.*
   - Azure Subscription = set appropriate
   - Action = Create Or Update Resource Group
   - Resource Group = $(ResourceGroupName)
@@ -134,6 +146,7 @@ TODO
   - Deployment Mode = Incremental
 - Sql Database
   - Type = Azure Resource Group Deployment
+  - Version = 2.*
   - Azure Subscription = set appropriate
   - Action = Create Or Update Resource Group
   - Resource Group = $(ResourceGroupName)
@@ -144,6 +157,7 @@ TODO
   - Deployment Mode = Incremental
 - App Settings
   - Type = Azure Resource Group Deployment
+  - Version = 2.*
   - Azure Subscription = set appropriate
   - Action = Create Or Update Resource Group
   - Resource Group = $(ResourceGroupName)
@@ -154,6 +168,7 @@ TODO
   - Deployment Mode = Incremental
 - Swap Staging to Production
   - Type = Azure App Service Manage (PREVIEW)
+  - Version = 0.*
   - Azure Subscription = set appropriate
   - Action = Swap Slots
   - App Service Name = $(ResourceGroupName)
@@ -162,6 +177,7 @@ TODO
   - Swap with Production = true
 - Set Resource Group Lock
   - Type = Azure PowerShell
+  - Version = 1.*
   - Azure Connection Type = set appropriate
   - Azure RM Subscription = set appropriate
   - Script Path = $(System.DefaultWorkingDirectory)/AspDotNetCore-AppServiceLinux-CI/scripts/[AddResourceGroupLock.ps1](../infra/scripts/AddResourceGroupLock.ps1)
