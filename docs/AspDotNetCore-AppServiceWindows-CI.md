@@ -13,6 +13,7 @@ TODO
 ## Variables
 - BuildConfiguration = release
 - DOTNET_SKIP_FIRST_TIME_EXPERIENCE = true
+- ValidateTemplatesResourceGroup = validate-templates-rg
 
 ## Repository
 - Repository Type = GitHub
@@ -62,12 +63,18 @@ TODO
   - Version = 2.*
   - Azure subscription = set appropriate
   - Action = Create or update resource group
-  - Resource group = test
+  - Resource group = $(ValidateTemplatesResourceGroup)
   - Location = East US
   - Template location = Linked artifact
   - Template = infra/templates/deploy-windows.json
   - Override template parameters = -appServicePlanName test -webAppName test
   - Deployment mode = Validation only
+- Remove temporary ValidateTemplatesResourceGroup
+  - Type = Azure Resource Group Deployment
+  - Version = 2.*
+  - Azure subscription = set appropriate
+  - Action = Delete resource group
+  - Resource group = $(ValidateTemplatesResourceGroup)
 - Publish Artifact: web
   - Type = Publish Build Artifacts
   - Version = 1.*

@@ -265,7 +265,7 @@
             "inputs": {
                 "ConnectedServiceName": "3fcb20b6-eca0-48e5-9e59-35c9822a7152",
                 "action": "Create Or Update Resource Group",
-                "resourceGroupName": "test",
+                "resourceGroupName": "$(ValidateTemplatesResourceGroup)",
                 "location": "West US",
                 "templateLocation": "Linked artifact",
                 "csmFileLink": "",
@@ -274,6 +274,39 @@
                 "csmParametersFile": "",
                 "overrideParameters": "-appServicePlanName test -webAppName test -registryName test -dockerImageName test",
                 "deploymentMode": "Validation",
+                "enableDeploymentPrerequisites": "None",
+                "deploymentGroupEndpoint": "",
+                "project": "",
+                "deploymentGroupName": "",
+                "copyAzureVMTags": "true",
+                "outputVariable": ""
+            }
+        },
+        {
+            "enabled": true,
+            "continueOnError": false,
+            "alwaysRun": false,
+            "displayName": "Remove temporary ValidateTemplatesResourceGroup",
+            "timeoutInMinutes": 0,
+            "condition": "succeeded()",
+            "refName": "AzureResourceGroupDeployment_13",
+            "task": {
+                "id": "94a74903-f93f-4075-884f-dc11f34058b4",
+                "versionSpec": "2.*",
+                "definitionType": "task"
+            },
+            "inputs": {
+                "ConnectedServiceName": "3fcb20b6-eca0-48e5-9e59-35c9822a7152",
+                "action": "DeleteRG",
+                "resourceGroupName": "$(ValidateTemplatesResourceGroup)",
+                "location": "",
+                "templateLocation": "Linked artifact",
+                "csmFileLink": "",
+                "csmParametersFileLink": "",
+                "csmFile": "",
+                "csmParametersFile": "",
+                "overrideParameters": "",
+                "deploymentMode": "Incremental",
                 "enableDeploymentPrerequisites": "None",
                 "deploymentGroupEndpoint": "",
                 "project": "",
@@ -368,10 +401,6 @@
         }
     ],
     "variables": {
-        "system.debug": {
-            "value": "false",
-            "allowOverride": true
-        },
         "BuildConfiguration": {
             "value": "release",
             "allowOverride": true
@@ -382,6 +411,13 @@
         },
         "DOTNET_SKIP_FIRST_TIME_EXPERIENCE": {
             "value": "true"
+        },
+        "system.debug": {
+            "value": "false",
+            "allowOverride": true
+        },
+        "ValidateTemplatesResourceGroup": {
+            "value": "validate-templates-rg"
         }
     },
     "retentionRules": [
@@ -535,8 +571,8 @@
     "uri": "vstfs:///Build/Definition/26",
     "path": "\\",
     "type": 2,
-    "revision": 23,
-    "createdDate": "2017-07-10T16:31:04.650Z",
+    "revision": 25,
+    "createdDate": "2017-07-12T15:31:38.817Z",
     "project": {
         "id": "a09df269-8b88-43bb-b742-396def59efaa",
         "name": "AspNetCoreApplication",
