@@ -180,7 +180,8 @@ TODO
 - Set Resource Group Lock
   - Type = Azure PowerShell
   - Version = 1.*
-  - Azure Connection Type = set appropriate
-  - Azure RM Subscription = set appropriate
+  - Azure Connection Type = Azure Resource Manager
+  - Azure Subscription = set appropriate
+  - Script Type = Script File Path
   - Script Path = $(System.DefaultWorkingDirectory)/AspDotNetCore-AppServiceWindows-CI/scripts/[AddResourceGroupLock.ps1](../infra/scripts/AddResourceGroupLock.ps1)
   - Script Arguments = $(ResourceGroupName)

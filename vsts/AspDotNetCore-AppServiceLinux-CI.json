@@ -1,361 +1,4 @@
 {
-    "build": [
-        {
-            "enabled": true,
-            "continueOnError": false,
-            "alwaysRun": false,
-            "displayName": "Restore",
-            "timeoutInMinutes": 0,
-            "condition": "succeeded()",
-            "refName": "DotNetCoreCLI_1",
-            "task": {
-                "id": "5541a522-603c-47ad-91fc-a4b1d163081b",
-                "versionSpec": "1.*",
-                "definitionType": "task"
-            },
-            "inputs": {
-                "command": "restore",
-                "publishWebProjects": "true",
-                "projects": "**/*.csproj",
-                "arguments": "",
-                "zipAfterPublish": "true"
-            }
-        },
-        {
-            "enabled": true,
-            "continueOnError": false,
-            "alwaysRun": false,
-            "displayName": "Build",
-            "timeoutInMinutes": 0,
-            "condition": "succeeded()",
-            "refName": "DotNetCoreCLI_2",
-            "task": {
-                "id": "5541a522-603c-47ad-91fc-a4b1d163081b",
-                "versionSpec": "1.*",
-                "definitionType": "task"
-            },
-            "inputs": {
-                "command": "build",
-                "publishWebProjects": "true",
-                "projects": "src/AspNetCoreApplication/AspNetCoreApplication.csproj\ntest/AspNetCoreApplication.UnitTests/AspNetCoreApplication.UnitTests.csproj",
-                "arguments": "--configuration $(BuildConfiguration)",
-                "zipAfterPublish": "true"
-            }
-        },
-        {
-            "enabled": true,
-            "continueOnError": false,
-            "alwaysRun": false,
-            "displayName": "UnitTests",
-            "timeoutInMinutes": 0,
-            "condition": "succeeded()",
-            "refName": "DotNetCoreCLI_3",
-            "task": {
-                "id": "5541a522-603c-47ad-91fc-a4b1d163081b",
-                "versionSpec": "1.*",
-                "definitionType": "task"
-            },
-            "inputs": {
-                "command": "test",
-                "publishWebProjects": "true",
-                "projects": "**/*UnitTests/*.csproj",
-                "arguments": "--configuration $(BuildConfiguration)",
-                "zipAfterPublish": "true"
-            }
-        },
-        {
-            "enabled": true,
-            "continueOnError": false,
-            "alwaysRun": false,
-            "displayName": "Publish UnitTests Results",
-            "timeoutInMinutes": 0,
-            "condition": "succeeded()",
-            "refName": "PublishTestResults_4",
-            "task": {
-                "id": "0b0f01ed-7dde-43ff-9cbb-e48954daf9b1",
-                "versionSpec": "2.*",
-                "definitionType": "task"
-            },
-            "inputs": {
-                "testRunner": "XUnit",
-                "testResultsFiles": "**/TEST-*.xml",
-                "searchFolder": "$(System.DefaultWorkingDirectory)",
-                "mergeTestResults": "true",
-                "testRunTitle": "",
-                "platform": "",
-                "configuration": "",
-                "publishRunAttachments": "true"
-            }
-        },
-        {
-            "enabled": true,
-            "continueOnError": false,
-            "alwaysRun": false,
-            "displayName": "Publish Web App",
-            "timeoutInMinutes": 0,
-            "condition": "succeeded()",
-            "refName": "DotNetCoreCLI_5",
-            "task": {
-                "id": "5541a522-603c-47ad-91fc-a4b1d163081b",
-                "versionSpec": "1.*",
-                "definitionType": "task"
-            },
-            "inputs": {
-                "command": "publish",
-                "publishWebProjects": "true",
-                "projects": "",
-                "arguments": "--configuration $(BuildConfiguration) --output pub",
-                "zipAfterPublish": "false"
-            }
-        },
-        {
-            "enabled": false,
-            "continueOnError": false,
-            "alwaysRun": false,
-            "displayName": "NuGet restore",
-            "timeoutInMinutes": 0,
-            "condition": "succeeded()",
-            "refName": "NuGetCommand_9",
-            "task": {
-                "id": "333b11bd-d341-40d9-afcf-b32d5ce6f23b",
-                "versionSpec": "0.*",
-                "definitionType": "task"
-            },
-            "inputs": {
-                "solution": "test/AspNetCoreApplication.UITests/packages.config",
-                "nugetConfigPath": "",
-                "restoreMode": "restore",
-                "noCache": "false",
-                "nuGetRestoreArgs": "",
-                "verbosity": "Detailed",
-                "nuGetVersion": "3.3.0",
-                "nuGetPath": ""
-            }
-        },
-        {
-            "enabled": false,
-            "continueOnError": false,
-            "alwaysRun": false,
-            "displayName": "Build UITests",
-            "timeoutInMinutes": 0,
-            "condition": "succeeded()",
-            "refName": "MSBuild_11",
-            "task": {
-                "id": "c6c4c611-aa2e-4a33-b606-5eaba2196824",
-                "versionSpec": "1.*",
-                "definitionType": "task"
-            },
-            "inputs": {
-                "solution": "test/AspNetCoreApplication.UITests/AspNetCoreApplication.UITests.csproj",
-                "msbuildLocationMethod": "version",
-                "msbuildVersion": "latest",
-                "msbuildArchitecture": "x86",
-                "msbuildLocation": "",
-                "platform": "",
-                "configuration": "$(BuildConfiguration)",
-                "msbuildArguments": "",
-                "clean": "false",
-                "maximumCpuCount": "false",
-                "restoreNugetPackages": "false",
-                "logProjectEvents": "false",
-                "createLogFile": "false"
-            }
-        },
-        {
-            "enabled": true,
-            "continueOnError": false,
-            "alwaysRun": false,
-            "displayName": "Build Docker image",
-            "timeoutInMinutes": 0,
-            "condition": "succeeded()",
-            "refName": "Docker_12",
-            "task": {
-                "id": "e28912f1-0114-4464-802a-a3a35437fd16",
-                "versionSpec": "0.*",
-                "definitionType": "task"
-            },
-            "inputs": {
-                "containerregistrytype": "Azure Container Registry",
-                "dockerRegistryEndpoint": "",
-                "azureSubscriptionEndpoint": "3fcb20b6-eca0-48e5-9e59-35c9822a7152",
-                "azureContainerRegistry": "{\"loginServer\":\"demoregfoo123.azurecr.io\", \"id\" : \"/subscriptions/0bd042ec-b6bc-4162-8385-c05a21d55572/resourcegroups/MyResGroup/providers/Microsoft.ContainerRegistry/registries/demoregfoo123\"}",
-                "action": "Build an image",
-                "dockerFile": "**/Dockerfile",
-                "buildArguments": "source=pub",
-                "defaultContext": "true",
-                "context": "",
-                "imageName": "$(Build.Repository.Name):$(Build.BuildId)",
-                "qualifyImageName": "true",
-                "additionalImageTags": "",
-                "includeSourceTags": "false",
-                "includeLatestTag": "true",
-                "imageDigestFile": "",
-                "containerName": "",
-                "ports": "",
-                "volumes": "",
-                "envVars": "",
-                "workDir": "",
-                "entrypoint": "",
-                "containerCommand": "",
-                "detached": "true",
-                "restartPolicy": "no",
-                "restartMaxRetries": "",
-                "customCommand": "",
-                "dockerHostEndpoint": "",
-                "cwd": "$(System.DefaultWorkingDirectory)"
-            }
-        },
-        {
-            "enabled": true,
-            "continueOnError": false,
-            "alwaysRun": false,
-            "displayName": "Push an image",
-            "timeoutInMinutes": 0,
-            "condition": "succeeded()",
-            "refName": "Docker_13",
-            "task": {
-                "id": "e28912f1-0114-4464-802a-a3a35437fd16",
-                "versionSpec": "0.*",
-                "definitionType": "task"
-            },
-            "inputs": {
-                "containerregistrytype": "Azure Container Registry",
-                "dockerRegistryEndpoint": "",
-                "azureSubscriptionEndpoint": "3fcb20b6-eca0-48e5-9e59-35c9822a7152",
-                "azureContainerRegistry": "{\"loginServer\":\"demoregfoo123.azurecr.io\", \"id\" : \"/subscriptions/0bd042ec-b6bc-4162-8385-c05a21d55572/resourcegroups/MyResGroup/providers/Microsoft.ContainerRegistry/registries/demoregfoo123\"}",
-                "action": "Push an image",
-                "dockerFile": "**/Dockerfile",
-                "buildArguments": "",
-                "defaultContext": "true",
-                "context": "",
-                "imageName": "$(Build.Repository.Name):$(Build.BuildId)",
-                "qualifyImageName": "true",
-                "additionalImageTags": "",
-                "includeSourceTags": "false",
-                "includeLatestTag": "true",
-                "imageDigestFile": "",
-                "containerName": "",
-                "ports": "",
-                "volumes": "",
-                "envVars": "",
-                "workDir": "",
-                "entrypoint": "",
-                "containerCommand": "",
-                "detached": "true",
-                "restartPolicy": "no",
-                "restartMaxRetries": "",
-                "customCommand": "",
-                "dockerHostEndpoint": "",
-                "cwd": "$(System.DefaultWorkingDirectory)"
-            }
-        },
-        {
-            "enabled": true,
-            "continueOnError": false,
-            "alwaysRun": false,
-            "displayName": "Validate ARM Templates",
-            "timeoutInMinutes": 0,
-            "condition": "succeeded()",
-            "refName": "AzureResourceGroupDeployment_12",
-            "task": {
-                "id": "94a74903-f93f-4075-884f-dc11f34058b4",
-                "versionSpec": "2.*",
-                "definitionType": "task"
-            },
-            "inputs": {
-                "ConnectedServiceName": "3fcb20b6-eca0-48e5-9e59-35c9822a7152",
-                "action": "Create Or Update Resource Group",
-                "resourceGroupName": "$(ValidateTemplatesResourceGroup)",
-                "location": "West US",
-                "templateLocation": "Linked artifact",
-                "csmFileLink": "",
-                "csmParametersFileLink": "",
-                "csmFile": "infra/templates/deploy-linux.json",
-                "csmParametersFile": "",
-                "overrideParameters": "-appServicePlanName test -webAppName test -registryName test -dockerImageName test",
-                "deploymentMode": "Validation",
-                "enableDeploymentPrerequisites": "None",
-                "deploymentGroupEndpoint": "",
-                "project": "",
-                "deploymentGroupName": "",
-                "copyAzureVMTags": "true",
-                "outputVariable": ""
-            }
-        },
-        {
-            "enabled": true,
-            "continueOnError": false,
-            "alwaysRun": false,
-            "displayName": "Remove temporary ValidateTemplatesResourceGroup",
-            "timeoutInMinutes": 0,
-            "condition": "succeeded()",
-            "refName": "AzureResourceGroupDeployment_13",
-            "task": {
-                "id": "94a74903-f93f-4075-884f-dc11f34058b4",
-                "versionSpec": "2.*",
-                "definitionType": "task"
-            },
-            "inputs": {
-                "ConnectedServiceName": "3fcb20b6-eca0-48e5-9e59-35c9822a7152",
-                "action": "DeleteRG",
-                "resourceGroupName": "$(ValidateTemplatesResourceGroup)",
-                "location": "",
-                "templateLocation": "Linked artifact",
-                "csmFileLink": "",
-                "csmParametersFileLink": "",
-                "csmFile": "",
-                "csmParametersFile": "",
-                "overrideParameters": "",
-                "deploymentMode": "Incremental",
-                "enableDeploymentPrerequisites": "None",
-                "deploymentGroupEndpoint": "",
-                "project": "",
-                "deploymentGroupName": "",
-                "copyAzureVMTags": "true",
-                "outputVariable": ""
-            }
-        },
-        {
-            "enabled": true,
-            "continueOnError": false,
-            "alwaysRun": false,
-            "displayName": "Publish Artifact: infra",
-            "timeoutInMinutes": 0,
-            "condition": "succeeded()",
-            "refName": "PublishBuildArtifacts_9",
-            "task": {
-                "id": "2ff763a7-ce83-4e1f-bc89-0ae63477cebe",
-                "versionSpec": "1.*",
-                "definitionType": "task"
-            },
-            "inputs": {
-                "PathtoPublish": "infra/templates",
-                "ArtifactName": "infra",
-                "ArtifactType": "Container",
-                "TargetPath": "\\\\my\\share\\$(Build.DefinitionName)\\$(Build.BuildNumber)"
-            }
-        },
-        {
-            "enabled": true,
-            "continueOnError": false,
-            "alwaysRun": false,
-            "displayName": "Publish Artifact: scripts",
-            "timeoutInMinutes": 0,
-            "condition": "succeeded()",
-            "refName": "PublishBuildArtifacts_10",
-            "task": {
-                "id": "2ff763a7-ce83-4e1f-bc89-0ae63477cebe",
-                "versionSpec": "1.*",
-                "definitionType": "task"
-            },
-            "inputs": {
-                "PathtoPublish": "infra/scripts",
-                "ArtifactName": "scripts",
-                "ArtifactType": "Container",
-                "TargetPath": "\\\\my\\share\\$(Build.DefinitionName)\\$(Build.BuildNumber)"
-            }
-        }
-    ],
     "options": [
         {
             "enabled": false,
@@ -451,61 +94,31 @@
             "name": "CanceledBuilds",
             "scope": "refs/heads/master",
             "intValue": 0,
-            "date": "2017-07-09T00:00:00.000Z"
+            "date": "2017-07-21T00:00:00.000Z"
         },
         {
-            "name": "CanceledBuilds",
+            "name": "FailedBuilds",
             "scope": "refs/heads/master",
             "intValue": 0,
-            "date": "2017-07-07T00:00:00.000Z"
-        },
-        {
-            "name": "FailedBuilds",
-            "scope": "refs/heads/master",
-            "intValue": 2,
-            "date": "2017-07-09T00:00:00.000Z"
-        },
-        {
-            "name": "FailedBuilds",
-            "scope": "refs/heads/master",
-            "intValue": 6,
-            "date": "2017-07-07T00:00:00.000Z"
+            "date": "2017-07-21T00:00:00.000Z"
         },
         {
             "name": "PartiallySuccessfulBuilds",
             "scope": "refs/heads/master",
             "intValue": 0,
-            "date": "2017-07-09T00:00:00.000Z"
-        },
-        {
-            "name": "PartiallySuccessfulBuilds",
-            "scope": "refs/heads/master",
-            "intValue": 0,
-            "date": "2017-07-07T00:00:00.000Z"
+            "date": "2017-07-21T00:00:00.000Z"
         },
         {
             "name": "SuccessfulBuilds",
             "scope": "refs/heads/master",
             "intValue": 1,
-            "date": "2017-07-09T00:00:00.000Z"
-        },
-        {
-            "name": "SuccessfulBuilds",
-            "scope": "refs/heads/master",
-            "intValue": 0,
-            "date": "2017-07-07T00:00:00.000Z"
+            "date": "2017-07-21T00:00:00.000Z"
         },
         {
             "name": "TotalBuilds",
             "scope": "refs/heads/master",
-            "intValue": 3,
-            "date": "2017-07-09T00:00:00.000Z"
-        },
-        {
-            "name": "TotalBuilds",
-            "scope": "refs/heads/master",
-            "intValue": 6,
-            "date": "2017-07-07T00:00:00.000Z"
+            "intValue": 1,
+            "date": "2017-07-21T00:00:00.000Z"
         }
     ],
     "_links": {
@@ -523,6 +136,389 @@
     "jobAuthorizationScope": 1,
     "jobTimeoutInMinutes": 60,
     "jobCancelTimeoutInMinutes": 5,
+    "process": {
+        "phases": [
+            {
+                "steps": [
+                    {
+                        "environment": {},
+                        "enabled": true,
+                        "continueOnError": false,
+                        "alwaysRun": false,
+                        "displayName": "Restore",
+                        "timeoutInMinutes": 0,
+                        "condition": "succeeded()",
+                        "refName": "DotNetCoreCLI_1",
+                        "task": {
+                            "id": "5541a522-603c-47ad-91fc-a4b1d163081b",
+                            "versionSpec": "1.*",
+                            "definitionType": "task"
+                        },
+                        "inputs": {
+                            "command": "restore",
+                            "publishWebProjects": "true",
+                            "projects": "**/*.csproj",
+                            "arguments": "",
+                            "zipAfterPublish": "true"
+                        }
+                    },
+                    {
+                        "environment": {},
+                        "enabled": true,
+                        "continueOnError": false,
+                        "alwaysRun": false,
+                        "displayName": "Build",
+                        "timeoutInMinutes": 0,
+                        "condition": "succeeded()",
+                        "refName": "DotNetCoreCLI_2",
+                        "task": {
+                            "id": "5541a522-603c-47ad-91fc-a4b1d163081b",
+                            "versionSpec": "1.*",
+                            "definitionType": "task"
+                        },
+                        "inputs": {
+                            "command": "build",
+                            "publishWebProjects": "true",
+                            "projects": "src/AspNetCoreApplication/AspNetCoreApplication.csproj\ntest/AspNetCoreApplication.UnitTests/AspNetCoreApplication.UnitTests.csproj",
+                            "arguments": "--configuration $(BuildConfiguration)",
+                            "zipAfterPublish": "true"
+                        }
+                    },
+                    {
+                        "environment": {},
+                        "enabled": true,
+                        "continueOnError": false,
+                        "alwaysRun": false,
+                        "displayName": "Run UnitTests",
+                        "timeoutInMinutes": 0,
+                        "condition": "succeeded()",
+                        "refName": "DotNetCoreCLI_3",
+                        "task": {
+                            "id": "5541a522-603c-47ad-91fc-a4b1d163081b",
+                            "versionSpec": "1.*",
+                            "definitionType": "task"
+                        },
+                        "inputs": {
+                            "command": "test",
+                            "publishWebProjects": "true",
+                            "projects": "**/*UnitTests/*.csproj",
+                            "arguments": "--configuration $(BuildConfiguration) --logger:trx",
+                            "zipAfterPublish": "true"
+                        }
+                    },
+                    {
+                        "environment": {},
+                        "enabled": true,
+                        "continueOnError": false,
+                        "alwaysRun": false,
+                        "displayName": "Publish UnitTests Results",
+                        "timeoutInMinutes": 0,
+                        "condition": "succeeded()",
+                        "refName": "PublishTestResults_4",
+                        "task": {
+                            "id": "0b0f01ed-7dde-43ff-9cbb-e48954daf9b1",
+                            "versionSpec": "2.*",
+                            "definitionType": "task"
+                        },
+                        "inputs": {
+                            "testRunner": "VSTest",
+                            "testResultsFiles": "**/*.trx",
+                            "searchFolder": "$(System.DefaultWorkingDirectory)",
+                            "mergeTestResults": "true",
+                            "testRunTitle": "UnitTests",
+                            "platform": "$(BuildPlatform)",
+                            "configuration": "$(BuildConfiguration)",
+                            "publishRunAttachments": "true"
+                        }
+                    },
+                    {
+                        "environment": {},
+                        "enabled": true,
+                        "continueOnError": false,
+                        "alwaysRun": false,
+                        "displayName": "Publish Web App",
+                        "timeoutInMinutes": 0,
+                        "condition": "succeeded()",
+                        "refName": "DotNetCoreCLI_5",
+                        "task": {
+                            "id": "5541a522-603c-47ad-91fc-a4b1d163081b",
+                            "versionSpec": "1.*",
+                            "definitionType": "task"
+                        },
+                        "inputs": {
+                            "command": "publish",
+                            "publishWebProjects": "true",
+                            "projects": "",
+                            "arguments": "--configuration $(BuildConfiguration) --output pub",
+                            "zipAfterPublish": "false"
+                        }
+                    },
+                    {
+                        "environment": {},
+                        "enabled": false,
+                        "continueOnError": false,
+                        "alwaysRun": false,
+                        "displayName": "NuGet restore",
+                        "timeoutInMinutes": 0,
+                        "condition": "succeeded()",
+                        "refName": "NuGetCommand_9",
+                        "task": {
+                            "id": "333b11bd-d341-40d9-afcf-b32d5ce6f23b",
+                            "versionSpec": "0.*",
+                            "definitionType": "task"
+                        },
+                        "inputs": {
+                            "solution": "test/AspNetCoreApplication.UITests/packages.config",
+                            "nugetConfigPath": "",
+                            "restoreMode": "restore",
+                            "noCache": "false",
+                            "nuGetRestoreArgs": "",
+                            "verbosity": "Detailed",
+                            "nuGetVersion": "3.3.0",
+                            "nuGetPath": ""
+                        }
+                    },
+                    {
+                        "environment": {},
+                        "enabled": false,
+                        "continueOnError": false,
+                        "alwaysRun": false,
+                        "displayName": "Build UITests",
+                        "timeoutInMinutes": 0,
+                        "condition": "succeeded()",
+                        "refName": "MSBuild_11",
+                        "task": {
+                            "id": "c6c4c611-aa2e-4a33-b606-5eaba2196824",
+                            "versionSpec": "1.*",
+                            "definitionType": "task"
+                        },
+                        "inputs": {
+                            "solution": "test/AspNetCoreApplication.UITests/AspNetCoreApplication.UITests.csproj",
+                            "msbuildLocationMethod": "version",
+                            "msbuildVersion": "latest",
+                            "msbuildArchitecture": "x86",
+                            "msbuildLocation": "",
+                            "platform": "",
+                            "configuration": "$(BuildConfiguration)",
+                            "msbuildArguments": "",
+                            "clean": "false",
+                            "maximumCpuCount": "false",
+                            "restoreNugetPackages": "false",
+                            "logProjectEvents": "false",
+                            "createLogFile": "false"
+                        }
+                    },
+                    {
+                        "environment": {},
+                        "enabled": true,
+                        "continueOnError": false,
+                        "alwaysRun": false,
+                        "displayName": "Build Docker image",
+                        "timeoutInMinutes": 0,
+                        "condition": "succeeded()",
+                        "refName": "Docker_12",
+                        "task": {
+                            "id": "e28912f1-0114-4464-802a-a3a35437fd16",
+                            "versionSpec": "0.*",
+                            "definitionType": "task"
+                        },
+                        "inputs": {
+                            "containerregistrytype": "Azure Container Registry",
+                            "dockerRegistryEndpoint": "",
+                            "azureSubscriptionEndpoint": "3fcb20b6-eca0-48e5-9e59-35c9822a7152",
+                            "azureContainerRegistry": "{\"loginServer\":\"demoregfoo123.azurecr.io\", \"id\" : \"/subscriptions/0bd042ec-b6bc-4162-8385-c05a21d55572/resourcegroups/MyResGroup/providers/Microsoft.ContainerRegistry/registries/demoregfoo123\"}",
+                            "action": "Build an image",
+                            "dockerFile": "**/Dockerfile",
+                            "buildArguments": "source=pub",
+                            "defaultContext": "true",
+                            "context": "",
+                            "imageName": "$(Build.Repository.Name):$(Build.BuildId)",
+                            "qualifyImageName": "true",
+                            "additionalImageTags": "",
+                            "includeSourceTags": "false",
+                            "includeLatestTag": "true",
+                            "imageDigestFile": "",
+                            "containerName": "",
+                            "ports": "",
+                            "volumes": "",
+                            "envVars": "",
+                            "workDir": "",
+                            "entrypoint": "",
+                            "containerCommand": "",
+                            "detached": "true",
+                            "restartPolicy": "no",
+                            "restartMaxRetries": "",
+                            "customCommand": "",
+                            "dockerHostEndpoint": "",
+                            "cwd": "$(System.DefaultWorkingDirectory)"
+                        }
+                    },
+                    {
+                        "environment": {},
+                        "enabled": true,
+                        "continueOnError": false,
+                        "alwaysRun": false,
+                        "displayName": "Push an image",
+                        "timeoutInMinutes": 0,
+                        "condition": "succeeded()",
+                        "refName": "Docker_13",
+                        "task": {
+                            "id": "e28912f1-0114-4464-802a-a3a35437fd16",
+                            "versionSpec": "0.*",
+                            "definitionType": "task"
+                        },
+                        "inputs": {
+                            "containerregistrytype": "Azure Container Registry",
+                            "dockerRegistryEndpoint": "",
+                            "azureSubscriptionEndpoint": "3fcb20b6-eca0-48e5-9e59-35c9822a7152",
+                            "azureContainerRegistry": "{\"loginServer\":\"demoregfoo123.azurecr.io\", \"id\" : \"/subscriptions/0bd042ec-b6bc-4162-8385-c05a21d55572/resourcegroups/MyResGroup/providers/Microsoft.ContainerRegistry/registries/demoregfoo123\"}",
+                            "action": "Push an image",
+                            "dockerFile": "**/Dockerfile",
+                            "buildArguments": "",
+                            "defaultContext": "true",
+                            "context": "",
+                            "imageName": "$(Build.Repository.Name):$(Build.BuildId)",
+                            "qualifyImageName": "true",
+                            "additionalImageTags": "",
+                            "includeSourceTags": "false",
+                            "includeLatestTag": "true",
+                            "imageDigestFile": "",
+                            "containerName": "",
+                            "ports": "",
+                            "volumes": "",
+                            "envVars": "",
+                            "workDir": "",
+                            "entrypoint": "",
+                            "containerCommand": "",
+                            "detached": "true",
+                            "restartPolicy": "no",
+                            "restartMaxRetries": "",
+                            "customCommand": "",
+                            "dockerHostEndpoint": "",
+                            "cwd": "$(System.DefaultWorkingDirectory)"
+                        }
+                    },
+                    {
+                        "environment": {},
+                        "enabled": true,
+                        "continueOnError": false,
+                        "alwaysRun": false,
+                        "displayName": "Validate ARM Templates",
+                        "timeoutInMinutes": 0,
+                        "condition": "succeeded()",
+                        "refName": "AzureResourceGroupDeployment_12",
+                        "task": {
+                            "id": "94a74903-f93f-4075-884f-dc11f34058b4",
+                            "versionSpec": "2.*",
+                            "definitionType": "task"
+                        },
+                        "inputs": {
+                            "ConnectedServiceName": "3fcb20b6-eca0-48e5-9e59-35c9822a7152",
+                            "action": "Create Or Update Resource Group",
+                            "resourceGroupName": "$(ValidateTemplatesResourceGroup)",
+                            "location": "West US",
+                            "templateLocation": "Linked artifact",
+                            "csmFileLink": "",
+                            "csmParametersFileLink": "",
+                            "csmFile": "infra/templates/deploy-linux.json",
+                            "csmParametersFile": "",
+                            "overrideParameters": "-appServicePlanName test -webAppName test -registryName test -dockerImageName test",
+                            "deploymentMode": "Validation",
+                            "enableDeploymentPrerequisites": "None",
+                            "deploymentGroupEndpoint": "",
+                            "project": "",
+                            "deploymentGroupName": "",
+                            "copyAzureVMTags": "true",
+                            "outputVariable": ""
+                        }
+                    },
+                    {
+                        "environment": {},
+                        "enabled": true,
+                        "continueOnError": false,
+                        "alwaysRun": false,
+                        "displayName": "Remove temporary ValidateTemplatesResourceGroup",
+                        "timeoutInMinutes": 0,
+                        "condition": "succeeded()",
+                        "refName": "AzureResourceGroupDeployment_13",
+                        "task": {
+                            "id": "94a74903-f93f-4075-884f-dc11f34058b4",
+                            "versionSpec": "2.*",
+                            "definitionType": "task"
+                        },
+                        "inputs": {
+                            "ConnectedServiceName": "3fcb20b6-eca0-48e5-9e59-35c9822a7152",
+                            "action": "DeleteRG",
+                            "resourceGroupName": "$(ValidateTemplatesResourceGroup)",
+                            "location": "",
+                            "templateLocation": "Linked artifact",
+                            "csmFileLink": "",
+                            "csmParametersFileLink": "",
+                            "csmFile": "",
+                            "csmParametersFile": "",
+                            "overrideParameters": "",
+                            "deploymentMode": "Incremental",
+                            "enableDeploymentPrerequisites": "None",
+                            "deploymentGroupEndpoint": "",
+                            "project": "",
+                            "deploymentGroupName": "",
+                            "copyAzureVMTags": "true",
+                            "outputVariable": ""
+                        }
+                    },
+                    {
+                        "environment": {},
+                        "enabled": true,
+                        "continueOnError": false,
+                        "alwaysRun": false,
+                        "displayName": "Publish Artifact: infra",
+                        "timeoutInMinutes": 0,
+                        "condition": "succeeded()",
+                        "refName": "PublishBuildArtifacts_9",
+                        "task": {
+                            "id": "2ff763a7-ce83-4e1f-bc89-0ae63477cebe",
+                            "versionSpec": "1.*",
+                            "definitionType": "task"
+                        },
+                        "inputs": {
+                            "PathtoPublish": "infra/templates",
+                            "ArtifactName": "infra",
+                            "ArtifactType": "Container",
+                            "TargetPath": "\\\\my\\share\\$(Build.DefinitionName)\\$(Build.BuildNumber)",
+                            "Parallel": "false",
+                            "ParallelCount": "8"
+                        }
+                    },
+                    {
+                        "environment": {},
+                        "enabled": true,
+                        "continueOnError": false,
+                        "alwaysRun": false,
+                        "displayName": "Publish Artifact: scripts",
+                        "timeoutInMinutes": 0,
+                        "condition": "succeeded()",
+                        "refName": "PublishBuildArtifacts_10",
+                        "task": {
+                            "id": "2ff763a7-ce83-4e1f-bc89-0ae63477cebe",
+                            "versionSpec": "1.*",
+                            "definitionType": "task"
+                        },
+                        "inputs": {
+                            "PathtoPublish": "infra/scripts",
+                            "ArtifactName": "scripts",
+                            "ArtifactType": "Container",
+                            "TargetPath": "\\\\my\\share\\$(Build.DefinitionName)\\$(Build.BuildNumber)",
+                            "Parallel": "false",
+                            "ParallelCount": "8"
+                        }
+                    }
+                ],
+                "name": null,
+                "jobAuthorizationScope": 0
+            }
+        ],
+        "type": 1
+    },
     "repository": {
         "properties": {
             "connectedServiceId": "f9b57a60-743f-45be-9b4a-29d40aba4261",
@@ -571,8 +567,8 @@
     "uri": "vstfs:///Build/Definition/26",
     "path": "\\",
     "type": 2,
-    "revision": 25,
-    "createdDate": "2017-07-12T15:31:38.817Z",
+    "revision": 28,
+    "createdDate": "2017-07-21T15:21:22.487Z",
     "project": {
         "id": "a09df269-8b88-43bb-b742-396def59efaa",
         "name": "AspNetCoreApplication",

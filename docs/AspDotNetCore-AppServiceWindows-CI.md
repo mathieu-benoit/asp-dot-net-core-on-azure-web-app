@@ -40,17 +40,23 @@ TODO
   - Command = build
   - Project(s) = src/AspNetCoreApplication/AspNetCoreApplication.csproj\ntest/AspNetCoreApplication.UnitTests/AspNetCoreApplication.UnitTests.csproj
   - Arguments = --configuration $(BuildConfiguration)
-- UnitTests
+- Run UnitTests
   - Type = .NET Core
   - Version = 1.*
   - Command = test
   - Project(s) = **/*UnitTests/*.csproj
-  - Arguments = --configuration $(BuildConfiguration) -xml TEST-TestResults.xml
-- Publish Test Results
+  - Arguments = --configuration $(BuildConfiguration) --logger:trx
+- Publish UnitTests Results
   - Type = Publish Test Results
   - Version = 2.*
-  - Test Result Format = XUnit
-  - Test Results Files = **/TEST-*.xml
+  - Test Result Format = VSTest
+  - Test Results Files = **/*.trx
+  - Search folder = $(System.DefaultWorkingDirectory)
+  - Merge test results = true
+  - Test run title = UnitTests
+  - Platform = $(BuildPlatform)
+  - Configuration = $(BuildConfiguration)
+  - Upload test results files = true
 - Publish Web App
   - Type = .NET Core
   - Version = 1.*
