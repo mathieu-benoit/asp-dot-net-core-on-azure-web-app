@@ -1,5 +1,11 @@
 Here is one example to Release an ASP.NET Core 1.1 web application to an App Service (Windows). You could adapt it with your own context, needs and constraints.
 
+2 ways to create the associated Release Definition + another one just to deploy the Azure services:
+
+- [Import the Release Definition](#import-the-release-definition)
+- [Create manually the Release Definition](#create-manually-the-release-definition)
+- [Deploy to Azure buttons](#deploy-to-azure-buttons)
+
 # Import the Release Definition
 
 You could import [the associated Release Definition stored in this repository](/vsts/AspDotNetCore-AppServiceWindows-CD.json) and then follow these steps to adapt it to your current project, credentials, etc.:
@@ -185,3 +191,11 @@ TODO
   - Script Type = Script File Path
   - Script Path = $(System.DefaultWorkingDirectory)/AspDotNetCore-AppServiceWindows-CI/scripts/[AddResourceGroupLock.ps1](../infra/scripts/AddResourceGroupLock.ps1)
   - Script Arguments = $(ResourceGroupName)
+
+# Deploy to Azure buttons
+
+By using the buttons below it's another way to deploy the Azure services without VSTS and without taking into account the web app, just deploying the infrastructure within Azure.
+
+Deploy the Azure App Service (Windows) and its associated services within the Azure portal:
+
+<a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fmathieu-benoit%2Fasp-dot-net-core-on-azure-web-app%2Fmaster%2Finfra%2FAspNetCoreApplication.Infrastructure%2Ftemplates%2Fdeploy-windows.json" target="_blank">![Deploy to Azure](http://azuredeploy.net/deploybutton.png)</a>

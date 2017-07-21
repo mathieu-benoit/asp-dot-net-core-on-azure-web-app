@@ -7,7 +7,7 @@ Param(
 )
 
 #Login-AzureRmAccount
-#Select-AzureSubscription "MySubscription"
+#Select-AzureRmSubscription -SubscriptionId $SubscriptionId;
 New-AzureRmResourceGroup -Name $ResourceGroupName -Location $ResourceGroupLocation
 New-AzureRmResourceGroupDeployment -Name $ResourceGroupName `
                                        -ResourceGroupName $ResourceGroupName `

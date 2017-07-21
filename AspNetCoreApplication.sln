@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26621.2
+VisualStudioVersion = 15.0.26711.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{D02777E3-31E1-40C9-B114-485E07E71B84}"
 EndProject
@@ -32,7 +32,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "imgs", "imgs", "{2E879452-6
 		docs\imgs\AspDotNetCore-AppServiceWindows-CD-Staging.PNG = docs\imgs\AspDotNetCore-AppServiceWindows-CD-Staging.PNG
 		docs\imgs\AspDotNetCore-AppServiceWindows-CI.PNG = docs\imgs\AspDotNetCore-AppServiceWindows-CI.PNG
 		docs\imgs\Overview.PNG = docs\imgs\Overview.PNG
-		docs\imgs\Process.PNG = docs\imgs\Process.PNG
+		docs\imgs\Visual-Studio-Solution-Structure-Overview.PNG = docs\imgs\Visual-Studio-Solution-Structure-Overview.PNG
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "vsts", "vsts", "{CA831602-A9B1-4D3E-92B6-EB318594EE26}"

@@ -1,5 +1,12 @@
 Here is one example to Build an ASP.NET Core 1.1 web application to an App Service (Linux) via VSTS. You could adapt it with your own context, needs and constraints.
 
+For now, because we canno't yet reference the Azure Container Registry via a variable within the VSTS Docker task, [you will need to create manually the Azure Container Registry like explained here](#prerequisities-create-mmanually-an-azure-container-registry).
+
+2 ways to create the associated Build Definition:
+
+- [Import the Build Definition](#import-the-build-definition)
+- [Create manually the Build Definition](#create-manually-the-build-definition)
+
 ![Build Overview](/docs/imgs/AspDotNetCore-AppServiceLinux-CI.PNG)
 
 # Prerequisities - Create manually an Azure Container Registry
@@ -29,7 +36,7 @@ az acr create --admin-enabled --sku Basic --verbose -l westus -n demoregfoo123 -
 
 # Import the Build Definition
 
-You could import [the associated Build Definition stored in this repository](/vsts/AspDotNetCore-AppServiceLinuxs-CI.json) and then follow these steps to adapt it to your current project, credentials, etc.:
+You could import [the associated Build Definition stored in this repository](/vsts/AspDotNetCore-AppServiceLinux-CI.json) and then follow these steps to adapt it to your current project, credentials, etc.:
 
 TODO
 
