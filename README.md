@@ -4,8 +4,8 @@ TOC
 
 - [History of changes](#history-of-changes)
 - [Overview](#overview)
-- [App Service (Windows) - Build and Release Definitions with VSTS](#build-definition-with-vsts)
-- [App Service (Linux) - Build and Release Definitions with VSTS](#release-definition-with-vsts)
+- [App Service (Windows) - Build and Release Definitions with VSTS](#app-service-windows---build-and-release-definitions-with-vsts)
+- [App Service (Linux) - Build and Release Definitions with VSTS](#app-service-linux---build-and-release-definitions-with-vsts)
 - [Other Misc DevOps practices implemented](#other-misc-devops-practices-implemented)
 - [Alternatives and potantial further considerations](#alternatives-and-potantial-further-considerations)
 - [Resources](#resources)
@@ -32,7 +32,7 @@ To be able to deploy  the Azure services (Function App, Application Insights, et
 
 ![Architecture Overview](/docs/imgs/Process-Overview-Windows.PNG)
 
-Details could be found here: [Build - CI](/docs/AspDotNetCore-AppServiceWindows-CI.md)
+For the Build definition, details could be found here: [Build - CI](/docs/AspDotNetCore-AppServiceWindows-CI.md)
 
 Here are the DevOps practices highlighted within this CI pipeline:
 - CI/Build triggered at each commit on the master branch
@@ -43,7 +43,7 @@ Here are the DevOps practices highlighted within this CI pipeline:
 - Expose artifacts to be used then by the CD pipeline (WebDeploy package, ARM Templates, PowerShell scripts and UITests (Selenium) dlls)
 - Create a bug work item on build failure (assign to requestor)
 
-Details could be found here: [Release - CD](/docs/AspDotNetCore-AppServiceWindows-CD.md)
+For the Release definition, details could be found here: [Release - CD](/docs/AspDotNetCore-AppServiceWindows-CD.md)
 
 Here are the DevOps practices highlighted within this CD pipeline:
 - CD triggered at each CI/Build succesfully completed
@@ -59,7 +59,7 @@ Here are the DevOps practices highlighted within this CD pipeline:
 
 ![Architecture Overview](/docs/imgs/Process-Overview-Linux.PNG)
 
-Details could be found here: [Build - CI](/docs/AspDotNetCore-AppServiceLinux-CI.md)
+For the Build definition, details could be found here: [Build - CI](/docs/AspDotNetCore-AppServiceLinux-CI.md)
 
 Here are the DevOps practices highlighted within this CI pipeline:
 - CI/Build triggered at each commit on the master branch
@@ -71,7 +71,7 @@ Here are the DevOps practices highlighted within this CI pipeline:
 - Expose artifacts to be used then by the CD pipeline (ARM Templates, PowerShell scripts and UITests (Selenium) dlls)
 - Create a bug work item on build failure (assign to requestor)
 
-Details could be found here: [Release - CD](/docs/AspDotNetCore-AppServiceLinux-CD.md)
+For the Release definition, details could be found here: [Release - CD](/docs/AspDotNetCore-AppServiceLinux-CD.md)
 
 Here are the DevOps practices highlighted within this CD pipeline:
 - CD triggered at each CI/Build succesfully completed
