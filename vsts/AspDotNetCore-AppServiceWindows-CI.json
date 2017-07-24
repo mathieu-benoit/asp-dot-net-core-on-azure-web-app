@@ -94,7 +94,19 @@
             "name": "CanceledBuilds",
             "scope": "refs/heads/master",
             "intValue": 0,
+            "date": "2017-07-24T00:00:00.000Z"
+        },
+        {
+            "name": "CanceledBuilds",
+            "scope": "refs/heads/master",
+            "intValue": 0,
             "date": "2017-07-21T00:00:00.000Z"
+        },
+        {
+            "name": "FailedBuilds",
+            "scope": "refs/heads/master",
+            "intValue": 2,
+            "date": "2017-07-24T00:00:00.000Z"
         },
         {
             "name": "FailedBuilds",
@@ -106,13 +118,31 @@
             "name": "PartiallySuccessfulBuilds",
             "scope": "refs/heads/master",
             "intValue": 0,
+            "date": "2017-07-24T00:00:00.000Z"
+        },
+        {
+            "name": "PartiallySuccessfulBuilds",
+            "scope": "refs/heads/master",
+            "intValue": 0,
             "date": "2017-07-21T00:00:00.000Z"
+        },
+        {
+            "name": "SuccessfulBuilds",
+            "scope": "refs/heads/master",
+            "intValue": 3,
+            "date": "2017-07-24T00:00:00.000Z"
         },
         {
             "name": "SuccessfulBuilds",
             "scope": "refs/heads/master",
             "intValue": 1,
             "date": "2017-07-21T00:00:00.000Z"
+        },
+        {
+            "name": "TotalBuilds",
+            "scope": "refs/heads/master",
+            "intValue": 5,
+            "date": "2017-07-24T00:00:00.000Z"
         },
         {
             "name": "TotalBuilds",
@@ -189,7 +219,7 @@
                         "enabled": true,
                         "continueOnError": false,
                         "alwaysRun": false,
-                        "displayName": "UnitTests",
+                        "displayName": "Run UnitTests",
                         "timeoutInMinutes": 0,
                         "condition": "succeeded()",
                         "refName": "DotNetCoreCLI_3",
@@ -236,7 +266,7 @@
                         "enabled": true,
                         "continueOnError": false,
                         "alwaysRun": false,
-                        "displayName": "Publish Web App",
+                        "displayName": "Package Web App",
                         "timeoutInMinutes": 0,
                         "condition": "succeeded()",
                         "refName": "DotNetCoreCLI_5",
@@ -255,54 +285,32 @@
                     },
                     {
                         "environment": {},
-                        "enabled": false,
+                        "enabled": true,
                         "continueOnError": false,
                         "alwaysRun": false,
-                        "displayName": "NuGet restore",
+                        "displayName": "NuGet restore - UITests",
                         "timeoutInMinutes": 0,
                         "condition": "succeeded()",
                         "refName": "NuGetCommand_9",
                         "task": {
                             "id": "333b11bd-d341-40d9-afcf-b32d5ce6f23b",
-                            "versionSpec": "2.*",
+                            "versionSpec": "0.*",
                             "definitionType": "task"
                         },
                         "inputs": {
-                            "command": "restore",
                             "solution": "test/AspNetCoreApplication.UITests/packages.config",
-                            "selectOrConfig": "config",
-                            "feedRestore": "",
-                            "includeNuGetOrg": "true",
                             "nugetConfigPath": "",
-                            "externalEndpoints": "",
+                            "restoreMode": "restore",
                             "noCache": "false",
-                            "packagesDirectory": "",
-                            "verbosityRestore": "Detailed",
-                            "searchPatternPush": "$(Build.ArtifactStagingDirectory)/*.nupkg",
-                            "nuGetFeedType": "internal",
-                            "feedPublish": "",
-                            "allowPackageConflicts": "false",
-                            "externalEndpoint": "",
-                            "verbosityPush": "Detailed",
-                            "searchPatternPack": "**/*.csproj",
-                            "configurationToPack": "$(BuildConfiguration)",
-                            "outputDir": "$(Build.ArtifactStagingDirectory)",
-                            "versioningScheme": "off",
-                            "includeReferencedProjects": "false",
-                            "versionEnvVar": "",
-                            "requestedMajorVersion": "1",
-                            "requestedMinorVersion": "0",
-                            "requestedPatchVersion": "0",
-                            "packTimezone": "utc",
-                            "includeSymbols": "false",
-                            "buildProperties": "",
-                            "verbosityPack": "Detailed",
-                            "arguments": ""
+                            "nuGetRestoreArgs": "-PackagesDirectory $(System.DefaultWorkingDirectory)/packages",
+                            "verbosity": "-",
+                            "nuGetVersion": "4.0.0.2283",
+                            "nuGetPath": ""
                         }
                     },
                     {
                         "environment": {},
-                        "enabled": false,
+                        "enabled": true,
                         "continueOnError": false,
                         "alwaysRun": false,
                         "displayName": "Build UITests",
@@ -320,7 +328,7 @@
                             "msbuildVersion": "latest",
                             "msbuildArchitecture": "x86",
                             "msbuildLocation": "",
-                            "platform": "",
+                            "platform": "$(BuildPlatform)",
                             "configuration": "$(BuildConfiguration)",
                             "msbuildArguments": "",
                             "clean": "false",
@@ -403,7 +411,7 @@
                         "enabled": true,
                         "continueOnError": false,
                         "alwaysRun": true,
-                        "displayName": "Publish Artifact: web",
+                        "displayName": "Publish Artifact: web-app",
                         "timeoutInMinutes": 0,
                         "condition": "succeededOrFailed()",
                         "refName": "PublishBuildArtifacts_6",
@@ -466,6 +474,52 @@
                             "Parallel": "false",
                             "ParallelCount": "8"
                         }
+                    },
+                    {
+                        "environment": {},
+                        "enabled": true,
+                        "continueOnError": false,
+                        "alwaysRun": false,
+                        "displayName": "Copy Files: ui-tests",
+                        "timeoutInMinutes": 0,
+                        "condition": "succeeded()",
+                        "refName": "CopyFiles13",
+                        "task": {
+                            "id": "5bfb729a-a7c8-4a78-a7c3-8d717bb7c13c",
+                            "versionSpec": "2.*",
+                            "definitionType": "task"
+                        },
+                        "inputs": {
+                            "SourceFolder": "$(build.sourcesdirectory)/test/AspNetCoreApplication.UITests/bin/$(BuildConfiguration)",
+                            "Contents": "**",
+                            "TargetFolder": "$(build.artifactstagingdirectory)/ui-tests",
+                            "CleanTargetFolder": "false",
+                            "OverWrite": "false",
+                            "flattenFolders": "false"
+                        }
+                    },
+                    {
+                        "environment": {},
+                        "enabled": true,
+                        "continueOnError": false,
+                        "alwaysRun": false,
+                        "displayName": "Publish Artifact: ui-tests",
+                        "timeoutInMinutes": 0,
+                        "condition": "succeeded()",
+                        "refName": "ClonedPublishBuildArtifacts_914",
+                        "task": {
+                            "id": "2ff763a7-ce83-4e1f-bc89-0ae63477cebe",
+                            "versionSpec": "1.*",
+                            "definitionType": "task"
+                        },
+                        "inputs": {
+                            "PathtoPublish": "$(build.artifactstagingdirectory)/ui-tests",
+                            "ArtifactName": "ui-tests",
+                            "ArtifactType": "Container",
+                            "TargetPath": "\\\\my\\share\\$(Build.DefinitionName)\\$(Build.BuildNumber)",
+                            "Parallel": "false",
+                            "ParallelCount": "8"
+                        }
                     }
                 ],
                 "name": null,
@@ -522,8 +576,8 @@
     "uri": "vstfs:///Build/Definition/25",
     "path": "\\",
     "type": 2,
-    "revision": 33,
-    "createdDate": "2017-07-21T15:01:56.317Z",
+    "revision": 43,
+    "createdDate": "2017-07-24T22:26:09.000Z",
     "project": {
         "id": "a09df269-8b88-43bb-b742-396def59efaa",
         "name": "AspNetCoreApplication",

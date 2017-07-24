@@ -198,4 +198,4 @@ By using the buttons below it's another way to deploy the Azure services without
 
 Deploy the Azure App Service (Windows) and its associated services within the Azure portal:
 
-<a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fmathieu-benoit%2Fasp-dot-net-core-on-azure-web-app%2Fmaster%2Finfra%2FAspNetCoreApplication.Infrastructure%2Ftemplates%2Fdeploy-windows.json" target="_blank">![Deploy to Azure](http://azuredeploy.net/deploybutton.png)</a>
+<a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fmathieu-benoit%2Fasp-dot-net-core-on-azure-web-app%2Fmaster%2Finfra%2Fdeploy-windows.json" target="_blank">![Deploy to Azure](http://azuredeploy.net/deploybutton.png)</a>

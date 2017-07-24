@@ -1,4 +1,4 @@
-﻿using System;
+﻿using System.Runtime.InteropServices;
 
 namespace AspNetCoreApplication.Services
 {
@@ -8,7 +8,7 @@ namespace AspNetCoreApplication.Services
         {
             get
             {
-                return "Your application description page.";
+                return RuntimeInformation.OSDescription;
             }
         }
 

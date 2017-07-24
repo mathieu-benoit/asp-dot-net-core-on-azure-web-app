@@ -189,8 +189,4 @@ By using the buttons below it's another way to deploy the Azure services without
 
 Deploy the Azure App Service (Linux) and its associated services within the Azure portal:
 
-<a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fmathieu-benoit%2Fasp-dot-net-core-on-azure-web-app%2Fmaster%2Finfra%2FAspNetCoreApplication.Infrastructure%2Ftemplates%2Fdeploy-linux.json" target="_blank">![Deploy to Azure](http://azuredeploy.net/deploybutton.png)</a>
-
-Deploy the Azure Container Registry and its associated Blob Storage within the Azure portal:
-
-<a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fmathieu-benoit%2Fasp-dot-net-core-on-azure-web-app%2Fmaster%2Finfra%2FAspNetCoreApplication.Infrastructure%2Ftemplates%2FContainerRegistry.json" target="_blank">![Deploy to Azure](http://azuredeploy.net/deploybutton.png)</a>
+<a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fmathieu-benoit%2Fasp-dot-net-core-on-azure-web-app%2Fmaster%2Finfra%2Fdeploy-linux.json" target="_blank">![Deploy to Azure](http://azuredeploy.net/deploybutton.png)</a>

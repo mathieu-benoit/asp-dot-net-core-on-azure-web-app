@@ -62,13 +62,29 @@ TODO
   - Platform = $(BuildPlatform)
   - Configuration = $(BuildConfiguration)
   - Upload test results files = true
-- Publish Web App
+- Package Web App
   - Type = .NET Core
   - Version = 1.*
   - Command = publish
   - Publish Web Projects = true
   - Arguments = --configuration $(BuildConfiguration) --output $(build.artifactstagingdirectory)
   - Zip Published Projects = true
+- NuGet restore - UITests
+  - Type = NuGet Installer
+  - Version = 0.*
+  - Path to solution or packages.config = test/AspNetCoreApplication.UITests/packages.config
+  - Installation type = Restore
+  - NuGet arguments = -PackagesDirectory $(System.DefaultWorkingDirectory)/packages
+  - NuGet Version (Advanced) = 4.0.0
+- Build UITests
+  - Type = MSBuild
+  - Version 1.*
+  - Project = test/AspNetCoreApplication.UITests/AspNetCoreApplication.UITests.csproj
+  - MSBuild = Version
+  - MSBuild Version = Latest
+  - MSBuild Architecture = MSBuild x86
+  - Platform = $(BuildPlatform)
+  - Configuration = $(BuildConfiguration)
 - Validate ARM Templates
   - Type = Azure Resource Group Deployment
   - Version = 2.*
@@ -77,7 +93,7 @@ TODO
   - Resource group = $(ValidateTemplatesResourceGroup)
   - Location = East US
   - Template location = Linked artifact
-  - Template = infra/templates/deploy-windows.json
+  - Template = infra/templates/[deploy-windows.json](../infra/templates/deploy-windows.json)
   - Override template parameters = -appServicePlanName test -webAppName test
   - Deployment mode = Validation only
 - Remove temporary ValidateTemplatesResourceGroup
@@ -86,7 +102,7 @@ TODO
   - Azure subscription = set appropriate
   - Action = Delete resource group
   - Resource group = $(ValidateTemplatesResourceGroup)
-- Publish Artifact: web
+- Publish Artifact: web-app
   - Type = Publish Build Artifacts
   - Version = 1.*
   - Path to publish = $(build.artifactstagingdirectory)
@@ -103,4 +119,16 @@ TODO
   - Version = 1.*
   - Path to publish = infra/scripts
   - Artifact Name = scripts
+  - Artifact Type = Server
+- Copy Files: ui-tests
+  - Type = Copy Files
+  - Version = 2.*
+  - Source Folder = $(build.sourcesdirectory)/test/AspNetCoreApplication.UITests/bin/$(BuildConfiguration)
+  - Content = **
+  - Target Folder = $(build.artifactstagingdirectory)/ui-tests
+- Publish Artifact: ui-tests
+  - Type = Publish Build Artifacts
+  - Version = 1.*
+  - Path to Publish = $(build.artifactstagingdirectory)/ui-tests
+  - Artifact Name = ui-tests
   - Artifact Type = Server
