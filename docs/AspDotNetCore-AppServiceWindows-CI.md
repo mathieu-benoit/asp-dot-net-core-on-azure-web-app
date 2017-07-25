@@ -83,7 +83,6 @@ TODO
   - MSBuild = Version
   - MSBuild Version = Latest
   - MSBuild Architecture = MSBuild x86
-  - Platform = $(BuildPlatform)
   - Configuration = $(BuildConfiguration)
 - Validate ARM Templates
   - Type = Azure Resource Group Deployment

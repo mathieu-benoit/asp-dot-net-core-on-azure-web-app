@@ -3,7 +3,7 @@
 Param(
     [string] $ResourceGroupLocation = 'East US',
     [string] [Parameter(Mandatory=$true)] $ResourceGroupName,
-    [string] $TemplateFile = '..\templates\AppServicePlan.json'
+    [string] $TemplateFile = '..\templates\deploy-windows.json'
 )
 
 #Login-AzureRmAccount

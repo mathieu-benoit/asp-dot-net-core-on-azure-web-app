@@ -10,18 +10,6 @@
             "type": "string",
             "minLength": 1
         },
-        "registryName": {
-            "type": "string",
-            "metadata": {
-                "description": "Container registry name, must be globally unique"
-            }
-        },
-        "dockerImageName": {
-            "type": "string",
-            "metadata": {
-                "description": "Docker image containing your app"
-            }
-        },
         "templateLinkBase": {
             "type": "string",
             "minLength": 1,
@@ -32,12 +20,12 @@
     "resources": [
         {
             "apiVersion": "2015-01-01",
-            "name": "[concat(deployment().name, '-webapp-linux')]",
+            "name": "[concat(deployment().name, '-slot-windows')]",
             "type": "Microsoft.Resources/deployments",
             "properties": {
                 "mode": "Incremental",
                 "templateLink": {
-                    "uri": "[concat(parameters('templateLinkBase'), 'nested/WebAppLinux.json')]"
+                    "uri": "[concat(parameters('templateLinkBase'), 'nested/WebAppSlotWindows.json')]"
                 },
                 "parameters": {
                     "appServicePlanName": {
@@ -45,12 +33,6 @@
                     },
                     "webAppName": {
                         "value": "[parameters('webAppName')]"
-                    },
-                    "registryName": {
-                        "value": "[parameters('registryName')]"
-                    },
-                    "dockerImageName": {
-                        "value": "[parameters('dockerImageName')]"
                     }
                 }
             }

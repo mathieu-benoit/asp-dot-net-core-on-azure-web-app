@@ -50,20 +50,25 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "scripts", "scripts", "{4E6F
 	ProjectSection(SolutionItems) = preProject
 		infra\scripts\AddResourceGroupLock.ps1 = infra\scripts\AddResourceGroupLock.ps1
 		infra\scripts\DeployARMTemplate.ps1 = infra\scripts\DeployARMTemplate.ps1
+		infra\scripts\TestARMTemplate.ps1 = infra\scripts\TestARMTemplate.ps1
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "templates", "templates", "{7E6F2235-EBCD-4F78-AFC7-0F032C33CD9A}"
 	ProjectSection(SolutionItems) = preProject
-		infra\templates\ApplicationInsights.json = infra\templates\ApplicationInsights.json
 		infra\templates\ContainerRegistry.json = infra\templates\ContainerRegistry.json
 		infra\templates\deploy-linux.json = infra\templates\deploy-linux.json
 		infra\templates\deploy-windows.json = infra\templates\deploy-windows.json
-		infra\templates\SqlDatabase.json = infra\templates\SqlDatabase.json
-		infra\templates\WebAppLinux.json = infra\templates\WebAppLinux.json
-		infra\templates\WebAppSettings.json = infra\templates\WebAppSettings.json
-		infra\templates\WebAppSlot.json = infra\templates\WebAppSlot.json
-		infra\templates\WebAppSlotSettings.json = infra\templates\WebAppSlotSettings.json
-		infra\templates\WebAppWindows.json = infra\templates\WebAppWindows.json
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "nested", "nested", "{33DE95DE-DCE8-458F-A620-3340AF2E8A86}"
+	ProjectSection(SolutionItems) = preProject
+		infra\templates\nested\ApplicationInsights.json = infra\templates\nested\ApplicationInsights.json
+		infra\templates\nested\SqlDatabase.json = infra\templates\nested\SqlDatabase.json
+		infra\templates\nested\WebAppLinux.json = infra\templates\nested\WebAppLinux.json
+		infra\templates\nested\WebAppSettings.json = infra\templates\nested\WebAppSettings.json
+		infra\templates\nested\WebAppSlotSettings.json = infra\templates\nested\WebAppSlotSettings.json
+		infra\templates\nested\WebAppSlotWindows.json = infra\templates\nested\WebAppSlotWindows.json
+		infra\templates\nested\WebAppWindows.json = infra\templates\nested\WebAppWindows.json
 	EndProjectSection
 EndProject
 Global
@@ -95,6 +100,7 @@ Global
 		{2E879452-6E6E-4ACF-B786-5C9061029B20} = {08DD53D4-88C4-4470-BF6C-63FD789A6E48}
 		{4E6FA04D-993F-4F63-BCE4-80D237192CAF} = {311822C6-CC4A-4A78-BE83-C5F462683B75}
 		{7E6F2235-EBCD-4F78-AFC7-0F032C33CD9A} = {311822C6-CC4A-4A78-BE83-C5F462683B75}
+		{33DE95DE-DCE8-458F-A620-3340AF2E8A86} = {7E6F2235-EBCD-4F78-AFC7-0F032C33CD9A}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {9B740634-CDEC-4E86-B090-6576568FE53A}

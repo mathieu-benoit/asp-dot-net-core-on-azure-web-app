@@ -94,6 +94,12 @@
             "name": "CanceledBuilds",
             "scope": "refs/heads/master",
             "intValue": 0,
+            "date": "2017-07-25T00:00:00.000Z"
+        },
+        {
+            "name": "CanceledBuilds",
+            "scope": "refs/heads/master",
+            "intValue": 0,
             "date": "2017-07-24T00:00:00.000Z"
         },
         {
@@ -106,6 +112,12 @@
             "name": "FailedBuilds",
             "scope": "refs/heads/master",
             "intValue": 2,
+            "date": "2017-07-25T00:00:00.000Z"
+        },
+        {
+            "name": "FailedBuilds",
+            "scope": "refs/heads/master",
+            "intValue": 2,
             "date": "2017-07-24T00:00:00.000Z"
         },
         {
@@ -118,6 +130,12 @@
             "name": "PartiallySuccessfulBuilds",
             "scope": "refs/heads/master",
             "intValue": 0,
+            "date": "2017-07-25T00:00:00.000Z"
+        },
+        {
+            "name": "PartiallySuccessfulBuilds",
+            "scope": "refs/heads/master",
+            "intValue": 0,
             "date": "2017-07-24T00:00:00.000Z"
         },
         {
@@ -125,6 +143,12 @@
             "scope": "refs/heads/master",
             "intValue": 0,
             "date": "2017-07-21T00:00:00.000Z"
+        },
+        {
+            "name": "SuccessfulBuilds",
+            "scope": "refs/heads/master",
+            "intValue": 1,
+            "date": "2017-07-25T00:00:00.000Z"
         },
         {
             "name": "SuccessfulBuilds",
@@ -137,6 +161,12 @@
             "scope": "refs/heads/master",
             "intValue": 1,
             "date": "2017-07-21T00:00:00.000Z"
+        },
+        {
+            "name": "TotalBuilds",
+            "scope": "refs/heads/master",
+            "intValue": 3,
+            "date": "2017-07-25T00:00:00.000Z"
         },
         {
             "name": "TotalBuilds",
@@ -328,7 +358,7 @@
                             "msbuildVersion": "latest",
                             "msbuildArchitecture": "x86",
                             "msbuildLocation": "",
-                            "platform": "$(BuildPlatform)",
+                            "platform": "",
                             "configuration": "$(BuildConfiguration)",
                             "msbuildArguments": "",
                             "clean": "false",
@@ -410,10 +440,10 @@
                         "environment": {},
                         "enabled": true,
                         "continueOnError": false,
-                        "alwaysRun": true,
+                        "alwaysRun": false,
                         "displayName": "Publish Artifact: web-app",
                         "timeoutInMinutes": 0,
-                        "condition": "succeededOrFailed()",
+                        "condition": "succeeded()",
                         "refName": "PublishBuildArtifacts_6",
                         "task": {
                             "id": "2ff763a7-ce83-4e1f-bc89-0ae63477cebe",
@@ -576,8 +606,8 @@
     "uri": "vstfs:///Build/Definition/25",
     "path": "\\",
     "type": 2,
-    "revision": 43,
-    "createdDate": "2017-07-24T22:26:09.000Z",
+    "revision": 46,
+    "createdDate": "2017-07-25T15:23:01.997Z",
     "project": {
         "id": "a09df269-8b88-43bb-b742-396def59efaa",
         "name": "AspNetCoreApplication",

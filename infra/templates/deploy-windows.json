@@ -20,12 +20,12 @@
     "resources": [
         {
             "apiVersion": "2015-01-01",
-            "name": "webapp-linux",
+            "name": "[concat(deployment().name, '-webapp-windows')]",
             "type": "Microsoft.Resources/deployments",
             "properties": {
                 "mode": "Incremental",
                 "templateLink": {
-                    "uri": "[concat(parameters('templateLinkBase'), 'WebAppWindows.json')]"
+                    "uri": "[concat(parameters('templateLinkBase'), 'nested/WebAppWindows.json')]"
                 },
                 "parameters": {
                     "appServicePlanName": {
