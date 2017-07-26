@@ -100,3 +100,4 @@ Here are the DevOps practices highlighted within this CD pipeline:
 # Resources
 
 - TODO
+- [Azure App Service on Linux Release Notes](https://github.com/Azure-App-Service/ReleaseNotes/blob/master/README.md)

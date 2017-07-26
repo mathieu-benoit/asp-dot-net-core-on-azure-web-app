@@ -4,7 +4,8 @@
   "parameters": {
     "databaseName": {
       "type": "string",
-      "minLength": 1
+      "minLength": 1,
+      "defaultValue": "[resourceGroup().name]"
     },
     "adminLogin": {
       "type": "string",

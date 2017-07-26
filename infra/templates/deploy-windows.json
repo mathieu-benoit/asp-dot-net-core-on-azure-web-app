@@ -4,11 +4,18 @@
     "parameters": {
         "appServicePlanName": {
             "type": "string",
-            "minLength": 1
+            "minLength": 1,
+            "defaultValue": "[resourceGroup().name]"
         },
         "webAppName": {
             "type": "string",
-            "minLength": 1
+            "minLength": 1,
+            "defaultValue": "[resourceGroup().name]"
+        },
+        "appInsightsName": {
+            "type": "string",
+            "minLength": 1,
+            "defaultValue": "[resourceGroup().name]"
         },
         "templateLinkBase": {
             "type": "string",
@@ -16,16 +23,58 @@
             "defaultValue": "https://raw.githubusercontent.com/mathieu-benoit/asp-dot-net-core-on-azure-web-app/master/infra/templates/"
         }
     },
-    "variables": {},
+    "variables": {
+        "applicationInsightsDeploymentName": "[concat(deployment().name, '-applicationInsights')]",
+        "webAppDeploymentName": "[concat(deployment().name, '-webapp')]",
+        "webAppSettingsDeploymentName": "[concat(deployment().name, '-webapp-settings')]"
+    },
     "resources": [
         {
             "apiVersion": "2015-01-01",
-            "name": "[concat(deployment().name, '-webapp-windows')]",
+            "name": "[variables('applicationInsightsDeploymentName')]",
             "type": "Microsoft.Resources/deployments",
             "properties": {
                 "mode": "Incremental",
                 "templateLink": {
+                    "uri": "[concat(parameters('templateLinkBase'), 'nested/ApplicationInsights.json')]"
+                },
+                "parameters": {
+                    "appInsightsName": {
+                        "value": "[parameters('appInsightsName')]"
+                    }
+                }
+            }
+        },
+        {
+            "apiVersion": "2015-01-01",
+            "name": "[variables('webAppDeploymentName')]",
+            "type": "Microsoft.Resources/deployments",
+            "dependsOn": [
+                "[concat('Microsoft.Resources/deployments/', variables('applicationInsightsDeploymentName'))]"
+            ],
+            "properties": {
+                "mode": "Incremental",
+                "templateLink": {
                     "uri": "[concat(parameters('templateLinkBase'), 'nested/WebAppWindows.json')]"
+                },
+                "parameters": {
+                    "appInsightsName": {
+                        "value": "[parameters('appInsightsName')]"
+                    }
+                }
+            }
+        },
+        {
+            "apiVersion": "2015-01-01",
+            "name": "[variables('webAppSettingsDeploymentName')]",
+            "type": "Microsoft.Resources/deployments",
+            "dependsOn": [
+                "[concat('Microsoft.Resources/deployments/', variables('webAppDeploymentName'))]"
+            ],
+            "properties": {
+                "mode": "Incremental",
+                "templateLink": {
+                    "uri": "[concat(parameters('templateLinkBase'), 'nested/WebAppSettings.json')]"
                 },
                 "parameters": {
                     "appServicePlanName": {

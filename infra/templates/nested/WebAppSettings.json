@@ -6,23 +6,27 @@
       "type": "string",
       "minLength": 1
     },
+    "appInsightsName": {
+      "type": "string",
+      "minLength": 1
+    },
+    "serverName": {
+      "type": "string",
+      "minLength": 1
+    },
+    "databaseName": {
+      "type": "string",
+      "minLength": 1
+    },
     "adminLogin": {
       "type": "string",
       "minLength": 1
     },
     "adminLoginPassword": {
       "type": "securestring"
-    },
-    "remoteDebuggingEnabled": {
-      "type": "bool",
-      "defaultValue": false
     }
   },
-  "variables": {
-    "appInsightsName": "[parameters('webAppName')]",
-    "serverName": "[resourceGroup().name]",
-    "databasePrefixName": "[parameters('webAppName')]"
-  },
+  "variables": { },
   "resources": [
     {
       "apiVersion": "2016-08-01",
@@ -34,8 +38,7 @@
         "use32BitWorkerProcess": false,
         "webSocketsEnabled": true,
         "alwaysOn": true,
-        "remoteDebuggingEnabled": "[parameters('remoteDebuggingEnabled')]",
-        "remoteDebuggingVersion": "VS2015"
+        "remoteDebuggingVersion": "VS2017"
       }
     },
     {
@@ -45,7 +48,7 @@
       "dependsOn": [],
       "properties": {
         "Data:DefaultConnection:ConnectionString": {
-          "value": "[concat('Server=tcp:', reference(concat('Microsoft.Sql/servers/', variables('serverName')), '2014-04-01').fullyQualifiedDomainName, ',1433;Initial Catalog=', variables('databasePrefixName'), ';Persist Security Info=False;User Id=', parameters('adminLogin'), ';Password=', parameters('adminLoginPassword'), ';MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;')]",
+          "value": "[concat('Server=tcp:', reference(concat('Microsoft.Sql/servers/', parameters('serverName')), '2014-04-01').fullyQualifiedDomainName, ',1433;Initial Catalog=', parameters('databaseName'), ';Persist Security Info=False;User Id=', parameters('adminLogin'), ';Password=', parameters('adminLoginPassword'), ';MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;')]",
           "type": "SQLAzure"
         }
       }
@@ -56,7 +59,7 @@
       "type": "Microsoft.Web/sites/config",
       "dependsOn": [],
       "properties": {
-        "ApplicationInsights:InstrumentationKey": "[reference(concat('Microsoft.Insights/components/', variables('appInsightsName')), '2015-05-01').InstrumentationKey]"
+        "ApplicationInsights:InstrumentationKey": "[reference(concat('Microsoft.Insights/components/', parameters('appInsightsName')), '2015-05-01').InstrumentationKey]"
       }
     },
     {

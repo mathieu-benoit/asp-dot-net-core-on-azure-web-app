@@ -35,7 +35,7 @@ TODO
 - Location = East US
 
 ### Steps 
-- (Ensure) App Service Plan and Web App
+- Ensure Production Web App exists
   - Type = Azure Resource Group Deployment
   - Version = 2.*
   - Azure Subscription = set appropriate
@@ -46,7 +46,7 @@ TODO
   - Template = $(System.DefaultWorkingDirectory)/AspDotNetCore-AppServiceWindows-CI/infra/[deploy-windows.json](../infra/templates/deploy-windows.json)
   - Override Template Parameters = -webAppName $(ResourceGroupName) -appServicePlanName $(ResourceGroupName)
   - Deployment Mode = Incremental
-- Slot
+- Provision Staging
   - Type = Azure Resource Group Deployment
   - Version = 2.*
   - Azure Subscription = set appropriate
@@ -57,39 +57,14 @@ TODO
   - Template = $(System.DefaultWorkingDirectory)/AspDotNetCore-AppServiceWindows-CI/infra/[WebAppSlot.json](../infra/templates/WebAppSlot.json)
   - Override Template Parameters = -webAppName $(ResourceGroupName) -slotName $(SlotName)
   - Deployment Mode = Incremental
-- App Insights
-  - Type = Azure Resource Group Deployment
-  - Version = 2.*
+- Copy database from Production
+  - Type = Azure PowerShell
+  - Version = 0.*
+  - Azure Connection Type = Azure Resource Manager
   - Azure Subscription = set appropriate
-  - Action = Create Or Update Resource Group
-  - Resource Group = $(ResourceGroupName)
-  - Location = $(Location)
-  - Template location = Linked artifact
-  - Template = $(System.DefaultWorkingDirectory)/AspDotNetCore-AppServiceWindows-CI/infra/[ApplicationInsights.json](../infra/templates/ApplicationInsights.json)
-  - Override Template Parameters = -appInsightsName $(ResourceGroupName)-$(SlotName)
-  - Deployment Mode = Incremental
-- Sql Database
-  - Type = Azure Resource Group Deployment
-  - Version = 2.*
-  - Azure Subscription = set appropriate
-  - Action = Create Or Update Resource Group
-  - Resource Group = $(ResourceGroupName)
-  - Location = $(Location)
-  - Template location = Linked artifact
-  - Template = $(System.DefaultWorkingDirectory)/AspDotNetCore-AppServiceWindows-CI/infra/[SqlDatabase.json](../infra/templates/SqlDatabase.json)
-  - Override Template Parameters = -databaseName $(ResourceGroupName)-$(SlotName) -adminLogin $(AdministratorLogin) -adminLoginPassword (ConvertTo-SecureString -String '$(AdministratorLoginPassword)' -AsPlainText -Force)
-  - Deployment Mode = Incremental
-- Slot App Settings
-  - Type = Azure Resource Group Deployment
-  - Version = 2.*
-  - Azure Subscription = set appropriate
-  - Action = Create Or Update Resource Group
-  - Resource Group = $(ResourceGroupName)
-  - Location = $(Location)
-  - Template location = Linked artifact
-  - Template = $(System.DefaultWorkingDirectory)/AspDotNetCore-AppServiceWindows-CI/infra/[WebAppSlotSettings.json](../infra/templates/WebAppSlotSettings.json)
-  - Override Template Parameters = -webAppName $(ResourceGroupName) -slotName $(SlotName) -adminLogin $(AdministratorLogin) -adminLoginPassword (ConvertTo-SecureString -String '$(AdministratorLoginPassword)' -AsPlainText -Force)
-  - Deployment Mode = Incremental
+  - Script Type = Script File Path
+  - Script Path = TODO
+  - Script Arguments = TODO
 - Deploy Web App
   - Type = Azure App Service Deploy
   - Version = 3.*
@@ -101,6 +76,21 @@ TODO
   - Package or Folder = $(System.DefaultWorkingDirectory)/AspDotNetCore-AppServiceWindows-CI/infra/AspNetCoreApplication.zip
   - Publish using Web Deploy = true
   - Take App Offline = true
+- Run UITests
+  - Type = Visual Studio Test
+  - Version = 2.*
+  - Select tests using = Test assemblies
+  - Test assemblies = *UITests.dll
+  - Search folder = $(System.DefaultWorkingDirectory)/AspDotNetCore-AppServiceWindows-CI/ui-tests
+  - Test filter criteria = TestCategory=UITests
+  - Select test platform using = Version
+  - Test paltform version = Latest
+  - Settings file = $(System.DefaultWorkingDirectory)/ApsNetCore-AppServiceWindows-CI/ui-tests/TestRunParameters.runsettings
+  - Override test run parameters = -BaseUrl https://$(ResourceGroupName)-$(SlotName).azurewebsites.net -Browser PhantomJS
+  - Test run title = UITests
+  - Build Platform = $(ReleasePlatform)
+  - Build Configuration = $(ReleaseConfiguration)
+  - Upload test attachments = true
 - Quick Web Performance Test Load
   - Type = Cloud-based Web Performance Test
   - Version = 1.*
@@ -130,50 +120,24 @@ TODO
 - Location = East US
 
 ### Steps
-- (Ensure) App Service Plan and Web App
-  - Type = Azure Resource Group Deployment
-  - Version = 2.*
+
+- Stop Staging
+  - Type = Azure App Service Manage (PREVIEW)
+  - Version = 0.*
   - Azure Subscription = set appropriate
-  - Action = Create Or Update Resource Group
+  - Action = Stop App Service
+  - App Service Name = $(ResourceGroupName)
+  - Specify Slot = true
   - Resource Group = $(ResourceGroupName)
-  - Location = $(Location)
-  - Template location = Linked artifact
-  - Template = $(System.DefaultWorkingDirectory)/AspDotNetCore-AppServiceWindows-CI/infra/[deploy-windows.json](../infra/templates/deploy-windows.json)
-  - Override Template Parameters = -webAppName $(ResourceGroupName) -appServicePlanName $(ResourceGroupName)
-  - Deployment Mode = Incremental
-- App Insights
-  - Type = Azure Resource Group Deployment
-  - Version = 2.*
+  - Slot = $(SlotToSwap)
+- Copy database from Production (Backup plan)
+  - Type = Azure PowerShell
+  - Version = 0.*
+  - Azure Connection Type = Azure Resource Manager
   - Azure Subscription = set appropriate
-  - Action = Create Or Update Resource Group
-  - Resource Group = $(ResourceGroupName)
-  - Location = $(Location)
-  - Template location = Linked artifact
-  - Template = $(System.DefaultWorkingDirectory)/AspDotNetCore-AppServiceWindows-CI/infra/[ApplicationInsights.json](../infra/templates/ApplicationInsights.json)
-  - Override Template Parameters = -appInsightsName $(ResourceGroupName)
-  - Deployment Mode = Incremental
-- Sql Database
-  - Type = Azure Resource Group Deployment
-  - Version = 2.*
-  - Azure Subscription = set appropriate
-  - Action = Create Or Update Resource Group
-  - Resource Group = $(ResourceGroupName)
-  - Location = $(Location)
-  - Template location = Linked artifact
-  - Template = $(System.DefaultWorkingDirectory)/AspDotNetCore-AppServiceWindows-CI/infra/[SqlDatabase.json](../infra/templates/SqlDatabase.json)
-  - Override Template Parameters = -databaseName $(ResourceGroupName) -adminLogin $(AdministratorLogin) -adminLoginPassword (ConvertTo-SecureString -String '$(AdministratorLoginPassword)' -AsPlainText -Force)
-  - Deployment Mode = Incremental
-- App Settings
-  - Type = Azure Resource Group Deployment
-  - Version = 2.*
-  - Azure Subscription = set appropriate
-  - Action = Create Or Update Resource Group
-  - Resource Group = $(ResourceGroupName)
-  - Location = $(Location)
-  - Template location = Linked artifact
-  - Template = $(System.DefaultWorkingDirectory)/AspDotNetCore-AppServiceWindows-CI/infra/[WebAppSettings.json](../infra/templates/WebAppSettings.json)
-  - Override Template Parameters = -webAppName $(ResourceGroupName)  -adminLogin $(AdministratorLogin) -adminLoginPassword (ConvertTo-SecureString -String '$(AdministratorLoginPassword)' -AsPlainText -Force)
-  - Deployment Mode = Incremental
+  - Script Type = Script File Path
+  - Script Path = TODO
+  - Script Arguments = TODO
 - Swap Staging to Production
   - Type = Azure App Service Manage (PREVIEW)
   - Version = 0.*
@@ -183,6 +147,18 @@ TODO
   - Resource Group = $(ResourceGroupName)
   - Source Slot = $(SlotToSwap)
   - Swap with Production = true
+- Check Production URL
+  - Type = [Check URL Status](https://marketplace.visualstudio.com/items?itemName=saeidbabaei.checkUrl)
+  - URL = https://$(ResourceGroupName).azurewebsites.net
+- Start Staging
+  - Type = Azure App Service Manage (PREVIEW)
+  - Version = 0.*
+  - Azure Subscription = set appropriate
+  - Action = Start App Service
+  - App Service Name = $(ResourceGroupName)
+  - Specify Slot = true
+  - Resource Group = $(ResourceGroupName)
+  - Slot = $(SlotToSwap)
 - Set Resource Group Lock
   - Type = Azure PowerShell
   - Version = 1.*
@@ -191,6 +167,40 @@ TODO
   - Script Type = Script File Path
   - Script Path = $(System.DefaultWorkingDirectory)/AspDotNetCore-AppServiceWindows-CI/scripts/[AddResourceGroupLock.ps1](../infra/scripts/AddResourceGroupLock.ps1)
   - Script Arguments = $(ResourceGroupName)
+
+### General remark
+
+  For the "Set Resource Group Lock" step, you will need to make sure that your default Service Principal user created by VSTS (during the Azure RM service endpoint creation) has the Owner role and not by default the Contributor role. Otherwise this task will fail. To assign the Owner role, you could go to the Access control (IAM) blade of your Azure subscription within the new Azure portal and then Assign (Add button) the associated VisualStudioSPN... user to the Owner role.
+
+## Rollback Environment
+
+This environment should be used just if necessary when the bad things happened in Production just after this release pipeline. It allows to be prepared by automation to rollback the changed and get back to the previous version.
+
+![Rollback Release Overview](/docs/imgs/AspDotNetCore-AppServiceWindows-CD-Rollback.PNG)
+
+### Pre-deploymnet conditions
+
+- Triggers
+  - Select the source of the trigger = Environment
+  - Environment(s) that will trigger a deployment = Production
+- Pre-deployment approvers
+  - Approval type = Specific users
+  - Select approvers = set appropriate
+
+### Tasks
+
+- Rollback Swap
+  - Type = Azure App Service Manage (PREVIEW)
+  - Version = 0.*
+  - Azure Subscription = set appropriate
+  - Action = Swap Slots
+  - App Service Name = $(ResourceGroupName)
+  - Resource Group = $(ResourceGroupName)
+  - Source Slot = $(SlotToSwap)
+  - Swap with Production = true
+- Check Production URL
+  - Type = [Check URL Status](https://marketplace.visualstudio.com/items?itemName=saeidbabaei.checkUrl)
+  - URL = https://$(ResourceGroupName).azurewebsites.net
 
 # Deploy to Azure buttons
 

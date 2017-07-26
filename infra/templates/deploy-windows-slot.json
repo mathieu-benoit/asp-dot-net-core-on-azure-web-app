@@ -4,11 +4,13 @@
     "parameters": {
         "appServicePlanName": {
             "type": "string",
-            "minLength": 1
+            "minLength": 1,
+            "defaultValue": "[resourceGroup().name]"
         },
         "webAppName": {
             "type": "string",
-            "minLength": 1
+            "minLength": 1,
+            "defaultValue": "[resourceGroup().name]"
         },
         "templateLinkBase": {
             "type": "string",

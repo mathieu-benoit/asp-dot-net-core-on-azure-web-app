@@ -16,10 +16,6 @@
     },
     "adminLoginPassword": {
       "type": "securestring"
-    },
-    "remoteDebuggingEnabled": {
-      "type": "bool",
-      "defaultValue": false
     }
   },
   "variables": {
@@ -38,8 +34,7 @@
         "use32BitWorkerProcess": false,
         "webSocketsEnabled": true,
         "alwaysOn": true,
-        "remoteDebuggingEnabled": "[parameters('remoteDebuggingEnabled')]",
-        "remoteDebuggingVersion": "VS2015"
+        "remoteDebuggingVersion": "VS2017"
       }
     },
     {
