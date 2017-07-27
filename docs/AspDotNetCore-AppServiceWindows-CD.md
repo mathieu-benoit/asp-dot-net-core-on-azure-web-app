@@ -76,6 +76,9 @@ TODO
   - Package or Folder = $(System.DefaultWorkingDirectory)/AspDotNetCore-AppServiceWindows-CI/infra/AspNetCoreApplication.zip
   - Publish using Web Deploy = true
   - Take App Offline = true
+- Check Staging URL
+  - Type = [Check URL Status](https://marketplace.visualstudio.com/items?itemName=saeidbabaei.checkUrl)
+  - URL = https://$(ResourceGroupName)-$(SlotName).azurewebsites.net
 - Run UITests
   - Type = Visual Studio Test
   - Version = 2.*

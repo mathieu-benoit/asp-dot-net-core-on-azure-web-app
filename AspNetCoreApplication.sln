@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26720.2
+VisualStudioVersion = 15.0.26724.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{D02777E3-31E1-40C9-B114-485E07E71B84}"
 EndProject
@@ -26,10 +26,12 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "imgs", "imgs", "{2E879452-6E6E-4ACF-B786-5C9061029B20}"
 	ProjectSection(SolutionItems) = preProject
 		docs\imgs\AspDotNetCore-AppServiceLinux-CD-Production.PNG = docs\imgs\AspDotNetCore-AppServiceLinux-CD-Production.PNG
+		docs\imgs\AspDotNetCore-AppServiceLinux-CD-Rollback.PNG = docs\imgs\AspDotNetCore-AppServiceLinux-CD-Rollback.PNG
 		docs\imgs\AspDotNetCore-AppServiceLinux-CD-Staging.PNG = docs\imgs\AspDotNetCore-AppServiceLinux-CD-Staging.PNG
 		docs\imgs\AspDotNetCore-AppServiceLinux-CD.PNG = docs\imgs\AspDotNetCore-AppServiceLinux-CD.PNG
 		docs\imgs\AspDotNetCore-AppServiceLinux-CI.PNG = docs\imgs\AspDotNetCore-AppServiceLinux-CI.PNG
 		docs\imgs\AspDotNetCore-AppServiceWindows-CD-Production.PNG = docs\imgs\AspDotNetCore-AppServiceWindows-CD-Production.PNG
+		docs\imgs\AspDotNetCore-AppServiceWindows-CD-Rollback.PNG = docs\imgs\AspDotNetCore-AppServiceWindows-CD-Rollback.PNG
 		docs\imgs\AspDotNetCore-AppServiceWindows-CD-Staging.PNG = docs\imgs\AspDotNetCore-AppServiceWindows-CD-Staging.PNG
 		docs\imgs\AspDotNetCore-AppServiceWindows-CD.PNG = docs\imgs\AspDotNetCore-AppServiceWindows-CD.PNG
 		docs\imgs\AspDotNetCore-AppServiceWindows-CI.PNG = docs\imgs\AspDotNetCore-AppServiceWindows-CI.PNG
@@ -49,6 +51,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "scripts", "scripts", "{4E6FA04D-993F-4F63-BCE4-80D237192CAF}"
 	ProjectSection(SolutionItems) = preProject
 		infra\scripts\AddResourceGroupLock.ps1 = infra\scripts\AddResourceGroupLock.ps1
+		infra\scripts\CopyAzureSqlDatabase.ps1 = infra\scripts\CopyAzureSqlDatabase.ps1
 		infra\scripts\DeployARMTemplate.ps1 = infra\scripts\DeployARMTemplate.ps1
 		infra\scripts\TestARMTemplate.ps1 = infra\scripts\TestARMTemplate.ps1
 	EndProjectSection

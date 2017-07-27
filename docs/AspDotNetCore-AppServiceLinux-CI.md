@@ -118,7 +118,7 @@ TODO
   - Image Name = $(Build.Repository.Name):$(Build.BuildId)
   - Qualify Image Name = true
   - Include Latest Tags = true
-- Push an image
+- Push Docker image
   - Type = Docker (PREVIEW)
   - Version = 0.* (preview)
   - Container Registry Type = Azure Container Registry

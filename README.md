@@ -88,7 +88,7 @@ Here are the DevOps practices highlighted within this CD pipeline:
 - GitHub as source control to leverage key features for collaboration such as feature-branch with pull request, etc.
 - CI/CD definitions as Code with the exported json file of the Build and Release Definitions
 
-# Alternatives and potantial further considerations
+# Alternatives and potential further considerations
 
 - Improvements
     - [Configure VSTS and Microsoft Teams](https://almvm.azurewebsites.net/labs/vsts/teams/) (or Slack or HipChat, etc.) to add more collaboration by setting up notifications once a work item is updated, a commit is done, a build or release or done, etc.
