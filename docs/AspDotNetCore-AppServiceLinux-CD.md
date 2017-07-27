@@ -29,6 +29,12 @@ TODO
 - Location = East US
 
 ### Steps 
+- NuGet restore - UITests
+  - NuGet Installer
+  - TODO
+- Build UI Tests
+  - Type = MSBuild
+  - TODO
 - Ensure Production Web App exists
   - Type = Azure Resource Group Deployment
   - Version = 2.*
