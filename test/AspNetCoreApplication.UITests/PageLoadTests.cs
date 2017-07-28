@@ -1,5 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium.Chrome;
+using OpenQA.Selenium.Edge;
 using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium.IE;
 using OpenQA.Selenium.PhantomJS;
@@ -40,6 +41,9 @@ namespace AspNetCoreApplication.UITests
                     break;
                 case "PhantomJS":
                     driver = new PhantomJSDriver();
+                    break;
+                case "Edge":
+                    driver = new EdgeDriver();
                     break;
                 default:
                     driver = new PhantomJSDriver();

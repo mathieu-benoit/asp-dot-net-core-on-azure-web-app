@@ -90,6 +90,7 @@ TODO
   - Test paltform version = Latest
   - Settings file = $(System.DefaultWorkingDirectory)/ApsNetCore-AppServiceWindows-CI/ui-tests/TestRunParameters.runsettings
   - Override test run parameters = -BaseUrl https://$(ResourceGroupName)-$(SlotName).azurewebsites.net -Browser PhantomJS
+  - Code coverage enabled = true
   - Test run title = UITests
   - Build Platform = $(ReleasePlatform)
   - Build Configuration = $(ReleaseConfiguration)
