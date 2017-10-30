@@ -1,4 +1,4 @@
-Here is one example to Build an ASP.NET Core 1.1 web application to an App Service (Linux) via VSTS. You could adapt it with your own context, needs and constraints.
+Here is one example to Build an ASP.NET Core 2.0 web application to an App Service (Linux) via VSTS. You could adapt it with your own context, needs and constraints.
 
 For now, because we canno't yet reference the Azure Container Registry via a variable within the VSTS Docker task, [you will need to create manually the Azure Container Registry like explained here](#prerequisities-create-mmanually-an-azure-container-registry).
 

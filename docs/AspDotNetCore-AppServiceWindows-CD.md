@@ -1,4 +1,4 @@
-Here is one example to Release an ASP.NET Core 1.1 web application to an App Service (Windows). You could adapt it with your own context, needs and constraints.
+Here is one example to Release an ASP.NET Core 2.0 web application to an App Service (Windows). You could adapt it with your own context, needs and constraints.
 
 2 ways to create the associated Release Definition + another one just to deploy the Azure services:
 

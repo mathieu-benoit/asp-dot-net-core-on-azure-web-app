@@ -1,4 +1,4 @@
-ALM and DevOps practices with a sample ASP.NET Core 1.1 web app hosted in Azure Web App (Windows and Linux).
+ALM and DevOps practices with a sample ASP.NET Core 2.0 web app hosted in Azure Web App (Windows and Linux).
 
 TOC
 
@@ -12,6 +12,7 @@ TOC
 
 # History of changes
 
+- October 2017 - Update to ASP.NET Core 2.0.
 - (in progress) July 2017 - Setup deployment as App Service (Linux)
 - June 2017 - Update to ASP.NET Core 1.1.
 - November 2016 - Initial setup deployment as App Service (Windows) [for my presentation "Your DevOps journey starts with ALM!" at the Agile Tour Quebec city 2016](http://aka.ms/mabenoit-atq2016)
