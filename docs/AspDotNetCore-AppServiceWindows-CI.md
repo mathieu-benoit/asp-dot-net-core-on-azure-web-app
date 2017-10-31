@@ -119,15 +119,9 @@ TODO
   - Path to publish = infra/scripts
   - Artifact Name = scripts
   - Artifact Type = Server
-- Copy Files: ui-tests
-  - Type = Copy Files
-  - Version = 2.*
-  - Source Folder = $(build.sourcesdirectory)/test/AspNetCoreApplication.UITests/bin/$(BuildConfiguration)
-  - Content = **
-  - Target Folder = $(build.artifactstagingdirectory)/ui-tests
 - Publish Artifact: ui-tests
   - Type = Publish Build Artifacts
   - Version = 1.*
-  - Path to Publish = $(build.artifactstagingdirectory)/ui-tests
+  - Path to Publish = $(build.sourcesdirectory)/test/AspNetCoreApplication.UITests/bin/$(BuildConfiguration)
   - Artifact Name = ui-tests
   - Artifact Type = Server
