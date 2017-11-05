@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26724.1
+VisualStudioVersion = 15.0.27019.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{D02777E3-31E1-40C9-B114-485E07E71B84}"
 EndProject
@@ -59,7 +59,9 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "templates", "templates", "{7E6F2235-EBCD-4F78-AFC7-0F032C33CD9A}"
 	ProjectSection(SolutionItems) = preProject
 		infra\templates\ContainerRegistry.json = infra\templates\ContainerRegistry.json
+		infra\templates\deploy-linux-slot.json = infra\templates\deploy-linux-slot.json
 		infra\templates\deploy-linux.json = infra\templates\deploy-linux.json
+		infra\templates\deploy-windows-slot.json = infra\templates\deploy-windows-slot.json
 		infra\templates\deploy-windows.json = infra\templates\deploy-windows.json
 	EndProjectSection
 EndProject

@@ -17,9 +17,9 @@ namespace AspNetCoreApplication.UITests
 
             //Assert
             Assert.IsFalse(string.IsNullOrEmpty(Driver.Title));
-            Assert.IsTrue(Driver.Title.Equals("Home Page - DemoApp"));
+            Assert.AreEqual(Driver.Title, "Home Page - DemoApp");
             Assert.IsFalse(string.IsNullOrEmpty(Driver.Url));
-            Assert.IsTrue(Driver.Url == homepageUrl);
+            Assert.AreEqual(Driver.Url, homepageUrl);
         }
     }
 }
