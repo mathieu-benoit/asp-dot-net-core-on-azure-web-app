@@ -25,11 +25,11 @@ Create an Azure Container Service via [Azure CLI 2.0](https://aka.ms/azcli-docs)
 - Launch [Cloud Shell](https://docs.microsoft.com/en-us/azure/cloud-shell/quickstart) from the top navigation of the Azure portal
 - List the subsriptions you have access to:
 ```
-az account list
+az account list --output table
 ```
 - Set your preferred subscription:
 ```
-az account set --subscription my-subscription-name
+az account set --subscription my-subscription-name-or-id
 ```
 - Create a resource group:
 ```
@@ -40,7 +40,7 @@ az group create -l westus -n MyRG
 az acr create --admin-enabled --sku Basic --verbose -l westus -n demoregfoo123 -g MyRG 
 ```
 
-## Create an Azure Container Service via a "Deploy to Azure" button
+## Create an Azure Container Registry via a "Deploy to Azure" button
 
 <a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fmathieu-benoit%2Fasp-dot-net-core-on-azure-web-app%2Fmaster%2Finfra%2Ftemplates%2FContainerRegistry.json" target="_blank">![Deploy to Azure](http://azuredeploy.net/deploybutton.png)</a>
 

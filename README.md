@@ -7,7 +7,7 @@ TOC
 - [App Service (Windows) - Build and Release Definitions with VSTS](#app-service-windows---build-and-release-definitions-with-vsts)
 - [App Service (Linux) - Build and Release Definitions with VSTS](#app-service-linux---build-and-release-definitions-with-vsts)
 - [Other Misc DevOps practices implemented](#other-misc-devops-practices-implemented)
-- [Alternatives and potantial further considerations](#alternatives-and-potantial-further-considerations)
+- [Alternatives and potential further considerations](#alternatives-and-potential-further-considerations)
 - [Resources](#resources)
 
 # History of changes

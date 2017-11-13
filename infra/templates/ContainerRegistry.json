@@ -28,6 +28,9 @@
             "name": "[parameters('registryName')]",
             "type": "Microsoft.ContainerRegistry/registries",
             "apiVersion": "2016-06-27-preview",
+            "dependsOn": [
+              "[concat('Microsoft.Storage/storageAccounts/', variables('storageAccountName'))]"
+          ],
             "tags": {},
             "location": "[resourceGroup().location]",
             "sku": {
