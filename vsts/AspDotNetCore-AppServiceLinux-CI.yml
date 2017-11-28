@@ -53,7 +53,7 @@ phases:
     inputs:
       containerregistrytype: Azure Container Registry
       azureContainerRegistry: "{\"loginServer\":\"demoregfoo123.azurecr.io\", \"id\":\"/subscriptions/0bd042ec-b6bc-4162-8385-c05a21d55572/resourcegroups/MyResGroup/providers/Microsoft.ContainerRegistry/registries/demoregfoo123\"}"
-      azureSubscriptionEndpoint: "3fcb20b6-eca0-48e5-9e59-35c9822a7152"
+      azureSubscriptionEndpoint: "Microsoft Azure Internal Consumption (0bd042ec-b6bc-4162-8385-c05a21d55572)"
       action: Push an image
       imageName: $(Build.Repository.Name):$(Build.BuildId)
       workDir: $(System.DefaultWorkingDirectory)
