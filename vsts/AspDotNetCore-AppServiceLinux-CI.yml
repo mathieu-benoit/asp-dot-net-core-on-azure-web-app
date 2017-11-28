@@ -6,6 +6,7 @@ phases:
     BuildConfiguration: release
     DOTNET_SKIP_FIRST_TIME_EXPERIENCE: true
     NUGET_XMLDOC_MODE: skip
+    DotNetCorePackagingFolder: pub
   steps:
   #web app
   - task: dotNetCoreCLI@1
@@ -36,7 +37,7 @@ phases:
   - task: dotNetCoreCLI@1
     inputs:
       command: publish
-      arguments: --configuration $(BuildConfiguration) --output $(Build.ArtifactStagingDirectory)
+      arguments: --configuration $(BuildConfiguration)  --output $(DotNetCorePackagingFolder)
       zipAfterPublish: true
     displayName: dotnet publish
   - task: Docker@0
@@ -45,7 +46,7 @@ phases:
       azureContainerRegistry: ASR
       action: Build an image
       dockerFile: "**/Dockerfile"
-      buildArguments: source=pub
+      buildArguments: source=$(DotNetCorePackagingFolder)
       imageName: $(Build.Repository.Name):$(Build.BuildId)
       workDir: $(System.DefaultWorkingDirectory)
       includeLatestTag: true
