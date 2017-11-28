@@ -41,9 +41,8 @@ phases:
     displayName: dotnet publish
   - task: Docker@0
     inputs:
-      containerregistrytype: Azure Container Registry
-      azureSubscriptionEndpoint: Microsoft Azure Internal Consumption (0bd042ec-b6bc-4162-8385-c05a21d55572)
-      azureContainerRegistry: demoregfoo123
+      containerregistrytype: Container Registry
+      azureContainerRegistry: ASR
       action: Build an image
       dockerFile: "**/Dockerfile"
       buildArguments: source=pub
@@ -53,9 +52,8 @@ phases:
     displayName: Build Docker image
   - task: Docker@0
     inputs:
-      containerregistrytype: Azure Container Registry
-      azureSubscriptionEndpoint: Microsoft Azure Internal Consumption (0bd042ec-b6bc-4162-8385-c05a21d55572)
-      azureContainerRegistry: demoregfoo123
+      containerregistrytype: Container Registry
+      azureContainerRegistry: ASR
       action: Push an image
       imageName: $(Build.Repository.Name):$(Build.BuildId)
       workDir: $(System.DefaultWorkingDirectory)
