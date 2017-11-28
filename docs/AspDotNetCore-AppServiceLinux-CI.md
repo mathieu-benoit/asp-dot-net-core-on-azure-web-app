@@ -71,6 +71,7 @@ TODO
 - Default agent queue = Hosted Linux Preview
 
 ## Steps 
+
 - Restore
   - Type = .NET Core
   - Version = 1.*

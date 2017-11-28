@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.27019.1
+VisualStudioVersion = 15.0.27110.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{D02777E3-31E1-40C9-B114-485E07E71B84}"
 EndProject
@@ -43,9 +43,9 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "vsts", "vsts", "{CA831602-A9B1-4D3E-92B6-EB318594EE26}"
 	ProjectSection(SolutionItems) = preProject
 		vsts\AspDotNetCore-AppServiceLinux-CD.json = vsts\AspDotNetCore-AppServiceLinux-CD.json
-		vsts\AspDotNetCore-AppServiceLinux-CI.json = vsts\AspDotNetCore-AppServiceLinux-CI.json
+		vsts\AspDotNetCore-AppServiceLinux-CI.yml = vsts\AspDotNetCore-AppServiceLinux-CI.yml
 		vsts\AspDotNetCore-AppServiceWindows-CD.json = vsts\AspDotNetCore-AppServiceWindows-CD.json
-		vsts\AspDotNetCore-AppServiceWindows-CI.json = vsts\AspDotNetCore-AppServiceWindows-CI.json
+		vsts\AspDotNetCore-AppServiceWindows-CI.yml = vsts\AspDotNetCore-AppServiceWindows-CI.yml
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "scripts", "scripts", "{4E6FA04D-993F-4F63-BCE4-80D237192CAF}"

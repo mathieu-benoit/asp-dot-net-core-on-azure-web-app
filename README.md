@@ -12,8 +12,9 @@ TOC
 
 # History of changes
 
+- November 2017 - Integrate YAML build definition for CIs
 - October 2017 - Update to ASP.NET Core 2.0.
-- (in progress) July 2017 - Setup deployment as App Service (Linux)
+- July 2017 - Setup deployment as App Service (Linux)
 - June 2017 - Update to ASP.NET Core 1.1.
 - November 2016 - Initial setup deployment as App Service (Windows) [for my presentation "Your DevOps journey starts with ALM!" at the Agile Tour Quebec city 2016](http://aka.ms/mabenoit-atq2016)
 
@@ -40,7 +41,6 @@ Here are the DevOps practices highlighted within this CI pipeline:
 - Compile the ASP.NET Core application
 - Run unit tests
 - Infrastructure as Code with the ARM Templates and the PowerShell scripts
-- Run ARM Templates validation
 - Expose artifacts to be used then by the CD pipeline (WebDeploy package, ARM Templates, PowerShell scripts and UITests (Selenium) dlls)
 - Create a bug work item on build failure (assign to requestor)
 
@@ -67,7 +67,6 @@ Here are the DevOps practices highlighted within this CI pipeline:
 - Compile the ASP.NET Core application
 - Run unit tests
 - Infrastructure as Code with the ARM Templates and the PowerShell scripts
-- Run ARM Templates validation
 - Publish the web app as a Docker container in an Azure Container Registry
 - Expose artifacts to be used then by the CD pipeline (ARM Templates, PowerShell scripts and UITests (Selenium) dlls)
 - Create a bug work item on build failure (assign to requestor)
