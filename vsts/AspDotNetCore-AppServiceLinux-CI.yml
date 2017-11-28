@@ -42,7 +42,7 @@ phases:
   - task: Docker@0
     inputs:
       containerregistrytype: Azure Container Registry
-      azureSubscriptionEndpoint: Microsoft Azure Internal Consumption
+      azureSubscriptionEndpoint: Microsoft Azure Internal Consumption (0bd042ec-b6bc-4162-8385-c05a21d55572)
       azureContainerRegistry: demoregfoo123
       action: Build an image
       dockerFile: "**/Dockerfile"
@@ -54,7 +54,7 @@ phases:
   - task: Docker@0
     inputs:
       containerregistrytype: Azure Container Registry
-      azureSubscriptionEndpoint: Microsoft Azure Internal Consumption
+      azureSubscriptionEndpoint: Microsoft Azure Internal Consumption (0bd042ec-b6bc-4162-8385-c05a21d55572)
       azureContainerRegistry: demoregfoo123
       action: Push an image
       imageName: $(Build.Repository.Name):$(Build.BuildId)
