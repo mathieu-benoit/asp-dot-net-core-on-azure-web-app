@@ -1,11 +1,11 @@
-variables:
-  RestoreBuildProjects: "src/AspNetCoreApplication/AspNetCoreApplication.csproj\ntest/AspNetCoreApplication.UnitTests/AspNetCoreApplication.UnitTests.csproj"
-  BuildConfiguration: release
-  DOTNET_SKIP_FIRST_TIME_EXPERIENCE: true
-  NUGET_XMLDOC_MODE: skip
 phases:
 - phase: Linux
   queue: Hosted Linux Preview
+  variables:
+    RestoreBuildProjects: "src/AspNetCoreApplication/AspNetCoreApplication.csproj\ntest/AspNetCoreApplication.UnitTests/AspNetCoreApplication.UnitTests.csproj"
+    BuildConfiguration: release
+    DOTNET_SKIP_FIRST_TIME_EXPERIENCE: true
+    NUGET_XMLDOC_MODE: skip
   steps:
   #web app
   - task: dotNetCoreCLI@1
@@ -56,6 +56,8 @@ phases:
     displayName: "Publish artifact: scripts"
 - phase: Windows
   queue: Hosted VS2017
+  variables:
+    BuildConfiguration: release
   steps:
   #ui-tests
   - task: NuGetCommand@0
