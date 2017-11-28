@@ -12,7 +12,7 @@ TOC
 
 # History of changes
 
-- November 2017 - Integrate YAML build definition for CIs
+- November 2017 - Integrate YAML build definition for CIs [PR#8](https://github.com/mathieu-benoit/asp-dot-net-core-on-azure-web-app/pull/8)
 - October 2017 - Update to ASP.NET Core 2.0.
 - July 2017 - Add deployment as App Service (Linux)
 - June 2017 - Update to ASP.NET Core 1.1.
@@ -86,7 +86,7 @@ Here are the DevOps practices highlighted within this CD pipeline:
 # Other Misc DevOps practices implemented
 
 - GitHub as source control to leverage key features for collaboration such as feature-branch with pull request, etc.
-- CI/CD definitions as Code with the exported json file of the Build and Release Definitions
+- CI/CD definitions as Code with the exported yml and json files of the Build and Release Definitions respectively
 
 # Alternatives and potential further considerations
 
