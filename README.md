@@ -14,7 +14,7 @@ TOC
 
 - November 2017 - Integrate YAML build definition for CIs
 - October 2017 - Update to ASP.NET Core 2.0.
-- July 2017 - Setup deployment as App Service (Linux)
+- July 2017 - Add deployment as App Service (Linux)
 - June 2017 - Update to ASP.NET Core 1.1.
 - November 2016 - Initial setup deployment as App Service (Windows) [for my presentation "Your DevOps journey starts with ALM!" at the Agile Tour Quebec city 2016](http://aka.ms/mabenoit-atq2016)
 
