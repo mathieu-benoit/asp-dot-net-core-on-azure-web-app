@@ -37,8 +37,8 @@ phases:
   - task: dotNetCoreCLI@1
     inputs:
       command: publish
-      arguments: --configuration $(BuildConfiguration)  --output $(DotNetCorePackagingFolder)
-      zipAfterPublish: true
+      arguments: --configuration $(BuildConfiguration) --output $(DotNetCorePackagingFolder)
+      zipAfterPublish: false
     displayName: dotnet publish
   - task: Docker@0
     inputs:
