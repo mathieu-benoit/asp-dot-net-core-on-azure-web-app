@@ -45,7 +45,6 @@ phases:
       azureContainerRegistry: ASR
       action: Build an image
       dockerFile: "**/Dockerfile"
-      buildArguments: source=pub
       imageName: $(Build.Repository.Name):$(Build.BuildId)
       workDir: $(System.DefaultWorkingDirectory)
       includeLatestTag: true
