@@ -39,7 +39,28 @@ phases:
       arguments: --configuration $(BuildConfiguration) --output $(Build.ArtifactStagingDirectory)
       zipAfterPublish: true
     displayName: dotnet publish
-  #TODO - docker stuffs
+  - task: Docker@0
+    inputs:
+      containerregistrytype: Azure Container Registry
+      azureSubscriptionEndpoint: Microsoft Azure Internal Consumption
+      azureContainerRegistry: demoregfoo123
+      action: Build an image
+      dockerFile: "**/Dockerfile"
+      buildArguments: source=pub
+      imageName: $(Build.Repository.Name):$(Build.BuildId)
+      workDir: $(System.DefaultWorkingDirectory)
+      includeLatestTag: true
+    displayName: Build Docker image
+  - task: Docker@0
+    inputs:
+      containerregistrytype: Azure Container Registry
+      azureSubscriptionEndpoint: Microsoft Azure Internal Consumption
+      azureContainerRegistry: demoregfoo123
+      action: Push an image
+      imageName: $(Build.Repository.Name):$(Build.BuildId)
+      workDir: $(System.DefaultWorkingDirectory)
+      includeLatestTag: true
+    displayName: Push Docker image
   #infra
   - task: publishBuildArtifacts@1
     inputs:
