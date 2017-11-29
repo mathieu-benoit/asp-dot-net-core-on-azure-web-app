@@ -48,6 +48,7 @@ phases:
       imageName: $(Build.Repository.Name):$(Build.BuildId)
       workDir: $(System.DefaultWorkingDirectory)
       includeLatestTag: true
+      qualifyImageName: true
     displayName: Build Docker image
   - task: Docker@0
     inputs:
@@ -58,6 +59,7 @@ phases:
       imageName: $(Build.Repository.Name):$(Build.BuildId)
       workDir: $(System.DefaultWorkingDirectory)
       includeLatestTag: true
+      qualifyImageName: true
     displayName: Push Docker image
   #infra
   - task: publishBuildArtifacts@1
