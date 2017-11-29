@@ -45,7 +45,7 @@ phases:
       action: Build an image
       dockerFile: "**/Dockerfile"
       buildArguments: source=$(DotNetCorePackagingFolder)
-      imageName: $(Build.Repository.Name):$(Build.BuildId)
+      imageName: demoregfoo123.azurecr.io/$(Build.Repository.Name):$(Build.BuildId)
       workDir: $(System.DefaultWorkingDirectory)
       includeLatestTag: true
       qualifyImageName: true
