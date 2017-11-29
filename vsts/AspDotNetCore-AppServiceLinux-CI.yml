@@ -49,6 +49,7 @@ phases:
       workDir: $(System.DefaultWorkingDirectory)
       includeLatestTag: true
       qualifyImageName: true
+      defaultContext: true
     displayName: Build Docker image
   - task: Docker@0
     inputs:
@@ -60,6 +61,7 @@ phases:
       workDir: $(System.DefaultWorkingDirectory)
       includeLatestTag: true
       qualifyImageName: true
+      defaultContext: true
     displayName: Push Docker image
   #infra
   - task: publishBuildArtifacts@1
