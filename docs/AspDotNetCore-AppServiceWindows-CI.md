@@ -1,4 +1,4 @@
-Here is one example to Build a .NET method to be deployed as an Azure Function App via VSTS. You could adapt it with your own context, needs and constraints.
+Here is one example to Build an ASP.NET Core 2.0 web application to an App Service (Windows) via VSTS. You could adapt it with your own context, needs and constraints.
 
 ![Build Overview](/docs/imgs/AspDotNetCore-AppServiceWindows-CI.PNG)
 

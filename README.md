@@ -7,7 +7,7 @@ TOC
 - [App Service (Windows) - Build and Release Definitions with VSTS](#app-service-windows---build-and-release-definitions-with-vsts)
 - [App Service (Linux) - Build and Release Definitions with VSTS](#app-service-linux---build-and-release-definitions-with-vsts)
 - [Other Misc DevOps practices implemented](#other-misc-devops-practices-implemented)
-- [Alternatives and potential further considerations](#alternatives-and-potential-further-considerations)
+- [Alternatives](#alternatives)
 - [Resources](#resources)
 
 # History of changes
@@ -88,16 +88,12 @@ Here are the DevOps practices highlighted within this CD pipeline:
 - GitHub as source control to leverage key features for collaboration such as feature-branch with pull request, etc.
 - CI/CD definitions as Code with the exported yml and json files of the Build and Release Definitions respectively
 
-# Alternatives and potential further considerations
+# Alternatives
 
-- Improvements
-    - [Configure VSTS and Microsoft Teams](https://almvm.azurewebsites.net/labs/vsts/teams/) (or Slack or HipChat, etc.) to add more collaboration by setting up notifications once a work item is updated, a commit is done, a build or release or done, etc.
-    - Instead of just having a Production environment with its staging slot, having a QA environment with its associated staging too.
-- Alternatives
-    - Instead of using an Azure Container Registry to expose the Docker container, use DockerHub instead.
-    - Instead of having an ASP.NET Core web application, use a NodeJS, Java, etc. web application instead.
+- Instead of using an Azure Container Registry to expose the Docker container, use DockerHub instead.
+- Instead of having an ASP.NET Core web application, use a NodeJS, Java, etc. web application instead.
 
 # Resources
 
-- TODO
+- [Step-by-step DevOps on Azure with VSTS Lab](https://github.com/mathieu-benoit/DevOpsOnAzureLab)
 - [Azure App Service on Linux Release Notes](https://github.com/Azure-App-Service/ReleaseNotes/blob/master/README.md)
