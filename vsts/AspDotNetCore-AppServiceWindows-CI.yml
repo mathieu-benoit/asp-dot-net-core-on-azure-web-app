@@ -1,0 +1,77 @@
+queue: Hosted VS2017
+variables:
+  RestoreBuildProjects: "src/AspNetCoreApplication/AspNetCoreApplication.csproj\ntest/AspNetCoreApplication.UnitTests/AspNetCoreApplication.UnitTests.csproj"
+  BuildConfiguration: release
+  DOTNET_SKIP_FIRST_TIME_EXPERIENCE: true
+  NUGET_XMLDOC_MODE: skip
+steps:
+#web app
+- task: dotNetCoreCLI@1
+  inputs:
+    command: restore
+    projects: $(RestoreBuildProjects)
+  displayName: dotnet restore
+- task: dotNetCoreCLI@1
+  inputs:
+    command: build
+    projects: $(RestoreBuildProjects)
+    arguments: --configuration $(BuildConfiguration)
+  displayName: dotnet build
+- task: dotNetCoreCLI@1
+  inputs:
+    command: test
+    projects: "**/*UnitTests/*.csproj"
+    arguments: --configuration $(BuildConfiguration) --logger:trx
+  displayName: dotnet test
+- task: PublishTestResults@2
+  inputs:
+    testRunner: VSTest
+    testResultsFiles: "**/*.trx"
+    mergeTestResults: true
+    testRunTitle: "UnitTests"
+    configuration: $(BuildConfiguration)
+  displayName: Publish UnitTests Results
+- task: dotNetCoreCLI@1
+  inputs:
+    command: publish
+    arguments: --configuration $(BuildConfiguration) --output $(Build.ArtifactStagingDirectory)
+    zipAfterPublish: true
+  displayName: dotnet publish
+- task: publishBuildArtifacts@1
+  inputs:
+    PathtoPublish: $(Build.ArtifactStagingDirectory)
+    ArtifactName: web-app
+    ArtifactType: Container
+  displayName: "Publish artifact: web-app"
+#infra
+- task: publishBuildArtifacts@1
+  inputs:
+    PathtoPublish: "infra/templates"
+    ArtifactName: infra
+    ArtifactType: Container
+  displayName: "Publish artifact: infra"
+#scripts
+- task: publishBuildArtifacts@1
+  inputs:
+    PathtoPublish: "infra/scripts"
+    ArtifactName: scripts
+    ArtifactType: Container
+  displayName: "Publish artifact: scripts"
+#ui-tests
+- task: NuGetCommand@0
+  inputs:
+    command: restore 
+    solution: "test/AspNetCoreApplication.UITests/packages.config"
+    nuGetRestoreArgs: "-PackagesDirectory $(System.DefaultWorkingDirectory)/packages"
+  displayName: "NuGet restore (UITests)"
+- task: MSBuild@1
+  inputs:
+    solution: "test/AspNetCoreApplication.UITests/AspNetCoreApplication.UITests.csproj"
+    configuration: $(BuildConfiguration)
+  displayName: "Build UITests"
+- task: publishBuildArtifacts@1
+  inputs:
+    PathtoPublish: "$(build.sourcesdirectory)/test/AspNetCoreApplication.UITests/bin/$(BuildConfiguration)"
+    ArtifactName: ui-tests
+    ArtifactType: Container
+  displayName: "Publish artifact: ui-tests"
