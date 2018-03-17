@@ -68,8 +68,8 @@
       "type": "Microsoft.Web/sites/config",
       "dependsOn": [],
       "properties": {
-        "appSettingNames": "ApplicationInsights:InstrumentationKey",
-        "connectionStringNames": "Data:DefaultConnection:ConnectionString"
+        "appSettingNames": ["ApplicationInsights:InstrumentationKey"],
+        "connectionStringNames": ["Data:DefaultConnection:ConnectionString"]
       }
     }
   ],
